@@ -68,7 +68,7 @@
   }
 
   .section-header {
-    @apply relative flex items-center justify-center mb-16 py-8 md:py-10 overflow-visible;
+    @apply relative flex items-center justify-center py-8 md:py-10 overflow-visible;
   }
 
   .section-header-bg {

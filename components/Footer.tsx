@@ -73,7 +73,7 @@ export default function Footer() {
           </a>
         </div>
         <p className="m-0 text-white/60">
-          &copy; {new Date().getFullYear()} All Rights Reserved. Made with ❤️
+          &copy; {new Date().getFullYear()} All Rights Reserved. Made with love by Moh. Asraful Hasan Asif
         </p>
       </div>
     </div>

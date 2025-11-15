@@ -10,11 +10,10 @@ export default function Hero() {
   const [textIndex, setTextIndex] = useState(0);
 
   const texts = [
-    "Web Designer",
-    "Web Developer",
+    "Full Stack Web Developer",
     "Front End Developer",
-    "Apps Designer",
-    "Apps Developer",
+    "Coding Instructor",
+    "Freelancer",
   ];
 
   useEffect(() => {

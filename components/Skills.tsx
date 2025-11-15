@@ -60,7 +60,7 @@ export default function Skills() {
 
   return (
     <div
-      className="py-24 bg-gradient-to-br from-gray-50 to-purple-50/30"
+      className="py-12 bg-gradient-to-br from-gray-50 to-purple-50/30"
       id="skill"
     >
       <div className="container mx-auto px-4 lg:px-20">

@@ -26,7 +26,7 @@ export default function Portfolio() {
 
   return (
     <>
-      <div className="py-24 bg-white" id="portfolio">
+      <div className="py-12 bg-white" id="portfolio">
         <div className="container mx-auto px-4 lg:px-20">
           <div className="section-header">
             <h1 className="section-header-bg">Gallery</h1>
@@ -36,7 +36,11 @@ export default function Portfolio() {
             {["*", "Frontend Development", "Backend Development"].map(
               (filter) => (
                 <button
-                  className={`px-6 py-2.5 rounded-full font-semibold transition-all duration-300`}
+                  className={`px-6 py-2.5 rounded-full font-semibold transition-all duration-300 ${
+                    activeFilter === filter
+                      ? "bg-primary text-white"
+                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                  }`}
                   key={filter}
                   onClick={() => setActiveFilter(filter)}
                 >

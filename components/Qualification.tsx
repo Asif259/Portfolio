@@ -3,7 +3,7 @@
 export default function Qualification() {
   return (
     <div
-      className="py-10 bg-gradient-to-br from-gray-50 to-purple-50/30"
+      className="py-12 bg-gradient-to-br from-gray-50 to-purple-50/30"
       id="qualification"
     >
       <div className="container mx-auto px-4 lg:px-20">
@@ -42,22 +42,22 @@ export default function Qualification() {
             </h3>
             <div className="border-l-4 border-primary-500 pl-8 pt-2 ml-2 space-y-8">
               <TimelineItem
+                title="Frontend Developer"
+                subtitle="Codinzy"
+                period="August 2025 – Present"
+                description="Developed interactive and responsive web applications using React.js and Next.js. Collaborated with UI/UX designers to implement modern, dynamic interfaces. Assisted in curriculum design for coding education modules. Conducted testing, optimized performance, and ensured high code quality."
+              />
+              <TimelineItem
                 title="Coding Instructor"
                 subtitle="Codingal"
-                period="2024 - running"
-                description="Worked as a coding instructor at Codingal, a platform for teaching coding to children. I have taught various programming languages to children from different countries. I have taught various programming languages to children from different countries."
+                period="May 2024 – September 2025"
+                description="Taught web development, game design, and logic building to students aged 8–18. Delivered personalized lessons in JavaScript, Python, and block-based coding. Guided project-based learning and fostered creativity in coding. Maintained excellent student engagement and course completion rates."
               />
               <TimelineItem
-                title="Web Developer"
-                subtitle="Fiverr"
-                period="2023 - running"
-                description="Developed and maintained websites for clients using React, Next.js, Node.js, Express, and MongoDB. Collaborated with clients to understand their needs and develop solutions that meet their requirements. Provided technical support and troubleshooting for clients."
-              />
-              <TimelineItem
-                title="Web Developer"
+                title="Freelance Frontend Developer"
                 subtitle="Upwork"
-                period="2023 - running"
-                description="Worked as a freelancer on Upwork, a platform for finding and hiring freelancers. I have worked on various projects for clients from different countries. I have worked on various projects for clients from different countries."
+                period="July 2022 – Present"
+                description="Designed responsive websites for global clients. Developed modular and optimized frontend components using React.js. Improved website performance and accessibility across multiple devices."
               />
             </div>
           </div>

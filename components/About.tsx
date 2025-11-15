@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 
 export default function About() {
@@ -18,7 +17,7 @@ export default function About() {
   ];
 
   return (
-    <div className="py-24 bg-white" id="about">
+    <div className="py-12 bg-white" id="about">
       <div className="container mx-auto px-4 lg:px-20">
         <div className="section-header">
           <h1 className="section-header-bg">About</h1>
@@ -27,15 +26,24 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-primary rounded-3xl transform rotate-3 opacity-10"></div>
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <Image
-                src="/img/asif-2.jpg"
-                alt="About"
-                width={500}
-                height={600}
-                className="w-full h-auto object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary-900/50 to-transparent"></div>
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-gray-800 to-gray-900 aspect-[5/6] flex items-center justify-center">
+              {/* Video placeholder - will be replaced with actual video */}
+              <div className="text-center p-8">
+                <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                  <svg
+                    className="w-10 h-10 text-white ml-1"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+                <p className="text-white/80 text-lg font-semibold">
+                  Video Portfolio
+                </p>
+                <p className="text-white/60 text-sm mt-2">Coming Soon</p>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-primary-900/30 to-transparent"></div>
             </div>
           </div>
           <div className="space-y-6">
@@ -61,9 +69,7 @@ export default function About() {
                       <h6 className="font-bold text-gray-900 mb-1">
                         {item.label}
                       </h6>
-                      <p className="text-gray-600">
-                        {item.value}
-                      </p>
+                      <p className="text-gray-600">{item.value}</p>
                     </div>
                   </div>
                 </div>

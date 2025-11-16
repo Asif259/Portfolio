@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { FaFileDownload, FaLinkedin } from "react-icons/fa";
 
 export default function Hero() {
   const [currentText, setCurrentText] = useState("");
@@ -92,16 +93,23 @@ export default function Hero() {
               user-friendly web experiences.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <a href="#" className="btn btn-white">
-                📄 Download CV
-              </a>
-              <Link
-                href="https://www.linkedin.com/in/ashrafulasif"
+              <a
+                href="/my_cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-glass"
+                className="btn btn-white flex items-center gap-2"
               >
-                💼 LinkedIn
+                <FaFileDownload className="w-4 h-4" />
+                View CV
+              </a>
+              <Link
+                href="https://www.linkedin.com/in/ashraful-asif"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-glass flex items-center gap-2"
+              >
+                <FaLinkedin className="w-4 h-4" />
+                LinkedIn
               </Link>
             </div>
           </div>

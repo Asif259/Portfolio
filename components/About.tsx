@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { FaBriefcase, FaBook } from "react-icons/fa";
 
 export default function About() {
   const infoItems = [
@@ -77,15 +78,20 @@ export default function About() {
             </div>
             <div className="flex flex-wrap gap-4 pt-4">
               <Link
-                href="https://www.facebook.com/ashraful.asif260"
+                href="https://www.linkedin.com/in/ashraful-asif"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-primary"
+                className="btn btn-primary flex items-center gap-2"
               >
-                💼 Hire Me
+                <FaBriefcase className="w-4 h-4" />
+                Hire Me
               </Link>
-              <a href="#" className="btn btn-outline-primary">
-                📚 Learn More
+              <a
+                href="#portfolio"
+                className="btn btn-outline-primary flex items-center gap-2"
+              >
+                <FaBook className="w-4 h-4" />
+                Learn More
               </a>
             </div>
           </div>

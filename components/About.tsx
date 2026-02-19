@@ -65,8 +65,8 @@ export default function About() {
           />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Video Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          {/* Intro Section */}
           <div className="space-y-6">
             <div className="space-y-4">
               <span
@@ -87,39 +87,61 @@ export default function About() {
               </p>
             </div>
 
-            <div className="relative group">
-              <div
-                className="absolute -inset-px rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(20,184,166,0.3), transparent)",
-                }}
-              />
-              <div
-                className="relative rounded-xl overflow-hidden shadow-lg aspect-video"
-                style={{
-                  backgroundColor: "#1E1E1E",
-                  border: "1px solid rgba(20,184,166,0.15)",
-                }}
-              >
-                <video
-                  src="/video-portfolio.mp4"
-                  controls
-                  className="w-full h-full object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-300"
-                  poster="/video-thumbnail.png"
-                  preload="metadata"
-                >
-                  Your browser does not support the video tag.
-                </video>
-              </div>
+            {/* Info Grid - First 4 items */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {infoItems.slice(0, 4).map((item, index) => {
+                const IconComponent = item.icon;
+                return (
+                  <div
+                    key={index}
+                    className="flex items-start gap-3 p-3 rounded-lg border transition-all duration-200 group"
+                    style={{
+                      backgroundColor: "#1E1E1E",
+                      borderColor: "rgba(20,184,166,0.1)",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.borderColor =
+                        "rgba(20,184,166,0.3)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.borderColor =
+                        "rgba(20,184,166,0.1)";
+                    }}
+                  >
+                    <div
+                      className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={{
+                        backgroundColor: "rgba(20,184,166,0.1)",
+                        color: "#14b8a6",
+                      }}
+                    >
+                      <IconComponent className="w-4 h-4" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h6
+                        className="font-semibold text-sm mb-1"
+                        style={{ color: "#f1f5f9" }}
+                      >
+                        {item.label}
+                      </h6>
+                      <p
+                        className="text-sm break-words leading-tight"
+                        style={{ color: "#94a3b8" }}
+                      >
+                        {item.value}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
           {/* Content Section */}
           <div className="space-y-6">
-            {/* Info Grid */}
+            {/* Info Grid - Last 3 items */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {infoItems.map((item, index) => {
+              {infoItems.slice(4).map((item, index) => {
                 const IconComponent = item.icon;
                 return (
                   <div

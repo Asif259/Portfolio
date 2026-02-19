@@ -64,7 +64,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
         scrolled
           ? {
             backgroundColor: "rgba(18,18,18,0.95)",
-            borderBottomColor: "rgba(255,106,0,0.15)",
+            borderBottomColor: "rgba(20,184,166,0.15)",
           }
           : {}
       }
@@ -73,7 +73,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
         <div className="flex items-center justify-between py-2 lg:py-3">
           <Link href="/" className="text-xl font-extrabold tracking-tight">
             <span style={{
-              background: "linear-gradient(135deg, #FF6A00 0%, #fb923c 100%)",
+              background: "linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%)",
               backgroundClip: "text",
               WebkitBackgroundClip: "text",
               color: "transparent",
@@ -101,7 +101,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
               isMobileMenuOpen
                 ? {
                   backgroundColor: "rgba(18,18,18,0.98)",
-                  borderBottomColor: "rgba(255,106,0,0.15)",
+                  borderBottomColor: "rgba(20,184,166,0.15)",
                 }
                 : {}
             }
@@ -121,8 +121,8 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                   href={`#${section}`}
                   onClick={(e) => handleSmoothScroll(e, section)}
                   className={`px-3 py-1.5 lg:py-2 text-sm font-semibold transition-all duration-300 relative group ${activeSection === section
-                      ? "text-orange-400"
-                      : "text-slate-400 hover:text-orange-400"
+                      ? "text-teal-400"
+                      : "text-slate-400 hover:text-teal-400"
                     }`}
                 >
                   {section === "qualification"
@@ -136,8 +136,8 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                     <span
                       className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full"
                       style={{
-                        background: "linear-gradient(90deg, #FF6A00, #ea580c)",
-                        boxShadow: "0 0 8px rgba(255,106,0,0.6)",
+                        background: "linear-gradient(90deg, #14b8a6, #0d9488)",
+                        boxShadow: "0 0 8px rgba(20,184,166,0.6)",
                       }}
                     />
                   )}
@@ -145,7 +145,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                     <span
                       className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
                       style={{
-                        background: "rgba(255,106,0,0.4)",
+                        background: "rgba(20,184,166,0.4)",
                       }}
                     />
                   )}
@@ -157,9 +157,9 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                 rel="noopener noreferrer"
                 className="hidden lg:block btn ml-2 text-sm"
                 style={{
-                  background: "linear-gradient(135deg, #FF6A00 0%, #ea580c 100%)",
+                  background: "linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)",
                   color: "#fff",
-                  boxShadow: "0 0 15px rgba(255,106,0,0.35)",
+                  boxShadow: "0 0 15px rgba(20,184,166,0.35)",
                 }}
               >
                 Hire Me

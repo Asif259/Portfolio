@@ -15,7 +15,7 @@ export default function Qualification() {
         className="absolute left-0 top-1/2 -translate-y-1/2 w-64 h-64 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(255,106,0,0.08) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(20,184,166,0.08) 0%, transparent 70%)",
           filter: "blur(40px)",
         }}
       />
@@ -32,12 +32,12 @@ export default function Qualification() {
             className="rounded-2xl p-6 border"
             style={{
               backgroundColor: "#1E1E1E",
-              borderColor: "rgba(255,106,0,0.12)",
+              borderColor: "rgba(20,184,166,0.12)",
               boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
             }}
           >
             <h3 className="text-2xl font-bold mb-6" style={{
-              background: "linear-gradient(135deg, #FF6A00 0%, #fb923c 100%)",
+              background: "linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%)",
               backgroundClip: "text",
               WebkitBackgroundClip: "text",
               color: "transparent",
@@ -47,7 +47,7 @@ export default function Qualification() {
             </h3>
             <div
               className="pl-8 pt-2 ml-2 space-y-8"
-              style={{ borderLeft: "2px solid rgba(255,106,0,0.35)" }}
+              style={{ borderLeft: "2px solid rgba(20,184,166,0.35)" }}
             >
               <TimelineItem
                 title="School"
@@ -74,12 +74,12 @@ export default function Qualification() {
             className="rounded-2xl p-6 border"
             style={{
               backgroundColor: "#1E1E1E",
-              borderColor: "rgba(255,106,0,0.12)",
+              borderColor: "rgba(20,184,166,0.12)",
               boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
             }}
           >
             <h3 className="text-2xl font-bold mb-6" style={{
-              background: "linear-gradient(135deg, #FF6A00 0%, #fb923c 100%)",
+              background: "linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%)",
               backgroundClip: "text",
               WebkitBackgroundClip: "text",
               color: "transparent",
@@ -89,7 +89,7 @@ export default function Qualification() {
             </h3>
             <div
               className="pl-8 pt-2 ml-2 space-y-8"
-              style={{ borderLeft: "2px solid rgba(255,106,0,0.35)" }}
+              style={{ borderLeft: "2px solid rgba(20,184,166,0.35)" }}
             >
               <TimelineItem
                 title="Frontend Developer"
@@ -135,15 +135,15 @@ function TimelineItem({
         className="absolute -left-[45px] top-2 w-5 h-5 rounded-full border-2"
         style={{
           backgroundColor: "#121212",
-          borderColor: "#FF6A00",
-          boxShadow: "0 0 10px rgba(255,106,0,0.5)",
+          borderColor: "#14b8a6",
+          boxShadow: "0 0 10px rgba(20,184,166,0.5)",
         }}
       />
       <h5 className="font-bold mb-1" style={{ color: "#f1f5f9" }}>
         {title}
       </h5>
       <p className="mb-2 text-sm" style={{ color: "#94a3b8" }}>
-        <span style={{ color: "#fb923c" }}>{subtitle}</span>
+        <span style={{ color: "#2dd4bf" }}>{subtitle}</span>
         <span className="mx-2 opacity-40">|</span>
         <small style={{ color: "#94a3b8" }}>{period}</small>
       </p>

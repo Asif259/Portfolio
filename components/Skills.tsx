@@ -70,7 +70,7 @@ export default function Skills() {
         className="absolute top-0 right-0 w-96 h-96 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(255,106,0,0.08) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(20,184,166,0.08) 0%, transparent 70%)",
           filter: "blur(40px)",
         }}
       />
@@ -101,28 +101,28 @@ export default function Skills() {
                 activeCategory === cat
                   ? {
                     background:
-                      "linear-gradient(135deg, #FF6A00, #ea580c)",
+                      "linear-gradient(135deg, #14b8a6, #0d9488)",
                     color: "#fff",
                     borderColor: "transparent",
-                    boxShadow: "0 0 15px rgba(255,106,0,0.35)",
+                    boxShadow: "0 0 15px rgba(20,184,166,0.35)",
                   }
                   : {
                     backgroundColor: "transparent",
                     color: "#94a3b8",
-                    borderColor: "rgba(255,106,0,0.2)",
+                    borderColor: "rgba(20,184,166,0.2)",
                   }
               }
               onMouseEnter={(e) => {
                 if (activeCategory !== cat) {
                   (e.currentTarget as HTMLButtonElement).style.borderColor =
-                    "rgba(255,106,0,0.5)";
-                  (e.currentTarget as HTMLButtonElement).style.color = "#FF6A00";
+                    "rgba(20,184,166,0.5)";
+                  (e.currentTarget as HTMLButtonElement).style.color = "#14b8a6";
                 }
               }}
               onMouseLeave={(e) => {
                 if (activeCategory !== cat) {
                   (e.currentTarget as HTMLButtonElement).style.borderColor =
-                    "rgba(255,106,0,0.2)";
+                    "rgba(20,184,166,0.2)";
                   (e.currentTarget as HTMLButtonElement).style.color = "#94a3b8";
                 }
               }}
@@ -193,9 +193,9 @@ function SkillCard({
         <span
           className="px-3 py-1 rounded-full text-sm font-bold tabular-nums"
           style={{
-            background: "linear-gradient(135deg, #FF6A00, #ea580c)",
+            background: "linear-gradient(135deg, #14b8a6, #0d9488)",
             color: "#fff",
-            boxShadow: "0 0 10px rgba(255,106,0,0.3)",
+            boxShadow: "0 0 10px rgba(20,184,166,0.3)",
           }}
         >
           {skill.percentage}%
@@ -205,15 +205,15 @@ function SkillCard({
       {/* Track */}
       <div
         className="h-2 rounded-full overflow-hidden"
-        style={{ backgroundColor: "rgba(255,106,0,0.1)" }}
+        style={{ backgroundColor: "rgba(20,184,166,0.1)" }}
       >
         <div
           ref={progressRef}
           className="h-full rounded-full transition-all duration-1000 ease-out"
           style={{
             width: "0%",
-            background: "linear-gradient(90deg, #FF6A00, #fb923c)",
-            boxShadow: "0 0 8px rgba(255,106,0,0.5)",
+            background: "linear-gradient(90deg, #14b8a6, #2dd4bf)",
+            boxShadow: "0 0 8px rgba(20,184,166,0.5)",
           }}
         />
       </div>

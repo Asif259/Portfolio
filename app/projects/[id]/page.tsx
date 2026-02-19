@@ -77,7 +77,7 @@ export default function ProjectDetailPage() {
 
   const cardStyle = {
     backgroundColor: "#1E1E1E",
-    border: "1px solid rgba(255,106,0,0.12)",
+    border: "1px solid rgba(20,184,166,0.12)",
     boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
   };
 
@@ -99,7 +99,7 @@ export default function ProjectDetailPage() {
             className="flex items-center gap-2 transition-colors group text-sm font-medium"
             style={{ color: "#94a3b8" }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.color = "#FF6A00";
+              (e.currentTarget as HTMLAnchorElement).style.color = "#14b8a6";
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.color = "#94a3b8";
@@ -144,7 +144,7 @@ export default function ProjectDetailPage() {
                       Home
                     </Link>
                   </li>
-                  <li style={{ color: "rgba(255,106,0,0.4)" }}>/</li>
+                  <li style={{ color: "rgba(20,184,166,0.4)" }}>/</li>
                   <li>
                     <Link
                       href="/#portfolio"
@@ -153,7 +153,7 @@ export default function ProjectDetailPage() {
                       Portfolio
                     </Link>
                   </li>
-                  <li style={{ color: "rgba(255,106,0,0.4)" }}>/</li>
+                  <li style={{ color: "rgba(20,184,166,0.4)" }}>/</li>
                   <li style={{ color: "#f1f5f9" }}>{project.name}</li>
                 </ol>
               </nav>
@@ -162,9 +162,9 @@ export default function ProjectDetailPage() {
                 <span
                   className="inline-block px-3 py-1 rounded-full text-xs font-semibold border"
                   style={{
-                    backgroundColor: "rgba(255,106,0,0.08)",
-                    borderColor: "rgba(255,106,0,0.25)",
-                    color: "#fb923c",
+                    backgroundColor: "rgba(20,184,166,0.08)",
+                    borderColor: "rgba(20,184,166,0.25)",
+                    color: "#2dd4bf",
                   }}
                 >
                   {project.category}
@@ -206,8 +206,8 @@ export default function ProjectDetailPage() {
                     <div
                       className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
                       style={{
-                        backgroundColor: "rgba(255,106,0,0.1)",
-                        color: "#FF6A00",
+                        backgroundColor: "rgba(20,184,166,0.1)",
+                        color: "#14b8a6",
                       }}
                     >
                       <Icon className="w-3.5 h-3.5" />
@@ -289,15 +289,15 @@ export default function ProjectDetailPage() {
                         activeTab === (t.id as "overview" | "solution" | "challenges")
                           ? {
                             background:
-                              "linear-gradient(135deg, #FF6A00, #ea580c)",
+                              "linear-gradient(135deg, #14b8a6, #0d9488)",
                             color: "#fff",
                             borderColor: "transparent",
-                            boxShadow: "0 0 12px rgba(255,106,0,0.3)",
+                            boxShadow: "0 0 12px rgba(20,184,166,0.3)",
                           }
                           : {
                             backgroundColor: "transparent",
                             color: "#94a3b8",
-                            borderColor: "rgba(255,106,0,0.15)",
+                            borderColor: "rgba(20,184,166,0.15)",
                           }
                       }
                       onClick={() =>
@@ -366,9 +366,9 @@ export default function ProjectDetailPage() {
                                 <span
                                   className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
                                   style={{
-                                    backgroundColor: "#FF6A00",
+                                    backgroundColor: "#14b8a6",
                                     boxShadow:
-                                      "0 0 6px rgba(255,106,0,0.5)",
+                                      "0 0 6px rgba(20,184,166,0.5)",
                                   }}
                                 />
                                 <div className="flex-1">
@@ -400,7 +400,7 @@ export default function ProjectDetailPage() {
                                 <span
                                   className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
                                   style={{
-                                    backgroundColor: "#FF6A00",
+                                    backgroundColor: "#14b8a6",
                                   }}
                                 />
                                 <span
@@ -436,18 +436,18 @@ export default function ProjectDetailPage() {
                         className="group relative rounded-lg overflow-hidden cursor-zoom-in transition-all duration-300 border"
                         style={{
                           backgroundColor: "#121212",
-                          borderColor: "rgba(255,106,0,0.1)",
+                          borderColor: "rgba(20,184,166,0.1)",
                           padding: "8px",
                         }}
                         onMouseEnter={(e) => {
                           (
                             e.currentTarget as HTMLButtonElement
-                          ).style.borderColor = "rgba(255,106,0,0.35)";
+                          ).style.borderColor = "rgba(20,184,166,0.35)";
                         }}
                         onMouseLeave={(e) => {
                           (
                             e.currentTarget as HTMLButtonElement
-                          ).style.borderColor = "rgba(255,106,0,0.1)";
+                          ).style.borderColor = "rgba(20,184,166,0.1)";
                         }}
                         onClick={() => {
                           setActiveIndex(idx);
@@ -486,7 +486,7 @@ export default function ProjectDetailPage() {
                         <div key={sectionIndex}>
                           <h3
                             className="text-lg font-semibold mb-3"
-                            style={{ color: "#fb923c" }}
+                            style={{ color: "#2dd4bf" }}
                           >
                             {section.title}
                           </h3>
@@ -496,15 +496,15 @@ export default function ProjectDetailPage() {
                                 key={itemIndex}
                                 className="flex items-start gap-3 p-3 rounded-lg border"
                                 style={{
-                                  backgroundColor: "rgba(255,106,0,0.04)",
-                                  borderColor: "rgba(255,106,0,0.12)",
+                                  backgroundColor: "rgba(20,184,166,0.04)",
+                                  borderColor: "rgba(20,184,166,0.12)",
                                 }}
                               >
                                 <div
                                   className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
                                   style={{
                                     background:
-                                      "linear-gradient(135deg, #FF6A00, #ea580c)",
+                                      "linear-gradient(135deg, #14b8a6, #0d9488)",
                                   }}
                                 >
                                   <FaCheck
@@ -540,15 +540,15 @@ export default function ProjectDetailPage() {
                         key={index}
                         className="flex items-start gap-3 p-3 rounded-lg border"
                         style={{
-                          backgroundColor: "rgba(255,106,0,0.04)",
-                          borderColor: "rgba(255,106,0,0.12)",
+                          backgroundColor: "rgba(20,184,166,0.04)",
+                          borderColor: "rgba(20,184,166,0.12)",
                         }}
                       >
                         <div
                           className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
                           style={{
                             background:
-                              "linear-gradient(135deg, #FF6A00, #ea580c)",
+                              "linear-gradient(135deg, #14b8a6, #0d9488)",
                           }}
                         >
                           <FaCheck
@@ -636,9 +636,9 @@ export default function ProjectDetailPage() {
                       key={index}
                       className="px-2.5 py-1 rounded-lg text-xs font-medium border"
                       style={{
-                        backgroundColor: "rgba(255,106,0,0.08)",
-                        borderColor: "rgba(255,106,0,0.2)",
-                        color: "#fb923c",
+                        backgroundColor: "rgba(20,184,166,0.08)",
+                        borderColor: "rgba(20,184,166,0.2)",
+                        color: "#2dd4bf",
                       }}
                     >
                       {tech}
@@ -670,18 +670,18 @@ export default function ProjectDetailPage() {
                     className="group block rounded-xl overflow-hidden transition-all duration-300 border"
                     style={{
                       backgroundColor: "#1E1E1E",
-                      borderColor: "rgba(255,106,0,0.12)",
+                      borderColor: "rgba(20,184,166,0.12)",
                     }}
                     onMouseEnter={(e) => {
                       (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                        "rgba(255,106,0,0.35)";
+                        "rgba(20,184,166,0.35)";
                       (
                         e.currentTarget as HTMLAnchorElement
-                      ).style.boxShadow = "0 0 20px rgba(255,106,0,0.1)";
+                      ).style.boxShadow = "0 0 20px rgba(20,184,166,0.1)";
                     }}
                     onMouseLeave={(e) => {
                       (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                        "rgba(255,106,0,0.12)";
+                        "rgba(20,184,166,0.12)";
                       (
                         e.currentTarget as HTMLAnchorElement
                       ).style.boxShadow = "none";
@@ -743,7 +743,7 @@ export default function ProjectDetailPage() {
               sizes="90vw"
               className="w-full h-full object-contain rounded-xl"
               style={{
-                border: "1px solid rgba(255,106,0,0.2)",
+                border: "1px solid rgba(20,184,166,0.2)",
               }}
             />
             <div className="flex justify-between mt-4 gap-2">
@@ -777,23 +777,23 @@ export default function ProjectDetailPage() {
                   key={label}
                   className="btn flex-1 border font-medium text-sm transition-all duration-200"
                   style={{
-                    backgroundColor: "rgba(255,106,0,0.08)",
-                    borderColor: "rgba(255,106,0,0.2)",
+                    backgroundColor: "rgba(20,184,166,0.08)",
+                    borderColor: "rgba(20,184,166,0.2)",
                     color: "#94a3b8",
                   }}
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                      "rgba(255,106,0,0.15)";
+                      "rgba(20,184,166,0.15)";
                     (e.currentTarget as HTMLButtonElement).style.borderColor =
-                      "rgba(255,106,0,0.4)";
+                      "rgba(20,184,166,0.4)";
                     (e.currentTarget as HTMLButtonElement).style.color =
-                      "#FF6A00";
+                      "#14b8a6";
                   }}
                   onMouseLeave={(e) => {
                     (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                      "rgba(255,106,0,0.08)";
+                      "rgba(20,184,166,0.08)";
                     (e.currentTarget as HTMLButtonElement).style.borderColor =
-                      "rgba(255,106,0,0.2)";
+                      "rgba(20,184,166,0.2)";
                     (e.currentTarget as HTMLButtonElement).style.color =
                       "#94a3b8";
                   }}

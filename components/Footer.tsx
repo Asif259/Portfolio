@@ -13,7 +13,7 @@ export default function Footer() {
       className="relative overflow-hidden border-t"
       style={{
         backgroundColor: "#121212",
-        borderTopColor: "rgba(255,106,0,0.12)",
+        borderTopColor: "rgba(20,184,166,0.12)",
       }}
     >
       {/* Subtle top glow */}
@@ -21,7 +21,7 @@ export default function Footer() {
         className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-32 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(255,106,0,0.07) 0%, transparent 100%)",
+            "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(20,184,166,0.07) 0%, transparent 100%)",
         }}
       />
 
@@ -30,7 +30,7 @@ export default function Footer() {
         <div className="mb-6">
           <span className="text-xl font-extrabold tracking-tight">
             <span style={{
-              background: "linear-gradient(135deg, #FF6A00 0%, #fb923c 100%)",
+              background: "linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%)",
               backgroundClip: "text",
               WebkitBackgroundClip: "text",
               color: "transparent",
@@ -68,21 +68,21 @@ export default function Footer() {
               href={href}
               aria-label={label}
               style={{
-                backgroundColor: "rgba(255,106,0,0.08)",
-                borderColor: "rgba(255,106,0,0.2)",
+                backgroundColor: "rgba(20,184,166,0.08)",
+                borderColor: "rgba(20,184,166,0.2)",
                 color: "#94a3b8",
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLAnchorElement;
-                el.style.backgroundColor = "rgba(255,106,0,0.15)";
-                el.style.borderColor = "rgba(255,106,0,0.5)";
-                el.style.color = "#FF6A00";
-                el.style.boxShadow = "0 0 15px rgba(255,106,0,0.25)";
+                el.style.backgroundColor = "rgba(20,184,166,0.15)";
+                el.style.borderColor = "rgba(20,184,166,0.5)";
+                el.style.color = "#14b8a6";
+                el.style.boxShadow = "0 0 15px rgba(20,184,166,0.25)";
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLAnchorElement;
-                el.style.backgroundColor = "rgba(255,106,0,0.08)";
-                el.style.borderColor = "rgba(255,106,0,0.2)";
+                el.style.backgroundColor = "rgba(20,184,166,0.08)";
+                el.style.borderColor = "rgba(20,184,166,0.2)";
                 el.style.color = "#94a3b8";
                 el.style.boxShadow = "none";
               }}
@@ -101,7 +101,7 @@ export default function Footer() {
                 className="transition-colors duration-200"
                 style={{ color: "rgba(148,163,184,0.7)" }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.color = "#FF6A00";
+                  (e.currentTarget as HTMLAnchorElement).style.color = "#14b8a6";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLAnchorElement).style.color =
@@ -111,7 +111,7 @@ export default function Footer() {
                 {link}
               </a>
               {i < arr.length - 1 && (
-                <span style={{ color: "rgba(255,106,0,0.2)" }}>|</span>
+                <span style={{ color: "rgba(20,184,166,0.2)" }}>|</span>
               )}
             </span>
           ))}
@@ -122,13 +122,13 @@ export default function Footer() {
           className="w-full h-px mb-6"
           style={{
             background:
-              "linear-gradient(90deg, transparent, rgba(255,106,0,0.2), transparent)",
+              "linear-gradient(90deg, transparent, rgba(20,184,166,0.2), transparent)",
           }}
         />
 
         <p className="text-sm" style={{ color: "rgba(148,163,184,0.5)" }}>
           &copy; {new Date().getFullYear()} All Rights Reserved. Made with{" "}
-          <span style={{ color: "#FF6A00" }}>♥</span> by Moh. Asraful Hasan Asif
+          <span style={{ color: "#14b8a6" }}>♥</span> by Moh. Asraful Hasan Asif
         </p>
       </div>
     </div>

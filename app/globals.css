@@ -55,24 +55,24 @@
 
   .btn-primary {
     @apply text-white border-0;
-    background: linear-gradient(135deg, #FF6A00 0%, #ea580c 100%);
-    box-shadow: 0 0 15px rgba(255, 106, 0, 0.35);
+    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+    box-shadow: 0 0 15px rgba(20, 184, 166, 0.35);
   }
 
   .btn-primary:hover {
-    box-shadow: 0 0 25px rgba(255, 106, 0, 0.55), 0 0 50px rgba(255, 106, 0, 0.2);
+    box-shadow: 0 0 25px rgba(20, 184, 166, 0.55), 0 0 50px rgba(20, 184, 166, 0.2);
   }
 
   .btn-outline-primary {
     @apply border-2 bg-transparent;
-    border-color: #FF6A00;
-    color: #FF6A00;
+    border-color: #14b8a6;
+    color: #14b8a6;
   }
 
   .btn-outline-primary:hover {
     @apply text-white;
-    background: linear-gradient(135deg, #FF6A00 0%, #ea580c 100%);
-    box-shadow: 0 0 20px rgba(255, 106, 0, 0.4);
+    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+    box-shadow: 0 0 20px rgba(20, 184, 166, 0.4);
   }
 
   .btn-white {
@@ -87,13 +87,13 @@
 
   .btn-glass {
     @apply backdrop-blur-lg border text-white;
-    background: rgba(255, 106, 0, 0.1);
-    border-color: rgba(255, 106, 0, 0.3);
+    background: rgba(20, 184, 166, 0.1);
+    border-color: rgba(20, 184, 166, 0.3);
   }
 
   .btn-glass:hover {
-    background: rgba(255, 106, 0, 0.2);
-    box-shadow: 0 0 20px rgba(255, 106, 0, 0.2);
+    background: rgba(20, 184, 166, 0.2);
+    box-shadow: 0 0 20px rgba(20, 184, 166, 0.2);
   }
 
   .btn-social {
@@ -107,30 +107,30 @@
   .section-header-bg {
     @apply absolute inset-0 flex items-center justify-center text-6xl md:text-8xl lg:text-9xl font-black uppercase select-none pointer-events-none z-0;
     letter-spacing: 0.05em;
-    background: linear-gradient(110deg, rgba(255, 106, 0, 0.06) 60%, rgba(255, 106, 0, 0.12) 85%, rgba(255, 106, 0, 0.06) 100%);
+    background: linear-gradient(110deg, rgba(20, 184, 166, 0.06) 60%, rgba(20, 184, 166, 0.12) 85%, rgba(20, 184, 166, 0.06) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 1px rgba(255, 106, 0, 0.12);
+    -webkit-text-stroke: 1px rgba(20, 184, 166, 0.12);
   }
 
   @screen md {
     .section-header-bg {
-      -webkit-text-stroke: 1.25px rgba(255, 106, 0, 0.12);
+      -webkit-text-stroke: 1.25px rgba(20, 184, 166, 0.12);
     }
   }
 
   @screen lg {
     .section-header-bg {
-      -webkit-text-stroke: 1.5px rgba(255, 106, 0, 0.1);
+      -webkit-text-stroke: 1.5px rgba(20, 184, 166, 0.1);
     }
   }
 
   .section-header-text {
     @apply absolute font-extrabold text-3xl md:text-4xl lg:text-5xl uppercase tracking-wide z-10;
-    color: #FF6A00;
-    text-shadow: 0 0 20px rgba(255, 106, 0, 0.4);
+    color: #14b8a6;
+    text-shadow: 0 0 20px rgba(20, 184, 166, 0.4);
   }
 
   .progress-bar {
@@ -141,13 +141,13 @@
   .card {
     @apply backdrop-blur-sm rounded-2xl p-6 transition-all duration-300;
     background: #1E1E1E;
-    border: 1px solid rgba(255, 106, 0, 0.1);
+    border: 1px solid rgba(20, 184, 166, 0.1);
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
   }
 
   .card:hover {
-    border-color: rgba(255, 106, 0, 0.25);
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 106, 0, 0.1);
+    border-color: rgba(20, 184, 166, 0.25);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(20, 184, 166, 0.1);
   }
 
   .card-hover {
@@ -157,11 +157,11 @@
   .glass {
     @apply backdrop-blur-md border;
     background: rgba(30, 30, 30, 0.7);
-    border-color: rgba(255, 106, 0, 0.15);
+    border-color: rgba(20, 184, 166, 0.15);
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, #FF6A00 0%, #fb923c 100%);
+    background: linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -169,19 +169,19 @@
   }
 
   .neon-text {
-    color: #FF6A00;
-    text-shadow: 0 0 10px rgba(255, 106, 0, 0.6), 0 0 20px rgba(255, 106, 0, 0.3);
+    color: #14b8a6;
+    text-shadow: 0 0 10px rgba(20, 184, 166, 0.6), 0 0 20px rgba(20, 184, 166, 0.3);
   }
 
   .neon-border {
-    border-color: #FF6A00;
-    box-shadow: 0 0 10px rgba(255, 106, 0, 0.3), inset 0 0 10px rgba(255, 106, 0, 0.05);
+    border-color: #14b8a6;
+    box-shadow: 0 0 10px rgba(20, 184, 166, 0.3), inset 0 0 10px rgba(20, 184, 166, 0.05);
   }
 }
 
 @layer utilities {
   .bg-gradient-primary {
-    background: linear-gradient(135deg, #FF6A00 0%, #ea580c 100%) !important;
+    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%) !important;
   }
 
   .bg-gradient-hero {
@@ -189,41 +189,41 @@
   }
 
   .bg-gradient-card {
-    background: rgba(255, 106, 0, 0.04) !important;
+    background: rgba(20, 184, 166, 0.04) !important;
   }
 
   .bg-grid {
-    background-image: linear-gradient(rgba(255, 106, 0, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 106, 0, 0.06) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(20, 184, 166, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(20, 184, 166, 0.06) 1px, transparent 1px);
     background-size: 50px 50px;
   }
 
   .bg-grid-sm {
-    background-image: linear-gradient(rgba(255, 106, 0, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 106, 0, 0.05) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(20, 184, 166, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(20, 184, 166, 0.05) 1px, transparent 1px);
     background-size: 30px 30px;
   }
 
   .text-stroke-header {
-    -webkit-text-stroke: 2px rgba(255, 106, 0, 0.2);
+    -webkit-text-stroke: 2px rgba(20, 184, 166, 0.2);
     color: transparent;
   }
 
   .emerald-glow-top {
-    background: radial-gradient(ellipse 80% 40% at 50% 0%, rgba(255, 106, 0, 0.15) 0%, transparent 70%);
+    background: radial-gradient(ellipse 80% 40% at 50% 0%, rgba(20, 184, 166, 0.15) 0%, transparent 70%);
   }
 
   .emerald-glow-center {
-    background: radial-gradient(circle at center, rgba(255, 106, 0, 0.15) 0%, transparent 60%);
+    background: radial-gradient(circle at center, rgba(20, 184, 166, 0.15) 0%, transparent 60%);
   }
 
-  /* Legacy aliases — keep so any component using .orange-glow-* still works */
-  .orange-glow-top {
-    background: radial-gradient(ellipse 80% 40% at 50% 0%, rgba(255, 106, 0, 0.15) 0%, transparent 70%);
+  /* Legacy aliases — keep so any component using .teal-glow-* still works */
+  .teal-glow-top {
+    background: radial-gradient(ellipse 80% 40% at 50% 0%, rgba(20, 184, 166, 0.15) 0%, transparent 70%);
   }
 
-  .orange-glow-center {
-    background: radial-gradient(circle at center, rgba(255, 106, 0, 0.15) 0%, transparent 60%);
+  .teal-glow-center {
+    background: radial-gradient(circle at center, rgba(20, 184, 166, 0.15) 0%, transparent 60%);
   }
 }
 
@@ -244,8 +244,8 @@
 
 /* Typed cursor */
 .typed-cursor {
-  color: #FF6A00;
-  text-shadow: 0 0 10px rgba(255, 106, 0, 0.8);
+  color: #14b8a6;
+  text-shadow: 0 0 10px rgba(20, 184, 166, 0.8);
   font-size: 1em;
 }
 
@@ -260,7 +260,7 @@
 
 .portfolio-btn {
   @apply absolute flex items-center justify-center opacity-0 transition-all duration-300 rounded-full z-20;
-  background: rgba(255, 106, 0, 0.9);
+  background: rgba(20, 184, 166, 0.9);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
@@ -278,7 +278,7 @@
   background: linear-gradient(to top,
       rgba(18, 18, 18, 0.95) 0%,
       rgba(18, 18, 18, 0.7) 50%,
-      rgba(255, 106, 0, 0.15) 100%);
+      rgba(20, 184, 166, 0.15) 100%);
 }
 
 .portfolio-item:hover .portfolio-overlay {
@@ -295,28 +295,28 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #FF6A00;
+  background: #14b8a6;
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #fb923c;
-  box-shadow: 0 0 8px rgba(255, 106, 0, 0.6);
+  background: #2dd4bf;
+  box-shadow: 0 0 8px rgba(20, 184, 166, 0.6);
 }
 
 /* Swiper pagination dark theme */
 .swiper-pagination-bullet {
-  background: rgba(255, 106, 0, 0.3) !important;
+  background: rgba(20, 184, 166, 0.3) !important;
   opacity: 1 !important;
 }
 
 .swiper-pagination-bullet-active {
-  background: #FF6A00 !important;
-  box-shadow: 0 0 8px rgba(255, 106, 0, 0.6) !important;
+  background: #14b8a6 !important;
+  box-shadow: 0 0 8px rgba(20, 184, 166, 0.6) !important;
 }
 
 /* Selection color */
 ::selection {
-  background: rgba(255, 106, 0, 0.3);
+  background: rgba(20, 184, 166, 0.3);
   color: #fff;
 }

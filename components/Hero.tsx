@@ -53,7 +53,7 @@ export default function Hero() {
       id="home"
     >
       {/* Deep dark base */}
-      <div className="absolute inset-0" style={{ backgroundColor: "#0B0B0F" }} />
+      <div className="absolute inset-0" style={{ backgroundColor: "#121212" }} />
 
       {/* Technical grid background */}
       <div
@@ -61,12 +61,12 @@ export default function Hero() {
         style={{ opacity: 1 }}
       />
 
-      {/* Emerald radial glow from top */}
+      {/* Orange radial glow from top */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(16,185,129,0.14) 0%, transparent 65%)",
+            "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,106,0,0.12) 0%, transparent 65%)",
         }}
       />
 
@@ -75,23 +75,23 @@ export default function Hero() {
         className="absolute left-0 top-1/2 -translate-y-1/2 w-80 h-80 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(16,185,129,0.12) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(255,106,0,0.1) 0%, transparent 70%)",
           filter: "blur(40px)",
         }}
       />
 
-      {/* Floating blobs — emerald tinted */}
+      {/* Floating blobs — orange tinted */}
       <div
         className="absolute top-24 left-10 w-64 h-64 rounded-full animate-float pointer-events-none"
         style={{
-          background: "rgba(16,185,129,0.07)",
+          background: "rgba(255,106,0,0.06)",
           filter: "blur(60px)",
         }}
       />
       <div
         className="absolute top-40 right-10 w-56 h-56 rounded-full animate-float pointer-events-none"
         style={{
-          background: "rgba(16,185,129,0.05)",
+          background: "rgba(255,106,0,0.04)",
           filter: "blur(50px)",
           animationDelay: "2s",
         }}
@@ -99,7 +99,7 @@ export default function Hero() {
       <div
         className="absolute -bottom-8 left-1/2 w-72 h-72 rounded-full animate-float pointer-events-none"
         style={{
-          background: "rgba(16,185,129,0.04)",
+          background: "rgba(255,106,0,0.03)",
           filter: "blur(70px)",
           animationDelay: "4s",
         }}
@@ -113,14 +113,14 @@ export default function Hero() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono font-semibold mb-6 border"
               style={{
-                backgroundColor: "rgba(16,185,129,0.08)",
-                borderColor: "rgba(16,185,129,0.25)",
-                color: "#34d399",
+                backgroundColor: "rgba(255,106,0,0.08)",
+                borderColor: "rgba(255,106,0,0.25)",
+                color: "#fb923c",
               }}
             >
               <span
                 className="w-2 h-2 rounded-full animate-pulse"
-                style={{ backgroundColor: "#10b981", boxShadow: "0 0 6px #10b981" }}
+                style={{ backgroundColor: "#FF6A00", boxShadow: "0 0 6px #FF6A00" }}
               />
               Available for work
             </div>
@@ -131,7 +131,13 @@ export default function Hero() {
             >
               Moh. Asraful
               <br />
-              <span className="gradient-text">Hasan Asif</span>
+              <span style={{
+                background: "linear-gradient(135deg, #FF6A00 0%, #fb923c 100%)",
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                color: "transparent",
+                WebkitTextFillColor: "transparent",
+              }}>Hasan Asif</span>
             </h1>
 
             <div className="flex items-center justify-center lg:justify-start mb-8 min-h-[60px]">
@@ -143,8 +149,8 @@ export default function Hero() {
                 <span
                   className="font-bold"
                   style={{
-                    color: "#10b981",
-                    textShadow: "0 0 20px rgba(16,185,129,0.5)",
+                    color: "#FF6A00",
+                    textShadow: "0 0 20px rgba(255,106,0,0.5)",
                   }}
                 >
                   {currentText}
@@ -155,7 +161,7 @@ export default function Hero() {
 
             <p
               className="text-base lg:text-lg mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed"
-              style={{ color: "#64748b" }}
+              style={{ color: "#94a3b8" }}
             >
               Passionate full-stack developer creating beautiful, responsive, and
               user-friendly web experiences with modern technologies.
@@ -169,8 +175,8 @@ export default function Hero() {
                     key={tech}
                     className="px-3 py-1 rounded-full text-xs font-mono font-medium border"
                     style={{
-                      backgroundColor: "rgba(16,185,129,0.06)",
-                      borderColor: "rgba(16,185,129,0.18)",
+                      backgroundColor: "rgba(255,106,0,0.06)",
+                      borderColor: "rgba(255,106,0,0.18)",
                       color: "#94a3b8",
                     }}
                   >
@@ -185,7 +191,12 @@ export default function Hero() {
                 href="/my_cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-primary flex items-center gap-2"
+                className="btn flex items-center gap-2"
+                style={{
+                  background: "linear-gradient(135deg, #FF6A00 0%, #ea580c 100%)",
+                  color: "#fff",
+                  boxShadow: "0 0 15px rgba(255,106,0,0.35)",
+                }}
               >
                 <FaFileDownload className="w-4 h-4" />
                 View CV
@@ -194,7 +205,12 @@ export default function Hero() {
                 href="https://www.linkedin.com/in/ashraful-asif"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-glass flex items-center gap-2"
+                className="btn flex items-center gap-2"
+                style={{
+                  background: "rgba(255,106,0,0.1)",
+                  border: "1px solid rgba(255,106,0,0.3)",
+                  color: "#fff",
+                }}
               >
                 <FaLinkedin className="w-4 h-4" />
                 LinkedIn
@@ -202,99 +218,73 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Image side */}
+          {/* Image side - Circular Profile */}
           <div className="order-first lg:order-last flex justify-center">
-            <div className="relative w-full max-w-md">
-              {/* Rotating glow ring */}
+            <div className="relative">
+              {/* Outer glow ring */}
               <div
-                className="absolute -inset-4 rounded-3xl opacity-30 animate-pulse-slow"
+                className="absolute -inset-4 rounded-full opacity-40 animate-pulse-slow"
                 style={{
                   background:
-                    "conic-gradient(from 0deg, transparent 0%, rgba(16,185,129,0.6) 25%, transparent 50%, rgba(16,185,129,0.3) 75%, transparent 100%)",
-                  filter: "blur(16px)",
-                }}
-              />
-              {/* Emerald corner glow top-right */}
-              <div
-                className="absolute -top-6 -right-6 w-40 h-40 rounded-full pointer-events-none"
-                style={{
-                  background:
-                    "radial-gradient(circle, rgba(16,185,129,0.35) 0%, transparent 70%)",
-                  filter: "blur(24px)",
-                }}
-              />
-              {/* Emerald corner glow bottom-left */}
-              <div
-                className="absolute -bottom-6 -left-6 w-32 h-32 rounded-full pointer-events-none"
-                style={{
-                  background:
-                    "radial-gradient(circle, rgba(16,185,129,0.2) 0%, transparent 70%)",
+                    "conic-gradient(from 0deg, transparent 0%, rgba(255,106,0,0.5) 25%, transparent 50%, rgba(255,106,0,0.3) 75%, transparent 100%)",
                   filter: "blur(20px)",
                 }}
               />
-
-              {/* Image frame */}
+              
+              {/* Main circular image container */}
               <div
-                className="relative rounded-3xl overflow-hidden"
+                className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden"
                 style={{
-                  border: "2px solid rgba(16,185,129,0.25)",
-                  boxShadow:
-                    "0 0 40px rgba(16,185,129,0.15), 0 20px 60px rgba(0,0,0,0.6)",
+                  border: "3px solid rgba(255,106,0,0.3)",
+                  boxShadow: "0 0 40px rgba(255,106,0,0.2), 0 0 80px rgba(255,106,0,0.1), inset 0 0 40px rgba(0,0,0,0.3)",
                 }}
               >
                 <Image
                   src="/img/asif4.jpg"
-                  alt="Ashraful Asif"
-                  width={500}
-                  height={600}
-                  className="w-full h-auto object-cover"
+                  alt="Photo of Moh. Asraful Hasan Asif, Full Stack Developer"
+                  fill
+                  className="object-cover"
                   priority
-                />
-                {/* Overlay tint */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background:
-                      "linear-gradient(to bottom, transparent 60%, rgba(11,11,15,0.4) 100%)",
-                  }}
+                  sizes="(max-width: 640px) 256px, (max-width: 1024px) 320px, 384px"
                 />
               </div>
 
-              {/* Floating stat badge */}
+              {/* Floating stat badge - Projects */}
               <div
-                className="absolute -bottom-4 -left-4 px-4 py-3 rounded-xl backdrop-blur-md border"
+                className="absolute -bottom-2 -left-4 sm:-left-8 px-4 py-3 rounded-xl backdrop-blur-md border"
                 style={{
-                  backgroundColor: "rgba(19,19,26,0.9)",
-                  borderColor: "rgba(16,185,129,0.25)",
-                  boxShadow: "0 0 20px rgba(16,185,129,0.15)",
+                  backgroundColor: "rgba(30,30,30,0.95)",
+                  borderColor: "rgba(255,106,0,0.25)",
+                  boxShadow: "0 0 20px rgba(255,106,0,0.15)",
                 }}
               >
                 <div
                   className="text-xl font-bold"
-                  style={{ color: "#10b981" }}
+                  style={{ color: "#FF6A00" }}
                 >
                   10+
                 </div>
-                <div className="text-xs" style={{ color: "#64748b" }}>
+                <div className="text-xs" style={{ color: "#94a3b8" }}>
                   Projects
                 </div>
               </div>
 
+              {/* Floating stat badge - Experience */}
               <div
-                className="absolute -top-4 -right-4 px-4 py-3 rounded-xl backdrop-blur-md border"
+                className="absolute -top-2 -right-4 sm:-right-8 px-4 py-3 rounded-xl backdrop-blur-md border"
                 style={{
-                  backgroundColor: "rgba(19,19,26,0.9)",
-                  borderColor: "rgba(16,185,129,0.25)",
-                  boxShadow: "0 0 20px rgba(16,185,129,0.15)",
+                  backgroundColor: "rgba(30,30,30,0.95)",
+                  borderColor: "rgba(255,106,0,0.25)",
+                  boxShadow: "0 0 20px rgba(255,106,0,0.15)",
                 }}
               >
                 <div
                   className="text-xl font-bold"
-                  style={{ color: "#10b981" }}
+                  style={{ color: "#FF6A00" }}
                 >
                   2+
                 </div>
-                <div className="text-xs" style={{ color: "#64748b" }}>
+                <div className="text-xs" style={{ color: "#94a3b8" }}>
                   Yrs Exp
                 </div>
               </div>
@@ -308,7 +298,7 @@ export default function Hero() {
         className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to bottom, transparent, #0B0B0F)",
+            "linear-gradient(to bottom, transparent, #121212)",
         }}
       />
     </div>

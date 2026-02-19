@@ -57,22 +57,22 @@ export default function Contact() {
   };
 
   const inputStyle = {
-    backgroundColor: "#1A1A24",
-    borderColor: "rgba(16,185,129,0.15)",
+    backgroundColor: "#252525",
+    borderColor: "rgba(255,106,0,0.15)",
     color: "#f1f5f9",
     outline: "none",
   };
 
   const inputFocusStyle = {
-    borderColor: "rgba(16,185,129,0.5)",
-    boxShadow: "0 0 0 3px rgba(16,185,129,0.08)",
+    borderColor: "rgba(255,106,0,0.5)",
+    boxShadow: "0 0 0 3px rgba(255,106,0,0.08)",
   };
 
   return (
     <div
       className="py-12 relative overflow-hidden"
       id="contact"
-      style={{ backgroundColor: "#13131A" }}
+      style={{ backgroundColor: "#1E1E1E" }}
     >
       {/* Grid */}
       <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
@@ -82,7 +82,7 @@ export default function Contact() {
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-64 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 60% 100% at 50% 100%, rgba(16,185,129,0.08) 0%, transparent 100%)",
+            "radial-gradient(ellipse 60% 100% at 50% 100%, rgba(255,106,0,0.08) 0%, transparent 100%)",
         }}
       />
 
@@ -96,7 +96,7 @@ export default function Contact() {
         <div className="text-center mb-10">
           <p
             className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight"
-            style={{ color: "rgba(16,185,129,0.12)", letterSpacing: "0.02em" }}
+            style={{ color: "rgba(255,106,0,0.12)", letterSpacing: "0.02em" }}
           >
             GET IN TOUCH
           </p>
@@ -107,19 +107,19 @@ export default function Contact() {
             <div
               className="text-center rounded-2xl p-8 md:p-12 border"
               style={{
-                backgroundColor: "#0B0B0F",
-                borderColor: "rgba(16,185,129,0.15)",
+                backgroundColor: "#121212",
+                borderColor: "rgba(255,106,0,0.15)",
                 boxShadow:
-                  "0 4px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(16,185,129,0.05)",
+                  "0 4px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,106,0,0.05)",
               }}
             >
               {success && (
                 <div
                   className="mb-6 p-4 rounded-lg border text-sm"
                   style={{
-                    backgroundColor: "rgba(16,185,129,0.08)",
-                    borderColor: "rgba(16,185,129,0.3)",
-                    color: "#34d399",
+                    backgroundColor: "rgba(255,106,0,0.08)",
+                    borderColor: "rgba(255,106,0,0.3)",
+                    color: "#fb923c",
                   }}
                 >
                   <strong>Your message has been sent.</strong> I&apos;ll get back to you soon!

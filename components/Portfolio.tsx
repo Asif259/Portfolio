@@ -28,7 +28,7 @@ export default function Portfolio() {
     <div
       className="py-12 relative overflow-hidden"
       id="portfolio"
-      style={{ backgroundColor: "#13131A" }}
+      style={{ backgroundColor: "#1E1E1E" }}
     >
       {/* Grid background */}
       <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
@@ -38,7 +38,7 @@ export default function Portfolio() {
         className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-64 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(249,115,22,0.08) 0%, transparent 100%)",
+            "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(255,106,0,0.08) 0%, transparent 100%)",
         }}
       />
 
@@ -59,29 +59,29 @@ export default function Portfolio() {
                   activeFilter === filter
                     ? {
                         background:
-                          "linear-gradient(135deg, #f97316, #ea580c)",
+                          "linear-gradient(135deg, #FF6A00, #ea580c)",
                         color: "#fff",
                         borderColor: "transparent",
-                        boxShadow: "0 0 20px rgba(249,115,22,0.4)",
+                        boxShadow: "0 0 20px rgba(255,106,0,0.4)",
                       }
                     : {
                         backgroundColor: "transparent",
                         color: "#94a3b8",
-                        borderColor: "rgba(249,115,22,0.2)",
+                        borderColor: "rgba(255,106,0,0.2)",
                       }
                 }
                 onMouseEnter={(e) => {
                   if (activeFilter !== filter) {
                     (e.currentTarget as HTMLButtonElement).style.borderColor =
-                      "rgba(249,115,22,0.5)";
+                      "rgba(255,106,0,0.5)";
                     (e.currentTarget as HTMLButtonElement).style.color =
-                      "#f97316";
+                      "#FF6A00";
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (activeFilter !== filter) {
                     (e.currentTarget as HTMLButtonElement).style.borderColor =
-                      "rgba(249,115,22,0.2)";
+                      "rgba(255,106,0,0.2)";
                     (e.currentTarget as HTMLButtonElement).style.color =
                       "#94a3b8";
                   }
@@ -105,17 +105,17 @@ export default function Portfolio() {
               <div
                 className="relative overflow-hidden rounded-2xl border transition-all duration-300 group-hover:border-opacity-60"
                 style={{
-                  border: "1px solid rgba(249,115,22,0.12)",
+                  border: "1px solid rgba(255,106,0,0.12)",
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLDivElement).style.borderColor =
-                    "rgba(249,115,22,0.4)";
+                    "rgba(255,106,0,0.4)";
                   (e.currentTarget as HTMLDivElement).style.boxShadow =
-                    "0 0 30px rgba(249,115,22,0.15)";
+                    "0 0 30px rgba(255,106,0,0.15)";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLDivElement).style.borderColor =
-                    "rgba(249,115,22,0.12)";
+                    "rgba(255,106,0,0.12)";
                   (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
                 }}
               >
@@ -143,8 +143,8 @@ export default function Portfolio() {
                     <span
                       className="inline-block px-3 py-1 rounded-full text-xs font-semibold border"
                       style={{
-                        backgroundColor: "rgba(249,115,22,0.15)",
-                        borderColor: "rgba(249,115,22,0.4)",
+                        backgroundColor: "rgba(255,106,0,0.15)",
+                        borderColor: "rgba(255,106,0,0.4)",
                         color: "#fb923c",
                       }}
                     >

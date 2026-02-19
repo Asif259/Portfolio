@@ -63,8 +63,8 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
       style={
         scrolled
           ? {
-            backgroundColor: "rgba(11,11,15,0.92)",
-            borderBottomColor: "rgba(16,185,129,0.15)",
+            backgroundColor: "rgba(18,18,18,0.95)",
+            borderBottomColor: "rgba(255,106,0,0.15)",
           }
           : {}
       }
@@ -72,12 +72,18 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
       <div className="container mx-auto px-4 lg:px-20">
         <div className="flex items-center justify-between py-2 lg:py-3">
           <Link href="/" className="text-xl font-extrabold tracking-tight">
-            <span className="gradient-text">Port</span>
+            <span style={{
+              background: "linear-gradient(135deg, #FF6A00 0%, #fb923c 100%)",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              color: "transparent",
+              WebkitTextFillColor: "transparent",
+            }}>Port</span>
             <span className="text-slate-100">folio</span>
           </Link>
 
           <button
-            className="lg:hidden p-2 text-slate-300 hover:text-primary-400 transition-colors"
+            className="lg:hidden p-2 text-slate-300 hover:text-orange-400 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -94,8 +100,8 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
             style={
               isMobileMenuOpen
                 ? {
-                  backgroundColor: "rgba(11,11,15,0.97)",
-                  borderBottomColor: "rgba(16,185,129,0.15)",
+                  backgroundColor: "rgba(18,18,18,0.98)",
+                  borderBottomColor: "rgba(255,106,0,0.15)",
                 }
                 : {}
             }
@@ -115,8 +121,8 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                   href={`#${section}`}
                   onClick={(e) => handleSmoothScroll(e, section)}
                   className={`px-3 py-1.5 lg:py-2 text-sm font-semibold transition-all duration-300 relative group ${activeSection === section
-                      ? "text-primary-400"
-                      : "text-slate-400 hover:text-primary-400"
+                      ? "text-orange-400"
+                      : "text-slate-400 hover:text-orange-400"
                     }`}
                 >
                   {section === "qualification"
@@ -130,8 +136,8 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                     <span
                       className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full"
                       style={{
-                        background: "linear-gradient(90deg, #10b981, #059669)",
-                        boxShadow: "0 0 8px rgba(16,185,129,0.6)",
+                        background: "linear-gradient(90deg, #FF6A00, #ea580c)",
+                        boxShadow: "0 0 8px rgba(255,106,0,0.6)",
                       }}
                     />
                   )}
@@ -139,7 +145,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                     <span
                       className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
                       style={{
-                        background: "rgba(16,185,129,0.4)",
+                        background: "rgba(255,106,0,0.4)",
                       }}
                     />
                   )}
@@ -149,7 +155,12 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                 href="https://www.linkedin.com/in/ashrafulasif"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden lg:block btn btn-primary ml-2 text-sm"
+                className="hidden lg:block btn ml-2 text-sm"
+                style={{
+                  background: "linear-gradient(135deg, #FF6A00 0%, #ea580c 100%)",
+                  color: "#fff",
+                  boxShadow: "0 0 15px rgba(255,106,0,0.35)",
+                }}
               >
                 Hire Me
               </a>

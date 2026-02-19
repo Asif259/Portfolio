@@ -43,9 +43,9 @@ export default function About() {
           <span
             className="inline-block text-xs font-mono font-semibold uppercase tracking-widest px-4 py-2 rounded-full border mb-4"
             style={{
-              color: "#FF6A00",
-              borderColor: "rgba(255,106,0,0.3)",
-              backgroundColor: "rgba(255,106,0,0.06)",
+              color: "#14b8a6",
+              borderColor: "rgba(20,184,166,0.3)",
+              backgroundColor: "rgba(20,184,166,0.06)",
             }}
           >
             About Me
@@ -59,8 +59,8 @@ export default function About() {
           <div
             className="w-20 h-0.5 mx-auto rounded-full"
             style={{
-              background: "linear-gradient(90deg, #FF6A00, #ea580c)",
-              boxShadow: "0 0 10px rgba(255,106,0,0.5)",
+              background: "linear-gradient(90deg, #14b8a6, #0d9488)",
+              boxShadow: "0 0 10px rgba(20,184,166,0.5)",
             }}
           />
         </div>
@@ -72,9 +72,9 @@ export default function About() {
               <span
                 className="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold border"
                 style={{
-                  backgroundColor: "rgba(255,106,0,0.08)",
-                  borderColor: "rgba(255,106,0,0.25)",
-                  color: "#fb923c",
+                  backgroundColor: "rgba(20,184,166,0.08)",
+                  borderColor: "rgba(20,184,166,0.25)",
+                  color: "#2dd4bf",
                 }}
               >
                 Full-Stack Developer
@@ -92,14 +92,14 @@ export default function About() {
                 className="absolute -inset-px rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 style={{
                   background:
-                    "linear-gradient(135deg, rgba(255,106,0,0.3), transparent)",
+                    "linear-gradient(135deg, rgba(20,184,166,0.3), transparent)",
                 }}
               />
               <div
                 className="relative rounded-xl overflow-hidden shadow-lg aspect-video"
                 style={{
                   backgroundColor: "#1E1E1E",
-                  border: "1px solid rgba(255,106,0,0.15)",
+                  border: "1px solid rgba(20,184,166,0.15)",
                 }}
               >
                 <video
@@ -127,22 +127,22 @@ export default function About() {
                     className="flex items-start gap-3 p-3 rounded-lg border transition-all duration-200 group"
                     style={{
                       backgroundColor: "#1E1E1E",
-                      borderColor: "rgba(255,106,0,0.1)",
+                      borderColor: "rgba(20,184,166,0.1)",
                     }}
                     onMouseEnter={(e) => {
                       (e.currentTarget as HTMLDivElement).style.borderColor =
-                        "rgba(255,106,0,0.3)";
+                        "rgba(20,184,166,0.3)";
                     }}
                     onMouseLeave={(e) => {
                       (e.currentTarget as HTMLDivElement).style.borderColor =
-                        "rgba(255,106,0,0.1)";
+                        "rgba(20,184,166,0.1)";
                     }}
                   >
                     <div
                       className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                       style={{
-                        backgroundColor: "rgba(255,106,0,0.1)",
-                        color: "#FF6A00",
+                        backgroundColor: "rgba(20,184,166,0.1)",
+                        color: "#14b8a6",
                       }}
                     >
                       <IconComponent className="w-4 h-4" />
@@ -177,15 +177,15 @@ export default function About() {
                   key={stat.label}
                   className="text-center p-3 rounded-lg border"
                   style={{
-                    backgroundColor: "rgba(255,106,0,0.05)",
-                    borderColor: "rgba(255,106,0,0.15)",
+                    backgroundColor: "rgba(20,184,166,0.05)",
+                    borderColor: "rgba(20,184,166,0.15)",
                   }}
                 >
                   <div
                     className="text-2xl font-bold"
                     style={{
-                      color: "#FF6A00",
-                      textShadow: "0 0 15px rgba(255,106,0,0.4)",
+                      color: "#14b8a6",
+                      textShadow: "0 0 15px rgba(20,184,166,0.4)",
                     }}
                   >
                     {stat.value}
@@ -205,9 +205,9 @@ export default function About() {
                 rel="noopener noreferrer"
                 className="btn flex items-center gap-2"
                 style={{
-                  background: "linear-gradient(135deg, #FF6A00 0%, #ea580c 100%)",
+                  background: "linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)",
                   color: "#fff",
-                  boxShadow: "0 0 15px rgba(255,106,0,0.35)",
+                  boxShadow: "0 0 15px rgba(20,184,166,0.35)",
                 }}
               >
                 <FaBriefcase className="w-4 h-4" />
@@ -218,17 +218,17 @@ export default function About() {
                 className="btn flex items-center gap-2 border font-semibold text-sm"
                 style={{
                   backgroundColor: "transparent",
-                  borderColor: "rgba(255,106,0,0.25)",
+                  borderColor: "rgba(20,184,166,0.25)",
                   color: "#94a3b8",
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                    "rgba(255,106,0,0.5)";
-                  (e.currentTarget as HTMLAnchorElement).style.color = "#FF6A00";
+                    "rgba(20,184,166,0.5)";
+                  (e.currentTarget as HTMLAnchorElement).style.color = "#14b8a6";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                    "rgba(255,106,0,0.25)";
+                    "rgba(20,184,166,0.25)";
                   (e.currentTarget as HTMLAnchorElement).style.color = "#94a3b8";
                 }}
               >
@@ -252,17 +252,17 @@ export default function About() {
               className="text-center p-4 rounded-lg border transition-all duration-200"
               style={{
                 backgroundColor: "#1E1E1E",
-                borderColor: "rgba(255,106,0,0.1)",
+                borderColor: "rgba(20,184,166,0.1)",
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLDivElement).style.borderColor =
-                  "rgba(255,106,0,0.3)";
+                  "rgba(20,184,166,0.3)";
                 (e.currentTarget as HTMLDivElement).style.boxShadow =
-                  "0 0 15px rgba(255,106,0,0.08)";
+                  "0 0 15px rgba(20,184,166,0.08)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLDivElement).style.borderColor =
-                  "rgba(255,106,0,0.1)";
+                  "rgba(20,184,166,0.1)";
                 (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
               }}
             >

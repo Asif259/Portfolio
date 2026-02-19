@@ -66,7 +66,7 @@ export default function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,106,0,0.12) 0%, transparent 65%)",
+            "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(20,184,166,0.12) 0%, transparent 65%)",
         }}
       />
 
@@ -75,7 +75,7 @@ export default function Hero() {
         className="absolute left-0 top-1/2 -translate-y-1/2 w-80 h-80 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(255,106,0,0.1) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(20,184,166,0.1) 0%, transparent 70%)",
           filter: "blur(40px)",
         }}
       />
@@ -84,14 +84,14 @@ export default function Hero() {
       <div
         className="absolute top-24 left-10 w-64 h-64 rounded-full animate-float pointer-events-none"
         style={{
-          background: "rgba(255,106,0,0.06)",
+          background: "rgba(20,184,166,0.06)",
           filter: "blur(60px)",
         }}
       />
       <div
         className="absolute top-40 right-10 w-56 h-56 rounded-full animate-float pointer-events-none"
         style={{
-          background: "rgba(255,106,0,0.04)",
+          background: "rgba(20,184,166,0.04)",
           filter: "blur(50px)",
           animationDelay: "2s",
         }}
@@ -99,7 +99,7 @@ export default function Hero() {
       <div
         className="absolute -bottom-8 left-1/2 w-72 h-72 rounded-full animate-float pointer-events-none"
         style={{
-          background: "rgba(255,106,0,0.03)",
+          background: "rgba(20,184,166,0.03)",
           filter: "blur(70px)",
           animationDelay: "4s",
         }}
@@ -113,14 +113,14 @@ export default function Hero() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono font-semibold mb-6 border"
               style={{
-                backgroundColor: "rgba(255,106,0,0.08)",
-                borderColor: "rgba(255,106,0,0.25)",
-                color: "#fb923c",
+                backgroundColor: "rgba(20,184,166,0.08)",
+                borderColor: "rgba(20,184,166,0.25)",
+                color: "#2dd4bf",
               }}
             >
               <span
                 className="w-2 h-2 rounded-full animate-pulse"
-                style={{ backgroundColor: "#FF6A00", boxShadow: "0 0 6px #FF6A00" }}
+                style={{ backgroundColor: "#14b8a6", boxShadow: "0 0 6px #14b8a6" }}
               />
               Available for work
             </div>
@@ -132,7 +132,7 @@ export default function Hero() {
               Moh. Asraful
               <br />
               <span style={{
-                background: "linear-gradient(135deg, #FF6A00 0%, #fb923c 100%)",
+                background: "linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%)",
                 backgroundClip: "text",
                 WebkitBackgroundClip: "text",
                 color: "transparent",
@@ -149,8 +149,8 @@ export default function Hero() {
                 <span
                   className="font-bold"
                   style={{
-                    color: "#FF6A00",
-                    textShadow: "0 0 20px rgba(255,106,0,0.5)",
+                    color: "#14b8a6",
+                    textShadow: "0 0 20px rgba(20,184,166,0.5)",
                   }}
                 >
                   {currentText}
@@ -175,8 +175,8 @@ export default function Hero() {
                     key={tech}
                     className="px-3 py-1 rounded-full text-xs font-mono font-medium border"
                     style={{
-                      backgroundColor: "rgba(255,106,0,0.06)",
-                      borderColor: "rgba(255,106,0,0.18)",
+                      backgroundColor: "rgba(20,184,166,0.06)",
+                      borderColor: "rgba(20,184,166,0.18)",
                       color: "#94a3b8",
                     }}
                   >
@@ -193,9 +193,9 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 className="btn flex items-center gap-2"
                 style={{
-                  background: "linear-gradient(135deg, #FF6A00 0%, #ea580c 100%)",
+                  background: "linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)",
                   color: "#fff",
-                  boxShadow: "0 0 15px rgba(255,106,0,0.35)",
+                  boxShadow: "0 0 15px rgba(20,184,166,0.35)",
                 }}
               >
                 <FaFileDownload className="w-4 h-4" />
@@ -207,8 +207,8 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 className="btn flex items-center gap-2"
                 style={{
-                  background: "rgba(255,106,0,0.1)",
-                  border: "1px solid rgba(255,106,0,0.3)",
+                  background: "rgba(20,184,166,0.1)",
+                  border: "1px solid rgba(20,184,166,0.3)",
                   color: "#fff",
                 }}
               >
@@ -226,7 +226,7 @@ export default function Hero() {
                 className="absolute -inset-4 rounded-full opacity-40 animate-pulse-slow"
                 style={{
                   background:
-                    "conic-gradient(from 0deg, transparent 0%, rgba(255,106,0,0.5) 25%, transparent 50%, rgba(255,106,0,0.3) 75%, transparent 100%)",
+                    "conic-gradient(from 0deg, transparent 0%, rgba(20,184,166,0.5) 25%, transparent 50%, rgba(20,184,166,0.3) 75%, transparent 100%)",
                   filter: "blur(20px)",
                 }}
               />
@@ -235,8 +235,8 @@ export default function Hero() {
               <div
                 className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden"
                 style={{
-                  border: "3px solid rgba(255,106,0,0.3)",
-                  boxShadow: "0 0 40px rgba(255,106,0,0.2), 0 0 80px rgba(255,106,0,0.1), inset 0 0 40px rgba(0,0,0,0.3)",
+                  border: "3px solid rgba(20,184,166,0.3)",
+                  boxShadow: "0 0 40px rgba(20,184,166,0.2), 0 0 80px rgba(20,184,166,0.1), inset 0 0 40px rgba(0,0,0,0.3)",
                 }}
               >
                 <Image
@@ -254,13 +254,13 @@ export default function Hero() {
                 className="absolute -bottom-2 -left-4 sm:-left-8 px-4 py-3 rounded-xl backdrop-blur-md border"
                 style={{
                   backgroundColor: "rgba(30,30,30,0.95)",
-                  borderColor: "rgba(255,106,0,0.25)",
-                  boxShadow: "0 0 20px rgba(255,106,0,0.15)",
+                  borderColor: "rgba(20,184,166,0.25)",
+                  boxShadow: "0 0 20px rgba(20,184,166,0.15)",
                 }}
               >
                 <div
                   className="text-xl font-bold"
-                  style={{ color: "#FF6A00" }}
+                  style={{ color: "#14b8a6" }}
                 >
                   10+
                 </div>
@@ -274,13 +274,13 @@ export default function Hero() {
                 className="absolute -top-2 -right-4 sm:-right-8 px-4 py-3 rounded-xl backdrop-blur-md border"
                 style={{
                   backgroundColor: "rgba(30,30,30,0.95)",
-                  borderColor: "rgba(255,106,0,0.25)",
-                  boxShadow: "0 0 20px rgba(255,106,0,0.15)",
+                  borderColor: "rgba(20,184,166,0.25)",
+                  boxShadow: "0 0 20px rgba(20,184,166,0.15)",
                 }}
               >
                 <div
                   className="text-xl font-bold"
-                  style={{ color: "#FF6A00" }}
+                  style={{ color: "#14b8a6" }}
                 >
                   2+
                 </div>

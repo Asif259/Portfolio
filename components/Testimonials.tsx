@@ -54,7 +54,7 @@ export default function Testimonials() {
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-64 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse, rgba(255,106,0,0.06) 0%, transparent 70%)",
+            "radial-gradient(ellipse, rgba(20,184,166,0.06) 0%, transparent 70%)",
           filter: "blur(30px)",
         }}
       />
@@ -85,7 +85,7 @@ export default function Testimonials() {
                     className="text-center rounded-2xl p-8 md:p-12 my-5 border transition-all duration-300"
                     style={{
                       backgroundColor: "#1E1E1E",
-                      borderColor: "rgba(255,106,0,0.12)",
+                      borderColor: "rgba(20,184,166,0.12)",
                       boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
                     }}
                   >
@@ -94,8 +94,8 @@ export default function Testimonials() {
                       className="inline-flex items-center justify-center w-14 h-14 rounded-full mb-6"
                       style={{
                         background:
-                          "linear-gradient(135deg, #FF6A00, #ea580c)",
-                        boxShadow: "0 0 20px rgba(255,106,0,0.35)",
+                          "linear-gradient(135deg, #14b8a6, #0d9488)",
+                        boxShadow: "0 0 20px rgba(20,184,166,0.35)",
                       }}
                     >
                       <FaQuoteLeft className="text-white text-xl" />
@@ -107,7 +107,7 @@ export default function Testimonials() {
                         <FaStar
                           key={i}
                           className="w-4 h-4"
-                          style={{ color: "#FF6A00" }}
+                          style={{ color: "#14b8a6" }}
                         />
                       ))}
                     </div>
@@ -126,8 +126,8 @@ export default function Testimonials() {
                       height={80}
                       className="rounded-full mx-auto mb-4"
                       style={{
-                        border: "2px solid rgba(255,106,0,0.4)",
-                        boxShadow: "0 0 15px rgba(255,106,0,0.2)",
+                        border: "2px solid rgba(20,184,166,0.4)",
+                        boxShadow: "0 0 15px rgba(20,184,166,0.2)",
                       }}
                     />
                     <h5
@@ -138,7 +138,7 @@ export default function Testimonials() {
                     </h5>
                     <span
                       className="text-sm"
-                      style={{ color: "#FF6A00" }}
+                      style={{ color: "#14b8a6" }}
                     >
                       {testimonial.role}
                     </span>

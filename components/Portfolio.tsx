@@ -38,7 +38,7 @@ export default function Portfolio() {
         className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-64 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(255,106,0,0.08) 0%, transparent 100%)",
+            "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(20,184,166,0.08) 0%, transparent 100%)",
         }}
       />
 
@@ -59,29 +59,29 @@ export default function Portfolio() {
                   activeFilter === filter
                     ? {
                         background:
-                          "linear-gradient(135deg, #FF6A00, #ea580c)",
+                          "linear-gradient(135deg, #14b8a6, #0d9488)",
                         color: "#fff",
                         borderColor: "transparent",
-                        boxShadow: "0 0 20px rgba(255,106,0,0.4)",
+                        boxShadow: "0 0 20px rgba(20,184,166,0.4)",
                       }
                     : {
                         backgroundColor: "transparent",
                         color: "#94a3b8",
-                        borderColor: "rgba(255,106,0,0.2)",
+                        borderColor: "rgba(20,184,166,0.2)",
                       }
                 }
                 onMouseEnter={(e) => {
                   if (activeFilter !== filter) {
                     (e.currentTarget as HTMLButtonElement).style.borderColor =
-                      "rgba(255,106,0,0.5)";
+                      "rgba(20,184,166,0.5)";
                     (e.currentTarget as HTMLButtonElement).style.color =
-                      "#FF6A00";
+                      "#14b8a6";
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (activeFilter !== filter) {
                     (e.currentTarget as HTMLButtonElement).style.borderColor =
-                      "rgba(255,106,0,0.2)";
+                      "rgba(20,184,166,0.2)";
                     (e.currentTarget as HTMLButtonElement).style.color =
                       "#94a3b8";
                   }
@@ -105,17 +105,17 @@ export default function Portfolio() {
               <div
                 className="relative overflow-hidden rounded-2xl border transition-all duration-300 group-hover:border-opacity-60"
                 style={{
-                  border: "1px solid rgba(255,106,0,0.12)",
+                  border: "1px solid rgba(20,184,166,0.12)",
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLDivElement).style.borderColor =
-                    "rgba(255,106,0,0.4)";
+                    "rgba(20,184,166,0.4)";
                   (e.currentTarget as HTMLDivElement).style.boxShadow =
-                    "0 0 30px rgba(255,106,0,0.15)";
+                    "0 0 30px rgba(20,184,166,0.15)";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLDivElement).style.borderColor =
-                    "rgba(255,106,0,0.12)";
+                    "rgba(20,184,166,0.12)";
                   (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
                 }}
               >
@@ -143,9 +143,9 @@ export default function Portfolio() {
                     <span
                       className="inline-block px-3 py-1 rounded-full text-xs font-semibold border"
                       style={{
-                        backgroundColor: "rgba(255,106,0,0.15)",
-                        borderColor: "rgba(255,106,0,0.4)",
-                        color: "#fb923c",
+                        backgroundColor: "rgba(20,184,166,0.15)",
+                        borderColor: "rgba(20,184,166,0.4)",
+                        color: "#2dd4bf",
                       }}
                     >
                       {item.category}

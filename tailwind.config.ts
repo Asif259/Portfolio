@@ -10,22 +10,22 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          50: "#ecfdf5",
-          100: "#d1fae5",
-          200: "#a7f3d0",
-          300: "#6ee7b7",
-          400: "#34d399",
-          500: "#10b981",
-          600: "#059669",
-          700: "#047857",
-          800: "#065f46",
-          900: "#064e3b",
-          DEFAULT: "#10b981",
+          50: "#f0fdfa",
+          100: "#ccfbf1",
+          200: "#99f6e4",
+          300: "#5eead4",
+          400: "#2dd4bf",
+          500: "#14b8a6",
+          600: "#0d9488",
+          700: "#0f766e",
+          800: "#115e59",
+          900: "#134e4a",
+          DEFAULT: "#14b8a6",
         },
         accent: {
-          DEFAULT: "#10b981",
-          glow: "rgba(16,185,129,0.35)",
-          soft: "rgba(16,185,129,0.12)",
+          DEFAULT: "#14b8a6",
+          glow: "rgba(20,184,166,0.35)",
+          soft: "rgba(20,184,166,0.12)",
         },
         orange: {
           DEFAULT: "#FF6A00",
@@ -65,17 +65,17 @@ const config: Config = {
       },
       backgroundImage: {
         "gradient-primary":
-          "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+          "linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)",
         "gradient-hero":
           "linear-gradient(135deg, #0B0B0F 0%, #13131A 50%, #1A1A24 100%)",
         "gradient-card":
-          "linear-gradient(135deg, rgba(16,185,129,0.06) 0%, rgba(16,185,129,0.02) 100%)",
+          "linear-gradient(135deg, rgba(20,184,166,0.06) 0%, rgba(20,184,166,0.02) 100%)",
         "grid-pattern":
-          "linear-gradient(rgba(16,185,129,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.07) 1px, transparent 1px)",
+          "linear-gradient(rgba(20,184,166,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(20,184,166,0.07) 1px, transparent 1px)",
         "emerald-glow":
-          "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(16,185,129,0.18) 0%, transparent 70%)",
+          "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(20,184,166,0.18) 0%, transparent 70%)",
         "emerald-radial":
-          "radial-gradient(circle at center, rgba(16,185,129,0.2) 0%, transparent 70%)",
+          "radial-gradient(circle at center, rgba(20,184,166,0.2) 0%, transparent 70%)",
       },
       backgroundSize: {
         "grid-sm": "30px 30px",
@@ -83,11 +83,11 @@ const config: Config = {
         "grid-lg": "80px 80px",
       },
       boxShadow: {
-        "neon-sm": "0 0 10px rgba(16,185,129,0.4)",
-        "neon-md": "0 0 20px rgba(16,185,129,0.35), 0 0 40px rgba(16,185,129,0.15)",
-        "neon-lg": "0 0 30px rgba(16,185,129,0.5), 0 0 60px rgba(16,185,129,0.25), 0 0 90px rgba(16,185,129,0.1)",
+        "neon-sm": "0 0 10px rgba(20,184,166,0.4)",
+        "neon-md": "0 0 20px rgba(20,184,166,0.35), 0 0 40px rgba(20,184,166,0.15)",
+        "neon-lg": "0 0 30px rgba(20,184,166,0.5), 0 0 60px rgba(20,184,166,0.25), 0 0 90px rgba(20,184,166,0.1)",
         "card-dark": "0 4px 24px rgba(0,0,0,0.4), 0 1px 4px rgba(0,0,0,0.3)",
-        "card-hover": "0 8px 40px rgba(0,0,0,0.5), 0 0 20px rgba(16,185,129,0.15)",
+        "card-hover": "0 8px 40px rgba(0,0,0,0.5), 0 0 20px rgba(20,184,166,0.15)",
       },
       keyframes: {
         gradient: {
@@ -106,10 +106,10 @@ const config: Config = {
         },
         glowPulse: {
           "0%, 100%": {
-            boxShadow: "0 0 15px rgba(16,185,129,0.3), 0 0 30px rgba(16,185,129,0.1)",
+            boxShadow: "0 0 15px rgba(20,184,166,0.3), 0 0 30px rgba(20,184,166,0.1)",
           },
           "50%": {
-            boxShadow: "0 0 25px rgba(16,185,129,0.5), 0 0 50px rgba(16,185,129,0.2)",
+            boxShadow: "0 0 25px rgba(20,184,166,0.5), 0 0 50px rgba(20,184,166,0.2)",
           },
         },
         gridShift: {

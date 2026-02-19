@@ -61,12 +61,12 @@ export default function Hero() {
         style={{ opacity: 1 }}
       />
 
-      {/* Orange radial glow from top */}
+      {/* Emerald radial glow from top */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(249,115,22,0.14) 0%, transparent 65%)",
+            "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(16,185,129,0.14) 0%, transparent 65%)",
         }}
       />
 
@@ -75,23 +75,23 @@ export default function Hero() {
         className="absolute left-0 top-1/2 -translate-y-1/2 w-80 h-80 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(16,185,129,0.12) 0%, transparent 70%)",
           filter: "blur(40px)",
         }}
       />
 
-      {/* Floating blobs — orange tinted */}
+      {/* Floating blobs — emerald tinted */}
       <div
         className="absolute top-24 left-10 w-64 h-64 rounded-full animate-float pointer-events-none"
         style={{
-          background: "rgba(249,115,22,0.07)",
+          background: "rgba(16,185,129,0.07)",
           filter: "blur(60px)",
         }}
       />
       <div
         className="absolute top-40 right-10 w-56 h-56 rounded-full animate-float pointer-events-none"
         style={{
-          background: "rgba(249,115,22,0.05)",
+          background: "rgba(16,185,129,0.05)",
           filter: "blur(50px)",
           animationDelay: "2s",
         }}
@@ -99,7 +99,7 @@ export default function Hero() {
       <div
         className="absolute -bottom-8 left-1/2 w-72 h-72 rounded-full animate-float pointer-events-none"
         style={{
-          background: "rgba(249,115,22,0.04)",
+          background: "rgba(16,185,129,0.04)",
           filter: "blur(70px)",
           animationDelay: "4s",
         }}
@@ -113,14 +113,14 @@ export default function Hero() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono font-semibold mb-6 border"
               style={{
-                backgroundColor: "rgba(249,115,22,0.08)",
-                borderColor: "rgba(249,115,22,0.25)",
-                color: "#fb923c",
+                backgroundColor: "rgba(16,185,129,0.08)",
+                borderColor: "rgba(16,185,129,0.25)",
+                color: "#34d399",
               }}
             >
               <span
                 className="w-2 h-2 rounded-full animate-pulse"
-                style={{ backgroundColor: "#f97316", boxShadow: "0 0 6px #f97316" }}
+                style={{ backgroundColor: "#10b981", boxShadow: "0 0 6px #10b981" }}
               />
               Available for work
             </div>
@@ -143,8 +143,8 @@ export default function Hero() {
                 <span
                   className="font-bold"
                   style={{
-                    color: "#f97316",
-                    textShadow: "0 0 20px rgba(249,115,22,0.5)",
+                    color: "#10b981",
+                    textShadow: "0 0 20px rgba(16,185,129,0.5)",
                   }}
                 >
                   {currentText}
@@ -169,8 +169,8 @@ export default function Hero() {
                     key={tech}
                     className="px-3 py-1 rounded-full text-xs font-mono font-medium border"
                     style={{
-                      backgroundColor: "rgba(249,115,22,0.06)",
-                      borderColor: "rgba(249,115,22,0.18)",
+                      backgroundColor: "rgba(16,185,129,0.06)",
+                      borderColor: "rgba(16,185,129,0.18)",
                       color: "#94a3b8",
                     }}
                   >
@@ -210,25 +210,25 @@ export default function Hero() {
                 className="absolute -inset-4 rounded-3xl opacity-30 animate-pulse-slow"
                 style={{
                   background:
-                    "conic-gradient(from 0deg, transparent 0%, rgba(249,115,22,0.6) 25%, transparent 50%, rgba(249,115,22,0.3) 75%, transparent 100%)",
+                    "conic-gradient(from 0deg, transparent 0%, rgba(16,185,129,0.6) 25%, transparent 50%, rgba(16,185,129,0.3) 75%, transparent 100%)",
                   filter: "blur(16px)",
                 }}
               />
-              {/* Orange corner glow top-right */}
+              {/* Emerald corner glow top-right */}
               <div
                 className="absolute -top-6 -right-6 w-40 h-40 rounded-full pointer-events-none"
                 style={{
                   background:
-                    "radial-gradient(circle, rgba(249,115,22,0.35) 0%, transparent 70%)",
+                    "radial-gradient(circle, rgba(16,185,129,0.35) 0%, transparent 70%)",
                   filter: "blur(24px)",
                 }}
               />
-              {/* Orange corner glow bottom-left */}
+              {/* Emerald corner glow bottom-left */}
               <div
                 className="absolute -bottom-6 -left-6 w-32 h-32 rounded-full pointer-events-none"
                 style={{
                   background:
-                    "radial-gradient(circle, rgba(249,115,22,0.2) 0%, transparent 70%)",
+                    "radial-gradient(circle, rgba(16,185,129,0.2) 0%, transparent 70%)",
                   filter: "blur(20px)",
                 }}
               />
@@ -237,9 +237,9 @@ export default function Hero() {
               <div
                 className="relative rounded-3xl overflow-hidden"
                 style={{
-                  border: "2px solid rgba(249,115,22,0.25)",
+                  border: "2px solid rgba(16,185,129,0.25)",
                   boxShadow:
-                    "0 0 40px rgba(249,115,22,0.15), 0 20px 60px rgba(0,0,0,0.6)",
+                    "0 0 40px rgba(16,185,129,0.15), 0 20px 60px rgba(0,0,0,0.6)",
                 }}
               >
                 <Image
@@ -265,13 +265,13 @@ export default function Hero() {
                 className="absolute -bottom-4 -left-4 px-4 py-3 rounded-xl backdrop-blur-md border"
                 style={{
                   backgroundColor: "rgba(19,19,26,0.9)",
-                  borderColor: "rgba(249,115,22,0.25)",
-                  boxShadow: "0 0 20px rgba(249,115,22,0.15)",
+                  borderColor: "rgba(16,185,129,0.25)",
+                  boxShadow: "0 0 20px rgba(16,185,129,0.15)",
                 }}
               >
                 <div
                   className="text-xl font-bold"
-                  style={{ color: "#f97316" }}
+                  style={{ color: "#10b981" }}
                 >
                   10+
                 </div>
@@ -284,13 +284,13 @@ export default function Hero() {
                 className="absolute -top-4 -right-4 px-4 py-3 rounded-xl backdrop-blur-md border"
                 style={{
                   backgroundColor: "rgba(19,19,26,0.9)",
-                  borderColor: "rgba(249,115,22,0.25)",
-                  boxShadow: "0 0 20px rgba(249,115,22,0.15)",
+                  borderColor: "rgba(16,185,129,0.25)",
+                  boxShadow: "0 0 20px rgba(16,185,129,0.15)",
                 }}
               >
                 <div
                   className="text-xl font-bold"
-                  style={{ color: "#f97316" }}
+                  style={{ color: "#10b981" }}
                 >
                   2+
                 </div>

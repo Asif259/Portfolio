@@ -56,17 +56,16 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
           ? "backdrop-blur-xl border-b"
           : "bg-transparent"
-      }`}
+        }`}
       style={
         scrolled
           ? {
-              backgroundColor: "rgba(11,11,15,0.92)",
-              borderBottomColor: "rgba(249,115,22,0.15)",
-            }
+            backgroundColor: "rgba(11,11,15,0.92)",
+            borderBottomColor: "rgba(16,185,129,0.15)",
+          }
           : {}
       }
     >
@@ -90,15 +89,14 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
           </button>
 
           <div
-            className={`${
-              isMobileMenuOpen ? "block" : "hidden"
-            } lg:flex lg:items-center lg:space-x-1 absolute lg:static top-full left-0 right-0 lg:bg-transparent shadow-lg lg:shadow-none p-4 lg:p-0 border-b lg:border-none`}
+            className={`${isMobileMenuOpen ? "block" : "hidden"
+              } lg:flex lg:items-center lg:space-x-1 absolute lg:static top-full left-0 right-0 lg:bg-transparent shadow-lg lg:shadow-none p-4 lg:p-0 border-b lg:border-none`}
             style={
               isMobileMenuOpen
                 ? {
-                    backgroundColor: "rgba(11,11,15,0.97)",
-                    borderBottomColor: "rgba(249,115,22,0.15)",
-                  }
+                  backgroundColor: "rgba(11,11,15,0.97)",
+                  borderBottomColor: "rgba(16,185,129,0.15)",
+                }
                 : {}
             }
           >
@@ -116,25 +114,24 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                   key={section}
                   href={`#${section}`}
                   onClick={(e) => handleSmoothScroll(e, section)}
-                  className={`px-3 py-1.5 lg:py-2 text-sm font-semibold transition-all duration-300 relative group ${
-                    activeSection === section
+                  className={`px-3 py-1.5 lg:py-2 text-sm font-semibold transition-all duration-300 relative group ${activeSection === section
                       ? "text-primary-400"
                       : "text-slate-400 hover:text-primary-400"
-                  }`}
+                    }`}
                 >
                   {section === "qualification"
                     ? "Quality"
                     : section === "skill"
-                    ? "Skill"
-                    : section === "testimonial"
-                    ? "Review"
-                    : section.charAt(0).toUpperCase() + section.slice(1)}
+                      ? "Skill"
+                      : section === "testimonial"
+                        ? "Review"
+                        : section.charAt(0).toUpperCase() + section.slice(1)}
                   {activeSection === section && (
                     <span
                       className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full"
                       style={{
-                        background: "linear-gradient(90deg, #f97316, #ea580c)",
-                        boxShadow: "0 0 8px rgba(249,115,22,0.6)",
+                        background: "linear-gradient(90deg, #10b981, #059669)",
+                        boxShadow: "0 0 8px rgba(16,185,129,0.6)",
                       }}
                     />
                   )}
@@ -142,7 +139,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                     <span
                       className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
                       style={{
-                        background: "rgba(249,115,22,0.4)",
+                        background: "rgba(16,185,129,0.4)",
                       }}
                     />
                   )}

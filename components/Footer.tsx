@@ -13,7 +13,7 @@ export default function Footer() {
       className="relative overflow-hidden border-t"
       style={{
         backgroundColor: "#0B0B0F",
-        borderTopColor: "rgba(249,115,22,0.12)",
+        borderTopColor: "rgba(16,185,129,0.12)",
       }}
     >
       {/* Subtle top glow */}
@@ -21,7 +21,7 @@ export default function Footer() {
         className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-32 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(249,115,22,0.07) 0%, transparent 100%)",
+            "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(16,185,129,0.07) 0%, transparent 100%)",
         }}
       />
 
@@ -62,21 +62,21 @@ export default function Footer() {
               href={href}
               aria-label={label}
               style={{
-                backgroundColor: "rgba(249,115,22,0.08)",
-                borderColor: "rgba(249,115,22,0.2)",
+                backgroundColor: "rgba(16,185,129,0.08)",
+                borderColor: "rgba(16,185,129,0.2)",
                 color: "#94a3b8",
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLAnchorElement;
-                el.style.backgroundColor = "rgba(249,115,22,0.15)";
-                el.style.borderColor = "rgba(249,115,22,0.5)";
-                el.style.color = "#f97316";
-                el.style.boxShadow = "0 0 15px rgba(249,115,22,0.25)";
+                el.style.backgroundColor = "rgba(16,185,129,0.15)";
+                el.style.borderColor = "rgba(16,185,129,0.5)";
+                el.style.color = "#10b981";
+                el.style.boxShadow = "0 0 15px rgba(16,185,129,0.25)";
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLAnchorElement;
-                el.style.backgroundColor = "rgba(249,115,22,0.08)";
-                el.style.borderColor = "rgba(249,115,22,0.2)";
+                el.style.backgroundColor = "rgba(16,185,129,0.08)";
+                el.style.borderColor = "rgba(16,185,129,0.2)";
                 el.style.color = "#94a3b8";
                 el.style.boxShadow = "none";
               }}
@@ -95,7 +95,7 @@ export default function Footer() {
                 className="transition-colors duration-200"
                 style={{ color: "rgba(148,163,184,0.7)" }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.color = "#f97316";
+                  (e.currentTarget as HTMLAnchorElement).style.color = "#10b981";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLAnchorElement).style.color =
@@ -105,7 +105,7 @@ export default function Footer() {
                 {link}
               </a>
               {i < arr.length - 1 && (
-                <span style={{ color: "rgba(249,115,22,0.2)" }}>|</span>
+                <span style={{ color: "rgba(16,185,129,0.2)" }}>|</span>
               )}
             </span>
           ))}
@@ -116,13 +116,13 @@ export default function Footer() {
           className="w-full h-px mb-6"
           style={{
             background:
-              "linear-gradient(90deg, transparent, rgba(249,115,22,0.2), transparent)",
+              "linear-gradient(90deg, transparent, rgba(16,185,129,0.2), transparent)",
           }}
         />
 
         <p className="text-sm" style={{ color: "rgba(148,163,184,0.5)" }}>
           &copy; {new Date().getFullYear()} All Rights Reserved. Made with{" "}
-          <span style={{ color: "#f97316" }}>♥</span> by Moh. Asraful Hasan Asif
+          <span style={{ color: "#10b981" }}>♥</span> by Moh. Asraful Hasan Asif
         </p>
       </div>
     </div>

@@ -15,7 +15,7 @@ export default function Qualification() {
         className="absolute left-0 top-1/2 -translate-y-1/2 w-64 h-64 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%)",
           filter: "blur(40px)",
         }}
       />
@@ -23,7 +23,7 @@ export default function Qualification() {
       <div className="relative z-10 container mx-auto px-4 lg:px-20">
         <div className="section-header">
           <h1 className="section-header-bg">Quality</h1>
-          <h1 className="section-header-text">Education & Experience</h1>
+          <h1 className="section-header-text">Education &amp; Experience</h1>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -32,7 +32,7 @@ export default function Qualification() {
             className="rounded-2xl p-6 border"
             style={{
               backgroundColor: "#13131A",
-              borderColor: "rgba(249,115,22,0.12)",
+              borderColor: "rgba(16,185,129,0.12)",
               boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
             }}
           >
@@ -41,11 +41,11 @@ export default function Qualification() {
             </h3>
             <div
               className="pl-8 pt-2 ml-2 space-y-8"
-              style={{ borderLeft: "2px solid rgba(249,115,22,0.35)" }}
+              style={{ borderLeft: "2px solid rgba(16,185,129,0.35)" }}
             >
               <TimelineItem
                 title="School"
-                subtitle="Saheen Academy School & College, Feni"
+                subtitle="Saheen Academy School &amp; College, Feni"
                 period="Passed"
                 description=""
               />
@@ -58,7 +58,7 @@ export default function Qualification() {
                 title="Bachelor of Science"
                 subtitle="American International University-Bangladesh"
                 period="2022 - running"
-                description="Relevant Courses: Algorithms, Data Structure, Object Oriented Analysis & Design, Software Engineering, Operating Systems, Compiler Design, Advanced Web Technologies, Machine Learning, Artificial Intelligence, Data Science, Network Security"
+                description="Relevant Courses: Algorithms, Data Structure, Object Oriented Analysis &amp; Design, Software Engineering, Operating Systems, Compiler Design, Advanced Web Technologies, Machine Learning, Artificial Intelligence, Data Science, Network Security"
               />
             </div>
           </div>
@@ -68,7 +68,7 @@ export default function Qualification() {
             className="rounded-2xl p-6 border"
             style={{
               backgroundColor: "#13131A",
-              borderColor: "rgba(249,115,22,0.12)",
+              borderColor: "rgba(16,185,129,0.12)",
               boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
             }}
           >
@@ -77,7 +77,7 @@ export default function Qualification() {
             </h3>
             <div
               className="pl-8 pt-2 ml-2 space-y-8"
-              style={{ borderLeft: "2px solid rgba(249,115,22,0.35)" }}
+              style={{ borderLeft: "2px solid rgba(16,185,129,0.35)" }}
             >
               <TimelineItem
                 title="Frontend Developer"
@@ -118,20 +118,20 @@ function TimelineItem({
 }) {
   return (
     <div className="relative">
-      {/* Orange dot */}
+      {/* Emerald dot */}
       <div
         className="absolute -left-[45px] top-2 w-5 h-5 rounded-full border-2"
         style={{
           backgroundColor: "#0B0B0F",
-          borderColor: "#f97316",
-          boxShadow: "0 0 10px rgba(249,115,22,0.5)",
+          borderColor: "#10b981",
+          boxShadow: "0 0 10px rgba(16,185,129,0.5)",
         }}
       />
       <h5 className="font-bold mb-1" style={{ color: "#f1f5f9" }}>
         {title}
       </h5>
       <p className="mb-2 text-sm" style={{ color: "#94a3b8" }}>
-        <span style={{ color: "#fb923c" }}>{subtitle}</span>
+        <span style={{ color: "#34d399" }}>{subtitle}</span>
         <span className="mx-2 opacity-40">|</span>
         <small style={{ color: "#64748b" }}>{period}</small>
       </p>

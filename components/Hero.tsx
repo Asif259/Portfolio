@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaFileDownload, FaLinkedin } from "react-icons/fa";
+import FadeIn, { StaggerContainer, StaggerItem } from "./FadeIn";
 
 export default function Hero() {
   const [currentText, setCurrentText] = useState("");
@@ -110,116 +111,128 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text side */}
           <div className="text-center lg:text-left">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono font-semibold mb-6 border"
-              style={{
-                backgroundColor: "rgba(20,184,166,0.08)",
-                borderColor: "rgba(20,184,166,0.25)",
-                color: "#2dd4bf",
-              }}
-            >
-              <span
-                className="w-2 h-2 rounded-full animate-pulse"
-                style={{ backgroundColor: "#14b8a6", boxShadow: "0 0 6px #14b8a6" }}
-              />
-              Available for work
-            </div>
-
-            <h1
-              className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-4 leading-tight"
-              style={{ color: "#f1f5f9" }}
-            >
-              Moh. Asraful
-              <br />
-              <span style={{
-                background: "linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%)",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                color: "transparent",
-                WebkitTextFillColor: "transparent",
-              }}>Hasan Asif</span>
-            </h1>
-
-            <div className="flex items-center justify-center lg:justify-start mb-8 min-h-[60px]">
-              <h2
-                className="inline font-semibold text-xl sm:text-2xl lg:text-3xl"
-                style={{ color: "#94a3b8" }}
+            <FadeIn direction="up" delay={0.1}>
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono font-semibold mb-6 border"
+                style={{
+                  backgroundColor: "rgba(20,184,166,0.08)",
+                  borderColor: "rgba(20,184,166,0.25)",
+                  color: "#2dd4bf",
+                }}
               >
-                I&apos;m a{" "}
                 <span
-                  className="font-bold"
-                  style={{
-                    color: "#14b8a6",
-                    textShadow: "0 0 20px rgba(20,184,166,0.5)",
-                  }}
+                  className="w-2 h-2 rounded-full animate-pulse"
+                  style={{ backgroundColor: "#14b8a6", boxShadow: "0 0 6px #14b8a6" }}
+                />
+                Available for work
+              </div>
+            </FadeIn>
+
+            <FadeIn direction="up" delay={0.2}>
+              <h1
+                className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-4 leading-tight"
+                style={{ color: "#f1f5f9" }}
+              >
+                Moh. Asraful
+                <br />
+                <span style={{
+                  background: "linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%)",
+                  backgroundClip: "text",
+                  WebkitBackgroundClip: "text",
+                  color: "transparent",
+                  WebkitTextFillColor: "transparent",
+                }}>Hasan Asif</span>
+              </h1>
+            </FadeIn>
+
+            <FadeIn direction="up" delay={0.3}>
+              <div className="flex items-center justify-center lg:justify-start mb-8 min-h-[60px]">
+                <h2
+                  className="inline font-semibold text-xl sm:text-2xl lg:text-3xl"
+                  style={{ color: "#94a3b8" }}
                 >
-                  {currentText}
-                </span>
-                <span className="typed-cursor animate-pulse">|</span>
-              </h2>
-            </div>
-
-            <p
-              className="text-base lg:text-lg mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed"
-              style={{ color: "#94a3b8" }}
-            >
-              Passionate full-stack developer creating beautiful, responsive, and
-              user-friendly web experiences with modern technologies.
-            </p>
-
-            {/* Tech stack chips */}
-            <div className="flex flex-wrap gap-2 justify-center lg:justify-start mb-10">
-              {["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL"].map(
-                (tech) => (
+                  I&apos;m a{" "}
                   <span
-                    key={tech}
-                    className="px-3 py-1 rounded-full text-xs font-mono font-medium border"
+                    className="font-bold"
                     style={{
-                      backgroundColor: "rgba(20,184,166,0.06)",
-                      borderColor: "rgba(20,184,166,0.18)",
-                      color: "#94a3b8",
+                      color: "#14b8a6",
+                      textShadow: "0 0 20px rgba(20,184,166,0.5)",
                     }}
                   >
-                    {tech}
+                    {currentText}
                   </span>
-                )
-              )}
-            </div>
+                  <span className="typed-cursor animate-pulse">|</span>
+                </h2>
+              </div>
+            </FadeIn>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <a
-                href="/my_cv.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn flex items-center gap-2"
-                style={{
-                  background: "linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)",
-                  color: "#fff",
-                  boxShadow: "0 0 15px rgba(20,184,166,0.35)",
-                }}
+            <FadeIn direction="up" delay={0.4}>
+              <p
+                className="text-base lg:text-lg mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+                style={{ color: "#94a3b8" }}
               >
-                <FaFileDownload className="w-4 h-4" />
-                View CV
-              </a>
-              <Link
-                href="https://www.linkedin.com/in/ashraful-asif"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn flex items-center gap-2"
-                style={{
-                  background: "rgba(20,184,166,0.1)",
-                  border: "1px solid rgba(20,184,166,0.3)",
-                  color: "#fff",
-                }}
-              >
-                <FaLinkedin className="w-4 h-4" />
-                LinkedIn
-              </Link>
-            </div>
+                Passionate full-stack developer creating beautiful, responsive, and
+                user-friendly web experiences with modern technologies.
+              </p>
+            </FadeIn>
+
+            <FadeIn direction="up" delay={0.5}>
+              {/* Tech stack chips */}
+              <div className="flex flex-wrap gap-2 justify-center lg:justify-start mb-10">
+                {["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL"].map(
+                  (tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 rounded-full text-xs font-mono font-medium border"
+                      style={{
+                        backgroundColor: "rgba(20,184,166,0.06)",
+                        borderColor: "rgba(20,184,166,0.18)",
+                        color: "#94a3b8",
+                      }}
+                    >
+                      {tech}
+                    </span>
+                  )
+                )}
+              </div>
+            </FadeIn>
+
+            <FadeIn direction="up" delay={0.6}>
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                <a
+                  href="/my_cv.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn flex items-center gap-2"
+                  style={{
+                    background: "linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)",
+                    color: "#fff",
+                    boxShadow: "0 0 15px rgba(20,184,166,0.35)",
+                  }}
+                >
+                  <FaFileDownload className="w-4 h-4" />
+                  View CV
+                </a>
+                <Link
+                  href="https://www.linkedin.com/in/ashraful-asif"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn flex items-center gap-2"
+                  style={{
+                    background: "rgba(20,184,166,0.1)",
+                    border: "1px solid rgba(20,184,166,0.3)",
+                    color: "#fff",
+                  }}
+                >
+                  <FaLinkedin className="w-4 h-4" />
+                  LinkedIn
+                </Link>
+              </div>
+            </FadeIn>
           </div>
 
           {/* Image side - Circular Profile */}
-          <div className="order-first lg:order-last flex justify-center">
+          <FadeIn direction="right" delay={0.3} className="order-first lg:order-last flex justify-center">
             <div className="relative">
               {/* Outer glow ring */}
               <div
@@ -289,7 +302,7 @@ export default function Hero() {
                 </div>
               </div>
             </div>
-          </div>
+          </FadeIn>
         </div>
       </div>
 

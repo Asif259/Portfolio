@@ -1,5 +1,7 @@
 "use client";
 
+import FadeIn, { StaggerContainer, StaggerItem } from "./FadeIn";
+
 export default function Qualification() {
   return (
     <div
@@ -21,96 +23,102 @@ export default function Qualification() {
       />
 
       <div className="relative z-10 container mx-auto px-4 lg:px-20">
-        <div className="section-header">
-          <h1 className="section-header-bg">Quality</h1>
-          <h1 className="section-header-text">Education &amp; Experience</h1>
-        </div>
+        <FadeIn direction="up" delay={0.1}>
+          <div className="section-header">
+            <h1 className="section-header-bg">Quality</h1>
+            <h1 className="section-header-text">Education &amp; Experience</h1>
+          </div>
+        </FadeIn>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Education */}
-          <div
-            className="rounded-2xl p-6 border"
-            style={{
-              backgroundColor: "#1E1E1E",
-              borderColor: "rgba(20,184,166,0.12)",
-              boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
-            }}
-          >
-            <h3 className="text-2xl font-bold mb-6" style={{
-              background: "linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%)",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              color: "transparent",
-              WebkitTextFillColor: "transparent",
-            }}>
-              My Education
-            </h3>
+          <FadeIn direction="left" delay={0.2}>
             <div
-              className="pl-8 pt-2 ml-2 space-y-8"
-              style={{ borderLeft: "2px solid rgba(20,184,166,0.35)" }}
+              className="rounded-2xl p-6 border"
+              style={{
+                backgroundColor: "#1E1E1E",
+                borderColor: "rgba(20,184,166,0.12)",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
+              }}
             >
-              <TimelineItem
-                title="School"
-                subtitle="Saheen Academy School &amp; College, Feni"
-                period="Passed"
-                description=""
-              />
-              <TimelineItem
-                title="College"
-                subtitle="Feni National College"
-                period="2018 - 2020"
-              />
-              <TimelineItem
-                title="Bachelor of Science"
-                subtitle="American International University-Bangladesh"
-                period="2022 - running"
-                description="Relevant Courses: Algorithms, Data Structure, Object Oriented Analysis &amp; Design, Software Engineering, Operating Systems, Compiler Design, Advanced Web Technologies, Machine Learning, Artificial Intelligence, Data Science, Network Security"
-              />
+              <h3 className="text-2xl font-bold mb-6" style={{
+                background: "linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%)",
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                color: "transparent",
+                WebkitTextFillColor: "transparent",
+              }}>
+                My Education
+              </h3>
+              <div
+                className="pl-8 pt-2 ml-2 space-y-8"
+                style={{ borderLeft: "2px solid rgba(20,184,166,0.35)" }}
+              >
+                <TimelineItem
+                  title="School"
+                  subtitle="Saheen Academy School &amp; College, Feni"
+                  period="Passed"
+                  description=""
+                />
+                <TimelineItem
+                  title="College"
+                  subtitle="Feni National College"
+                  period="2018 - 2020"
+                />
+                <TimelineItem
+                  title="Bachelor of Science"
+                  subtitle="American International University-Bangladesh"
+                  period="2022 - running"
+                  description="Relevant Courses: Algorithms, Data Structure, Object Oriented Analysis &amp; Design, Software Engineering, Operating Systems, Compiler Design, Advanced Web Technologies, Machine Learning, Artificial Intelligence, Data Science, Network Security"
+                />
+              </div>
             </div>
-          </div>
+          </FadeIn>
 
           {/* Experience */}
-          <div
-            className="rounded-2xl p-6 border"
-            style={{
-              backgroundColor: "#1E1E1E",
-              borderColor: "rgba(20,184,166,0.12)",
-              boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
-            }}
-          >
-            <h3 className="text-2xl font-bold mb-6" style={{
-              background: "linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%)",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              color: "transparent",
-              WebkitTextFillColor: "transparent",
-            }}>
-              My Experience
-            </h3>
+          <FadeIn direction="right" delay={0.3}>
             <div
-              className="pl-8 pt-2 ml-2 space-y-8"
-              style={{ borderLeft: "2px solid rgba(20,184,166,0.35)" }}
+              className="rounded-2xl p-6 border"
+              style={{
+                backgroundColor: "#1E1E1E",
+                borderColor: "rgba(20,184,166,0.12)",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
+              }}
             >
-              <TimelineItem
-                title="Frontend Developer"
-                subtitle="Codinzy"
-                period="August 2025 – Present"
-                description="Developed interactive and responsive web applications using React.js and Next.js. Collaborated with UI/UX designers to implement modern, dynamic interfaces. Assisted in curriculum design for coding education modules. Conducted testing, optimized performance, and ensured high code quality."
-              />
-              <TimelineItem
-                title="Coding Instructor"
-                subtitle="Codingal"
-                period="May 2024 – September 2025"
-                description="Taught web development, game design, and logic building to students aged 8–18. Delivered personalized lessons in JavaScript, Python, and block-based coding. Guided project-based learning and fostered creativity in coding. Maintained excellent student engagement and course completion rates."
-              />
-              <TimelineItem
-                title="Freelance Frontend Developer"
-                subtitle="Upwork"
-                period="July 2022 – Present"
-                description="Designed responsive websites for global clients. Developed modular and optimized frontend components using React.js. Improved website performance and accessibility across multiple devices."
-              />
+              <h3 className="text-2xl font-bold mb-6" style={{
+                background: "linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%)",
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                color: "transparent",
+                WebkitTextFillColor: "transparent",
+              }}>
+                My Experience
+              </h3>
+              <div
+                className="pl-8 pt-2 ml-2 space-y-8"
+                style={{ borderLeft: "2px solid rgba(20,184,166,0.35)" }}
+              >
+                <TimelineItem
+                  title="Frontend Developer"
+                  subtitle="Codinzy"
+                  period="August 2025 – Present"
+                  description="Developed interactive and responsive web applications using React.js and Next.js. Collaborated with UI/UX designers to implement modern, dynamic interfaces. Assisted in curriculum design for coding education modules. Conducted testing, optimized performance, and ensured high code quality."
+                />
+                <TimelineItem
+                  title="Coding Instructor"
+                  subtitle="Codingal"
+                  period="May 2024 – September 2025"
+                  description="Taught web development, game design, and logic building to students aged 8–18. Delivered personalized lessons in JavaScript, Python, and block-based coding. Guided project-based learning and fostered creativity in coding. Maintained excellent student engagement and course completion rates."
+                />
+                <TimelineItem
+                  title="Freelance Frontend Developer"
+                  subtitle="Upwork"
+                  period="July 2022 – Present"
+                  description="Designed responsive websites for global clients. Developed modular and optimized frontend components using React.js. Improved website performance and accessibility across multiple devices."
+                />
+              </div>
             </div>
-          </div>
+          </FadeIn>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import FadeIn, { StaggerContainer, StaggerItem } from "./FadeIn";
 
 interface Skill {
   name: string;
@@ -76,76 +77,83 @@ export default function Skills() {
       />
 
       <div className="relative z-10 container mx-auto px-4 lg:px-20">
-        <div className="section-header">
-          <h1 className="section-header-bg">Skills</h1>
-          <h1 className="section-header-text">My Skills</h1>
-        </div>
+        <FadeIn direction="up" delay={0.1}>
+          <div className="section-header">
+            <h1 className="section-header-bg">Skills</h1>
+            <h1 className="section-header-text">My Skills</h1>
+          </div>
+        </FadeIn>
 
         {/* Category Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
-          {(
-            [
-              "All",
-              "Frontend",
-              "Backend",
-              "Databases",
-              "DevOps",
-              "Tools",
-            ] as SkillCategory[]
-          ).map((cat) => (
-            <button
-              key={cat}
-              type="button"
-              className="px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 border"
-              style={
-                activeCategory === cat
-                  ? {
-                    background:
-                      "linear-gradient(135deg, #14b8a6, #0d9488)",
-                    color: "#fff",
-                    borderColor: "transparent",
-                    boxShadow: "0 0 15px rgba(20,184,166,0.35)",
-                  }
-                  : {
-                    backgroundColor: "transparent",
-                    color: "#94a3b8",
-                    borderColor: "rgba(20,184,166,0.2)",
-                  }
-              }
-              onMouseEnter={(e) => {
-                if (activeCategory !== cat) {
-                  (e.currentTarget as HTMLButtonElement).style.borderColor =
-                    "rgba(20,184,166,0.5)";
-                  (e.currentTarget as HTMLButtonElement).style.color = "#14b8a6";
+        <FadeIn direction="up" delay={0.2}>
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
+            {(
+              [
+                "All",
+                "Frontend",
+                "Backend",
+                "Databases",
+                "DevOps",
+                "Tools",
+              ] as SkillCategory[]
+            ).map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                className="px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 border"
+                style={
+                  activeCategory === cat
+                    ? {
+                      background:
+                        "linear-gradient(135deg, #14b8a6, #0d9488)",
+                      color: "#fff",
+                      borderColor: "transparent",
+                      boxShadow: "0 0 15px rgba(20,184,166,0.35)",
+                    }
+                    : {
+                      backgroundColor: "transparent",
+                      color: "#94a3b8",
+                      borderColor: "rgba(20,184,166,0.2)",
+                    }
                 }
-              }}
-              onMouseLeave={(e) => {
-                if (activeCategory !== cat) {
-                  (e.currentTarget as HTMLButtonElement).style.borderColor =
-                    "rgba(20,184,166,0.2)";
-                  (e.currentTarget as HTMLButtonElement).style.color = "#94a3b8";
-                }
-              }}
-              onClick={() => setActiveCategory(cat)}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+                onMouseEnter={(e) => {
+                  if (activeCategory !== cat) {
+                    (e.currentTarget as HTMLButtonElement).style.borderColor =
+                      "rgba(20,184,166,0.5)";
+                    (e.currentTarget as HTMLButtonElement).style.color = "#14b8a6";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeCategory !== cat) {
+                    (e.currentTarget as HTMLButtonElement).style.borderColor =
+                      "rgba(20,184,166,0.2)";
+                    (e.currentTarget as HTMLButtonElement).style.color = "#94a3b8";
+                  }
+                }}
+                onClick={() => setActiveCategory(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </FadeIn>
 
         {/* Skill Grid */}
         <div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           ref={ref}
         >
-          {skills.map((skill, index) => (
-            <SkillCard
-              key={skill.name}
-              skill={skill}
-              inView={inView}
-              delay={index * 100}
-            />
-          ))}
+          <StaggerContainer delayBetween={0.08}>
+            {skills.map((skill, index) => (
+              <StaggerItem key={skill.name}>
+                <SkillCard
+                  skill={skill}
+                  inView={inView}
+                  delay={index * 100}
+                />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
       </div>
     </div>

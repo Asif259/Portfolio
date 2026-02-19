@@ -5,7 +5,7 @@ export default function Qualification() {
     <div
       className="py-12 relative overflow-hidden"
       id="qualification"
-      style={{ backgroundColor: "#0B0B0F" }}
+      style={{ backgroundColor: "#121212" }}
     >
       {/* Grid background */}
       <div className="absolute inset-0 bg-grid-sm opacity-50 pointer-events-none" />
@@ -15,7 +15,7 @@ export default function Qualification() {
         className="absolute left-0 top-1/2 -translate-y-1/2 w-64 h-64 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(255,106,0,0.08) 0%, transparent 70%)",
           filter: "blur(40px)",
         }}
       />
@@ -31,17 +31,23 @@ export default function Qualification() {
           <div
             className="rounded-2xl p-6 border"
             style={{
-              backgroundColor: "#13131A",
-              borderColor: "rgba(16,185,129,0.12)",
+              backgroundColor: "#1E1E1E",
+              borderColor: "rgba(255,106,0,0.12)",
               boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
             }}
           >
-            <h3 className="text-2xl font-bold mb-6 gradient-text">
+            <h3 className="text-2xl font-bold mb-6" style={{
+              background: "linear-gradient(135deg, #FF6A00 0%, #fb923c 100%)",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              color: "transparent",
+              WebkitTextFillColor: "transparent",
+            }}>
               My Education
             </h3>
             <div
               className="pl-8 pt-2 ml-2 space-y-8"
-              style={{ borderLeft: "2px solid rgba(16,185,129,0.35)" }}
+              style={{ borderLeft: "2px solid rgba(255,106,0,0.35)" }}
             >
               <TimelineItem
                 title="School"
@@ -67,17 +73,23 @@ export default function Qualification() {
           <div
             className="rounded-2xl p-6 border"
             style={{
-              backgroundColor: "#13131A",
-              borderColor: "rgba(16,185,129,0.12)",
+              backgroundColor: "#1E1E1E",
+              borderColor: "rgba(255,106,0,0.12)",
               boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
             }}
           >
-            <h3 className="text-2xl font-bold mb-6 gradient-text">
+            <h3 className="text-2xl font-bold mb-6" style={{
+              background: "linear-gradient(135deg, #FF6A00 0%, #fb923c 100%)",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              color: "transparent",
+              WebkitTextFillColor: "transparent",
+            }}>
               My Experience
             </h3>
             <div
               className="pl-8 pt-2 ml-2 space-y-8"
-              style={{ borderLeft: "2px solid rgba(16,185,129,0.35)" }}
+              style={{ borderLeft: "2px solid rgba(255,106,0,0.35)" }}
             >
               <TimelineItem
                 title="Frontend Developer"
@@ -118,25 +130,25 @@ function TimelineItem({
 }) {
   return (
     <div className="relative">
-      {/* Emerald dot */}
+      {/* Orange dot */}
       <div
         className="absolute -left-[45px] top-2 w-5 h-5 rounded-full border-2"
         style={{
-          backgroundColor: "#0B0B0F",
-          borderColor: "#10b981",
-          boxShadow: "0 0 10px rgba(16,185,129,0.5)",
+          backgroundColor: "#121212",
+          borderColor: "#FF6A00",
+          boxShadow: "0 0 10px rgba(255,106,0,0.5)",
         }}
       />
       <h5 className="font-bold mb-1" style={{ color: "#f1f5f9" }}>
         {title}
       </h5>
       <p className="mb-2 text-sm" style={{ color: "#94a3b8" }}>
-        <span style={{ color: "#34d399" }}>{subtitle}</span>
+        <span style={{ color: "#fb923c" }}>{subtitle}</span>
         <span className="mx-2 opacity-40">|</span>
-        <small style={{ color: "#64748b" }}>{period}</small>
+        <small style={{ color: "#94a3b8" }}>{period}</small>
       </p>
       {description && (
-        <p className="text-sm leading-relaxed" style={{ color: "#64748b" }}>
+        <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
           {description}
         </p>
       )}

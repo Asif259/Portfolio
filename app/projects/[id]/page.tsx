@@ -58,7 +58,7 @@ export default function ProjectDetailPage() {
     return (
       <div
         className="min-h-screen flex items-center justify-center"
-        style={{ backgroundColor: "#0B0B0F" }}
+        style={{ backgroundColor: "#121212" }}
       >
         <div className="text-center">
           <h1
@@ -76,15 +76,15 @@ export default function ProjectDetailPage() {
   }
 
   const cardStyle = {
-    backgroundColor: "#13131A",
-    border: "1px solid rgba(16,185,129,0.12)",
+    backgroundColor: "#1E1E1E",
+    border: "1px solid rgba(255,106,0,0.12)",
     boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
   };
 
   return (
     <main
       className="min-h-screen relative"
-      style={{ backgroundColor: "#0B0B0F" }}
+      style={{ backgroundColor: "#121212" }}
     >
       {/* Subtle grid background */}
       <div className="fixed inset-0 bg-grid-sm opacity-30 pointer-events-none z-0" />
@@ -97,12 +97,12 @@ export default function ProjectDetailPage() {
           <Link
             href="/#portfolio"
             className="flex items-center gap-2 transition-colors group text-sm font-medium"
-            style={{ color: "#64748b" }}
+            style={{ color: "#94a3b8" }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.color = "#10b981";
+              (e.currentTarget as HTMLAnchorElement).style.color = "#FF6A00";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.color = "#64748b";
+              (e.currentTarget as HTMLAnchorElement).style.color = "#94a3b8";
             }}
           >
             <FaChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
@@ -134,27 +134,27 @@ export default function ProjectDetailPage() {
             {/* Project Info */}
             <div className="order-1 lg:order-2 space-y-4">
               {/* Breadcrumb */}
-              <nav className="text-xs mb-2" style={{ color: "#64748b" }}>
+              <nav className="text-xs mb-2" style={{ color: "#94a3b8" }}>
                 <ol className="flex items-center gap-1.5 flex-wrap">
                   <li>
                     <Link
                       href="/"
-                      className="hover:text-primary-400 transition-colors"
+                      className="hover:text-orange-400 transition-colors"
                     >
                       Home
                     </Link>
                   </li>
-                  <li style={{ color: "rgba(16,185,129,0.4)" }}>/</li>
+                  <li style={{ color: "rgba(255,106,0,0.4)" }}>/</li>
                   <li>
                     <Link
                       href="/#portfolio"
-                      className="hover:text-primary-400 transition-colors"
+                      className="hover:text-orange-400 transition-colors"
                     >
                       Portfolio
                     </Link>
                   </li>
-                  <li style={{ color: "rgba(16,185,129,0.4)" }}>/</li>
-                  <li style={{ color: "#94a3b8" }}>{project.name}</li>
+                  <li style={{ color: "rgba(255,106,0,0.4)" }}>/</li>
+                  <li style={{ color: "#f1f5f9" }}>{project.name}</li>
                 </ol>
               </nav>
 
@@ -162,9 +162,9 @@ export default function ProjectDetailPage() {
                 <span
                   className="inline-block px-3 py-1 rounded-full text-xs font-semibold border"
                   style={{
-                    backgroundColor: "rgba(16,185,129,0.08)",
-                    borderColor: "rgba(16,185,129,0.25)",
-                    color: "#34d399",
+                    backgroundColor: "rgba(255,106,0,0.08)",
+                    borderColor: "rgba(255,106,0,0.25)",
+                    color: "#fb923c",
                   }}
                 >
                   {project.category}
@@ -206,8 +206,8 @@ export default function ProjectDetailPage() {
                     <div
                       className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
                       style={{
-                        backgroundColor: "rgba(16,185,129,0.1)",
-                        color: "#10b981",
+                        backgroundColor: "rgba(255,106,0,0.1)",
+                        color: "#FF6A00",
                       }}
                     >
                       <Icon className="w-3.5 h-3.5" />
@@ -215,7 +215,7 @@ export default function ProjectDetailPage() {
                     <div className="min-w-0">
                       <p
                         className="text-xs truncate"
-                        style={{ color: "#64748b" }}
+                        style={{ color: "#94a3b8" }}
                       >
                         {label}
                       </p>
@@ -289,15 +289,15 @@ export default function ProjectDetailPage() {
                         activeTab === (t.id as "overview" | "solution" | "challenges")
                           ? {
                             background:
-                              "linear-gradient(135deg, #10b981, #059669)",
+                              "linear-gradient(135deg, #FF6A00, #ea580c)",
                             color: "#fff",
                             borderColor: "transparent",
-                            boxShadow: "0 0 12px rgba(16,185,129,0.3)",
+                            boxShadow: "0 0 12px rgba(255,106,0,0.3)",
                           }
                           : {
                             backgroundColor: "transparent",
                             color: "#94a3b8",
-                            borderColor: "rgba(16,185,129,0.15)",
+                            borderColor: "rgba(255,106,0,0.15)",
                           }
                       }
                       onClick={() =>
@@ -366,9 +366,9 @@ export default function ProjectDetailPage() {
                                 <span
                                   className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
                                   style={{
-                                    backgroundColor: "#10b981",
+                                    backgroundColor: "#FF6A00",
                                     boxShadow:
-                                      "0 0 6px rgba(16,185,129,0.5)",
+                                      "0 0 6px rgba(255,106,0,0.5)",
                                   }}
                                 />
                                 <div className="flex-1">
@@ -400,7 +400,7 @@ export default function ProjectDetailPage() {
                                 <span
                                   className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
                                   style={{
-                                    backgroundColor: "#10b981",
+                                    backgroundColor: "#FF6A00",
                                   }}
                                 />
                                 <span
@@ -435,19 +435,19 @@ export default function ProjectDetailPage() {
                         type="button"
                         className="group relative rounded-lg overflow-hidden cursor-zoom-in transition-all duration-300 border"
                         style={{
-                          backgroundColor: "#0B0B0F",
-                          borderColor: "rgba(16,185,129,0.1)",
+                          backgroundColor: "#121212",
+                          borderColor: "rgba(255,106,0,0.1)",
                           padding: "8px",
                         }}
                         onMouseEnter={(e) => {
                           (
                             e.currentTarget as HTMLButtonElement
-                          ).style.borderColor = "rgba(16,185,129,0.35)";
+                          ).style.borderColor = "rgba(255,106,0,0.35)";
                         }}
                         onMouseLeave={(e) => {
                           (
                             e.currentTarget as HTMLButtonElement
-                          ).style.borderColor = "rgba(16,185,129,0.1)";
+                          ).style.borderColor = "rgba(255,106,0,0.1)";
                         }}
                         onClick={() => {
                           setActiveIndex(idx);
@@ -486,7 +486,7 @@ export default function ProjectDetailPage() {
                         <div key={sectionIndex}>
                           <h3
                             className="text-lg font-semibold mb-3"
-                            style={{ color: "#34d399" }}
+                            style={{ color: "#fb923c" }}
                           >
                             {section.title}
                           </h3>
@@ -496,15 +496,15 @@ export default function ProjectDetailPage() {
                                 key={itemIndex}
                                 className="flex items-start gap-3 p-3 rounded-lg border"
                                 style={{
-                                  backgroundColor: "rgba(16,185,129,0.04)",
-                                  borderColor: "rgba(16,185,129,0.12)",
+                                  backgroundColor: "rgba(255,106,0,0.04)",
+                                  borderColor: "rgba(255,106,0,0.12)",
                                 }}
                               >
                                 <div
                                   className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
                                   style={{
                                     background:
-                                      "linear-gradient(135deg, #10b981, #059669)",
+                                      "linear-gradient(135deg, #FF6A00, #ea580c)",
                                   }}
                                 >
                                   <FaCheck
@@ -521,7 +521,7 @@ export default function ProjectDetailPage() {
                                   </span>
                                   <span
                                     className="text-xs"
-                                    style={{ color: "#64748b" }}
+                                    style={{ color: "#94a3b8" }}
                                   >
                                     {item.description}
                                   </span>
@@ -540,15 +540,15 @@ export default function ProjectDetailPage() {
                         key={index}
                         className="flex items-start gap-3 p-3 rounded-lg border"
                         style={{
-                          backgroundColor: "rgba(16,185,129,0.04)",
-                          borderColor: "rgba(16,185,129,0.12)",
+                          backgroundColor: "rgba(255,106,0,0.04)",
+                          borderColor: "rgba(255,106,0,0.12)",
                         }}
                       >
                         <div
                           className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
                           style={{
                             background:
-                              "linear-gradient(135deg, #10b981, #059669)",
+                              "linear-gradient(135deg, #FF6A00, #ea580c)",
                           }}
                         >
                           <FaCheck
@@ -581,7 +581,7 @@ export default function ProjectDetailPage() {
                 </h3>
                 <div className="space-y-4">
                   <div>
-                    <p className="text-xs mb-1" style={{ color: "#64748b" }}>
+                    <p className="text-xs mb-1" style={{ color: "#94a3b8" }}>
                       Date
                     </p>
                     <p
@@ -596,7 +596,7 @@ export default function ProjectDetailPage() {
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs mb-1" style={{ color: "#64748b" }}>
+                    <p className="text-xs mb-1" style={{ color: "#94a3b8" }}>
                       Role
                     </p>
                     <p
@@ -608,7 +608,7 @@ export default function ProjectDetailPage() {
                   </div>
                   {project.client && (
                     <div>
-                      <p className="text-xs mb-1" style={{ color: "#64748b" }}>
+                      <p className="text-xs mb-1" style={{ color: "#94a3b8" }}>
                         Client
                       </p>
                       <p
@@ -636,9 +636,9 @@ export default function ProjectDetailPage() {
                       key={index}
                       className="px-2.5 py-1 rounded-lg text-xs font-medium border"
                       style={{
-                        backgroundColor: "rgba(16,185,129,0.08)",
-                        borderColor: "rgba(16,185,129,0.2)",
-                        color: "#34d399",
+                        backgroundColor: "rgba(255,106,0,0.08)",
+                        borderColor: "rgba(255,106,0,0.2)",
+                        color: "#fb923c",
                       }}
                     >
                       {tech}
@@ -669,19 +669,19 @@ export default function ProjectDetailPage() {
                     href={`/projects/${p.id}`}
                     className="group block rounded-xl overflow-hidden transition-all duration-300 border"
                     style={{
-                      backgroundColor: "#13131A",
-                      borderColor: "rgba(16,185,129,0.12)",
+                      backgroundColor: "#1E1E1E",
+                      borderColor: "rgba(255,106,0,0.12)",
                     }}
                     onMouseEnter={(e) => {
                       (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                        "rgba(16,185,129,0.35)";
+                        "rgba(255,106,0,0.35)";
                       (
                         e.currentTarget as HTMLAnchorElement
-                      ).style.boxShadow = "0 0 20px rgba(16,185,129,0.1)";
+                      ).style.boxShadow = "0 0 20px rgba(255,106,0,0.1)";
                     }}
                     onMouseLeave={(e) => {
                       (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                        "rgba(16,185,129,0.12)";
+                        "rgba(255,106,0,0.12)";
                       (
                         e.currentTarget as HTMLAnchorElement
                       ).style.boxShadow = "none";
@@ -705,7 +705,7 @@ export default function ProjectDetailPage() {
                       </h3>
                       <p
                         className="text-xs line-clamp-2 mt-1"
-                        style={{ color: "#64748b" }}
+                        style={{ color: "#94a3b8" }}
                       >
                         {p.description}
                       </p>
@@ -728,7 +728,7 @@ export default function ProjectDetailPage() {
       {lightboxImage && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          style={{ backgroundColor: "rgba(11,11,15,0.95)" }}
+          style={{ backgroundColor: "rgba(18,18,18,0.95)" }}
           onClick={() => setLightboxImage(null)}
         >
           <div
@@ -743,7 +743,7 @@ export default function ProjectDetailPage() {
               sizes="90vw"
               className="w-full h-full object-contain rounded-xl"
               style={{
-                border: "1px solid rgba(16,185,129,0.2)",
+                border: "1px solid rgba(255,106,0,0.2)",
               }}
             />
             <div className="flex justify-between mt-4 gap-2">
@@ -777,23 +777,23 @@ export default function ProjectDetailPage() {
                   key={label}
                   className="btn flex-1 border font-medium text-sm transition-all duration-200"
                   style={{
-                    backgroundColor: "rgba(16,185,129,0.08)",
-                    borderColor: "rgba(16,185,129,0.2)",
+                    backgroundColor: "rgba(255,106,0,0.08)",
+                    borderColor: "rgba(255,106,0,0.2)",
                     color: "#94a3b8",
                   }}
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                      "rgba(16,185,129,0.15)";
+                      "rgba(255,106,0,0.15)";
                     (e.currentTarget as HTMLButtonElement).style.borderColor =
-                      "rgba(16,185,129,0.4)";
+                      "rgba(255,106,0,0.4)";
                     (e.currentTarget as HTMLButtonElement).style.color =
-                      "#10b981";
+                      "#FF6A00";
                   }}
                   onMouseLeave={(e) => {
                     (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                      "rgba(16,185,129,0.08)";
+                      "rgba(255,106,0,0.08)";
                     (e.currentTarget as HTMLButtonElement).style.borderColor =
-                      "rgba(16,185,129,0.2)";
+                      "rgba(255,106,0,0.2)";
                     (e.currentTarget as HTMLButtonElement).style.color =
                       "#94a3b8";
                   }}

@@ -16,73 +16,147 @@ export default function Portfolio() {
   const getCategoryLabel = (filter: string) => {
     switch (filter) {
       case "Frontend Development":
-        return "Frontend Development";
+        return "Frontend";
       case "Backend Development":
-        return "Backend Development";
+        return "Backend";
       default:
         return "All";
     }
   };
 
   return (
-    <>
-      <div className="py-12 bg-white" id="portfolio">
-        <div className="container mx-auto px-4 lg:px-20">
-          <div className="section-header">
-            <h1 className="section-header-bg">Gallery</h1>
-            <h1 className="section-header-text">My Portfolio</h1>
-          </div>
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {["*", "Frontend Development", "Backend Development"].map(
-              (filter) => (
-                <button
-                  className={`px-6 py-2.5 rounded-full font-semibold transition-all duration-300 ${
-                    activeFilter === filter
-                      ? "bg-primary text-white"
-                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                  }`}
-                  key={filter}
-                  onClick={() => setActiveFilter(filter)}
-                >
-                  {getCategoryLabel(filter)}
-                </button>
-              )
-            )}
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredItems.map((item) => (
-              <Link
-                key={item.id}
-                href={`/projects/${item.id}`}
-                className="portfolio-item group block"
+    <div
+      className="py-12 relative overflow-hidden"
+      id="portfolio"
+      style={{ backgroundColor: "#13131A" }}
+    >
+      {/* Grid background */}
+      <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
+
+      {/* Top glow */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-64 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(249,115,22,0.08) 0%, transparent 100%)",
+        }}
+      />
+
+      <div className="relative z-10 container mx-auto px-4 lg:px-20">
+        <div className="section-header">
+          <h1 className="section-header-bg">Gallery</h1>
+          <h1 className="section-header-text">My Portfolio</h1>
+        </div>
+
+        {/* Filter buttons */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {["*", "Frontend Development", "Backend Development"].map(
+            (filter) => (
+              <button
+                key={filter}
+                className="px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 border"
+                style={
+                  activeFilter === filter
+                    ? {
+                        background:
+                          "linear-gradient(135deg, #f97316, #ea580c)",
+                        color: "#fff",
+                        borderColor: "transparent",
+                        boxShadow: "0 0 20px rgba(249,115,22,0.4)",
+                      }
+                    : {
+                        backgroundColor: "transparent",
+                        color: "#94a3b8",
+                        borderColor: "rgba(249,115,22,0.2)",
+                      }
+                }
+                onMouseEnter={(e) => {
+                  if (activeFilter !== filter) {
+                    (e.currentTarget as HTMLButtonElement).style.borderColor =
+                      "rgba(249,115,22,0.5)";
+                    (e.currentTarget as HTMLButtonElement).style.color =
+                      "#f97316";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeFilter !== filter) {
+                    (e.currentTarget as HTMLButtonElement).style.borderColor =
+                      "rgba(249,115,22,0.2)";
+                    (e.currentTarget as HTMLButtonElement).style.color =
+                      "#94a3b8";
+                  }
+                }}
+                onClick={() => setActiveFilter(filter)}
               >
-                <div className="relative overflow-hidden rounded-2xl">
-                  <Image
-                    src={item.coverImage}
-                    alt={item.name}
-                    width={400}
-                    height={300}
-                    className="w-full h-auto object-cover"
-                  />
-                  <div className="portfolio-overlay p-6">
-                    <div className="text-center">
-                      <h3 className="text-white font-bold text-xl mb-2">
-                        {item.name}
-                      </h3>
-                      <p className="text-white/90 text-sm mb-3 line-clamp-2">
-                        {item.description}
-                      </p>
-                      <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs font-semibold">
-                        {item.category}
-                      </span>
-                    </div>
+                {getCategoryLabel(filter)}
+              </button>
+            )
+          )}
+        </div>
+
+        {/* Project grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredItems.map((item) => (
+            <Link
+              key={item.id}
+              href={`/projects/${item.id}`}
+              className="portfolio-item group block"
+            >
+              <div
+                className="relative overflow-hidden rounded-2xl border transition-all duration-300 group-hover:border-opacity-60"
+                style={{
+                  border: "1px solid rgba(249,115,22,0.12)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.borderColor =
+                    "rgba(249,115,22,0.4)";
+                  (e.currentTarget as HTMLDivElement).style.boxShadow =
+                    "0 0 30px rgba(249,115,22,0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.borderColor =
+                    "rgba(249,115,22,0.12)";
+                  (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+                }}
+              >
+                <Image
+                  src={item.coverImage}
+                  alt={item.name}
+                  width={400}
+                  height={300}
+                  className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="portfolio-overlay p-6">
+                  <div className="text-center">
+                    <h3
+                      className="font-bold text-xl mb-2"
+                      style={{ color: "#f1f5f9" }}
+                    >
+                      {item.name}
+                    </h3>
+                    <p
+                      className="text-sm mb-4 line-clamp-2"
+                      style={{ color: "rgba(241,245,249,0.75)" }}
+                    >
+                      {item.description}
+                    </p>
+                    <span
+                      className="inline-block px-3 py-1 rounded-full text-xs font-semibold border"
+                      style={{
+                        backgroundColor: "rgba(249,115,22,0.15)",
+                        borderColor: "rgba(249,115,22,0.4)",
+                        color: "#fb923c",
+                      }}
+                    >
+                      {item.category}
+                    </span>
                   </div>
                 </div>
-              </Link>
-            ))}
-          </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }

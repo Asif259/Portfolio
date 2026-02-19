@@ -26,45 +26,27 @@ export default function Contact() {
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Please enter your name";
-    }
-
+    if (!formData.name.trim()) newErrors.name = "Please enter your name";
     if (!formData.email.trim()) {
       newErrors.email = "Please enter your email";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Please enter a valid email";
     }
-
-    if (!formData.subject.trim()) {
-      newErrors.subject = "Please enter a subject";
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = "Please enter your message";
-    }
-
+    if (!formData.subject.trim()) newErrors.subject = "Please enter a subject";
+    if (!formData.message.trim()) newErrors.message = "Please enter your message";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
     if (!validate()) return;
-
     setIsSubmitting(true);
-
-    // Simulate API call - replace with actual API endpoint
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      // In a real app, you would make an API call here:
-      // const response = await fetch('/api/contact', { ... })
-
       setSuccess(true);
       setFormData({ name: "", email: "", subject: "", message: "" });
-    } catch (error) {
+    } catch {
       setErrors({
         submit:
           "Sorry, it seems our mail server is not responding. Please try again later!",
@@ -74,30 +56,88 @@ export default function Contact() {
     }
   };
 
+  const inputStyle = {
+    backgroundColor: "#1A1A24",
+    borderColor: "rgba(249,115,22,0.15)",
+    color: "#f1f5f9",
+    outline: "none",
+  };
+
+  const inputFocusStyle = {
+    borderColor: "rgba(249,115,22,0.5)",
+    boxShadow: "0 0 0 3px rgba(249,115,22,0.08)",
+  };
+
   return (
     <div
-      className="py-12 bg-gradient-to-br from-gray-50 to-purple-50/30"
+      className="py-12 relative overflow-hidden"
       id="contact"
+      style={{ backgroundColor: "#13131A" }}
     >
-      <div className="container mx-auto px-4 lg:px-20">
+      {/* Grid */}
+      <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
+
+      {/* Bottom glow */}
+      <div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-64 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 100% at 50% 100%, rgba(249,115,22,0.08) 0%, transparent 100%)",
+        }}
+      />
+
+      <div className="relative z-10 container mx-auto px-4 lg:px-20">
         <div className="section-header">
           <h1 className="section-header-bg">Contact</h1>
           <h1 className="section-header-text">Contact Me</h1>
         </div>
+
+        {/* Big CTA headline */}
+        <div className="text-center mb-10">
+          <p
+            className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight"
+            style={{ color: "rgba(249,115,22,0.12)", letterSpacing: "0.02em" }}
+          >
+            GET IN TOUCH
+          </p>
+        </div>
+
         <div className="flex justify-center">
           <div className="w-full max-w-2xl">
-            <div className="contact-form text-center card p-8 md:p-12">
+            <div
+              className="text-center rounded-2xl p-8 md:p-12 border"
+              style={{
+                backgroundColor: "#0B0B0F",
+                borderColor: "rgba(249,115,22,0.15)",
+                boxShadow:
+                  "0 4px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(249,115,22,0.05)",
+              }}
+            >
               {success && (
-                <div className="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-                  <strong>Your message has been sent.</strong>
+                <div
+                  className="mb-6 p-4 rounded-lg border text-sm"
+                  style={{
+                    backgroundColor: "rgba(249,115,22,0.08)",
+                    borderColor: "rgba(249,115,22,0.3)",
+                    color: "#fb923c",
+                  }}
+                >
+                  <strong>Your message has been sent.</strong> I&apos;ll get back to you soon!
                 </div>
               )}
               {errors.submit && (
-                <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                <div
+                  className="mb-6 p-4 rounded-lg border text-sm"
+                  style={{
+                    backgroundColor: "rgba(239,68,68,0.08)",
+                    borderColor: "rgba(239,68,68,0.3)",
+                    color: "#f87171",
+                  }}
+                >
                   {errors.submit}
                 </div>
               )}
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4 text-left">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <input
@@ -106,12 +146,19 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Your Name"
-                      className="w-full px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-4 py-3 rounded-full border transition-all duration-200"
+                      style={inputStyle}
+                      onFocus={(e) =>
+                        Object.assign(e.currentTarget.style, inputFocusStyle)
+                      }
+                      onBlur={(e) => {
+                        e.currentTarget.style.borderColor =
+                          "rgba(249,115,22,0.15)";
+                        e.currentTarget.style.boxShadow = "none";
+                      }}
                     />
                     {errors.name && (
-                      <p className="text-red-500 text-sm mt-1 text-left">
-                        {errors.name}
-                      </p>
+                      <p className="text-red-400 text-xs mt-1">{errors.name}</p>
                     )}
                   </div>
                   <div>
@@ -121,12 +168,19 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="Your Email"
-                      className="w-full px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-4 py-3 rounded-full border transition-all duration-200"
+                      style={inputStyle}
+                      onFocus={(e) =>
+                        Object.assign(e.currentTarget.style, inputFocusStyle)
+                      }
+                      onBlur={(e) => {
+                        e.currentTarget.style.borderColor =
+                          "rgba(249,115,22,0.15)";
+                        e.currentTarget.style.boxShadow = "none";
+                      }}
                     />
                     {errors.email && (
-                      <p className="text-red-500 text-sm mt-1 text-left">
-                        {errors.email}
-                      </p>
+                      <p className="text-red-400 text-xs mt-1">{errors.email}</p>
                     )}
                   </div>
                 </div>
@@ -137,12 +191,19 @@ export default function Contact() {
                     value={formData.subject}
                     onChange={handleChange}
                     placeholder="Subject"
-                    className="w-full px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 rounded-full border transition-all duration-200"
+                    style={inputStyle}
+                    onFocus={(e) =>
+                      Object.assign(e.currentTarget.style, inputFocusStyle)
+                    }
+                    onBlur={(e) => {
+                      e.currentTarget.style.borderColor =
+                        "rgba(249,115,22,0.15)";
+                      e.currentTarget.style.boxShadow = "none";
+                    }}
                   />
                   {errors.subject && (
-                    <p className="text-red-500 text-sm mt-1 text-left">
-                      {errors.subject}
-                    </p>
+                    <p className="text-red-400 text-xs mt-1">{errors.subject}</p>
                   )}
                 </div>
                 <div>
@@ -152,19 +213,26 @@ export default function Contact() {
                     onChange={handleChange}
                     rows={5}
                     placeholder="Message"
-                    className="w-full px-4 py-3 rounded-3xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                    className="w-full px-4 py-3 rounded-3xl border transition-all duration-200 resize-none"
+                    style={inputStyle}
+                    onFocus={(e) =>
+                      Object.assign(e.currentTarget.style, inputFocusStyle)
+                    }
+                    onBlur={(e) => {
+                      e.currentTarget.style.borderColor =
+                        "rgba(249,115,22,0.15)";
+                      e.currentTarget.style.boxShadow = "none";
+                    }}
                   />
                   {errors.message && (
-                    <p className="text-red-500 text-sm mt-1 text-left">
-                      {errors.message}
-                    </p>
+                    <p className="text-red-400 text-xs mt-1">{errors.message}</p>
                   )}
                 </div>
-                <div>
+                <div className="text-center pt-2">
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn btn-outline-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="btn btn-primary disabled:opacity-50 disabled:cursor-not-allowed min-w-[180px]"
                   >
                     {isSubmitting ? "Sending..." : "Send Message"}
                   </button>

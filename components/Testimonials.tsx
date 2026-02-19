@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import Image from "next/image";
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
+import FadeIn from "./FadeIn";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -60,94 +61,98 @@ export default function Testimonials() {
       />
 
       <div className="relative z-10 container mx-auto px-4 lg:px-20">
-        <div className="section-header">
-          <h1 className="section-header-bg">Review</h1>
-          <h1 className="section-header-text">Clients Say</h1>
-        </div>
-
-        <div className="flex justify-center">
-          <div className="w-full max-w-4xl">
-            <Swiper
-              modules={[Autoplay, Pagination]}
-              spaceBetween={30}
-              slidesPerView={1}
-              autoplay={{ delay: 3000, disableOnInteraction: false }}
-              pagination={{
-                clickable: true,
-                bulletClass: "swiper-pagination-bullet",
-                bulletActiveClass: "swiper-pagination-bullet-active",
-              }}
-              className="testimonial-carousel pb-10"
-            >
-              {testimonials.map((testimonial, index) => (
-                <SwiperSlide key={index}>
-                  <div
-                    className="text-center rounded-2xl p-8 md:p-12 my-5 border transition-all duration-300"
-                    style={{
-                      backgroundColor: "#1E1E1E",
-                      borderColor: "rgba(20,184,166,0.12)",
-                      boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
-                    }}
-                  >
-                    {/* Quote icon */}
-                    <div
-                      className="inline-flex items-center justify-center w-14 h-14 rounded-full mb-6"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, #14b8a6, #0d9488)",
-                        boxShadow: "0 0 20px rgba(20,184,166,0.35)",
-                      }}
-                    >
-                      <FaQuoteLeft className="text-white text-xl" />
-                    </div>
-
-                    {/* Stars */}
-                    <div className="flex justify-center gap-1 mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <FaStar
-                          key={i}
-                          className="w-4 h-4"
-                          style={{ color: "#14b8a6" }}
-                        />
-                      ))}
-                    </div>
-
-                    <h4
-                      className="font-light mb-8 text-base md:text-lg leading-relaxed"
-                      style={{ color: "#94a3b8" }}
-                    >
-                      {testimonial.quote}
-                    </h4>
-
-                    <Image
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      width={80}
-                      height={80}
-                      className="rounded-full mx-auto mb-4"
-                      style={{
-                        border: "2px solid rgba(20,184,166,0.4)",
-                        boxShadow: "0 0 15px rgba(20,184,166,0.2)",
-                      }}
-                    />
-                    <h5
-                      className="font-bold text-lg mb-1"
-                      style={{ color: "#f1f5f9" }}
-                    >
-                      {testimonial.name}
-                    </h5>
-                    <span
-                      className="text-sm"
-                      style={{ color: "#14b8a6" }}
-                    >
-                      {testimonial.role}
-                    </span>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+        <FadeIn direction="up" delay={0.1}>
+          <div className="section-header">
+            <h1 className="section-header-bg">Review</h1>
+            <h1 className="section-header-text">Clients Say</h1>
           </div>
-        </div>
+        </FadeIn>
+
+        <FadeIn direction="up" delay={0.2}>
+          <div className="flex justify-center">
+            <div className="w-full max-w-4xl">
+              <Swiper
+                modules={[Autoplay, Pagination]}
+                spaceBetween={30}
+                slidesPerView={1}
+                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                pagination={{
+                  clickable: true,
+                  bulletClass: "swiper-pagination-bullet",
+                  bulletActiveClass: "swiper-pagination-bullet-active",
+                }}
+                className="testimonial-carousel pb-10"
+              >
+                {testimonials.map((testimonial, index) => (
+                  <SwiperSlide key={index}>
+                    <div
+                      className="text-center rounded-2xl p-8 md:p-12 my-5 border transition-all duration-300"
+                      style={{
+                        backgroundColor: "#1E1E1E",
+                        borderColor: "rgba(20,184,166,0.12)",
+                        boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
+                      }}
+                    >
+                      {/* Quote icon */}
+                      <div
+                        className="inline-flex items-center justify-center w-14 h-14 rounded-full mb-6"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, #14b8a6, #0d9488)",
+                          boxShadow: "0 0 20px rgba(20,184,166,0.35)",
+                        }}
+                      >
+                        <FaQuoteLeft className="text-white text-xl" />
+                      </div>
+
+                      {/* Stars */}
+                      <div className="flex justify-center gap-1 mb-4">
+                        {[...Array(5)].map((_, i) => (
+                          <FaStar
+                            key={i}
+                            className="w-4 h-4"
+                            style={{ color: "#14b8a6" }}
+                          />
+                        ))}
+                      </div>
+
+                      <h4
+                        className="font-light mb-8 text-base md:text-lg leading-relaxed"
+                        style={{ color: "#94a3b8" }}
+                      >
+                        {testimonial.quote}
+                      </h4>
+
+                      <Image
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        width={80}
+                        height={80}
+                        className="rounded-full mx-auto mb-4"
+                        style={{
+                          border: "2px solid rgba(20,184,166,0.4)",
+                          boxShadow: "0 0 15px rgba(20,184,166,0.2)",
+                        }}
+                      />
+                      <h5
+                        className="font-bold text-lg mb-1"
+                        style={{ color: "#f1f5f9" }}
+                      >
+                        {testimonial.name}
+                      </h5>
+                      <span
+                        className="text-sm"
+                        style={{ color: "#14b8a6" }}
+                      >
+                        {testimonial.role}
+                      </span>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+        </FadeIn>
       </div>
     </div>
   );

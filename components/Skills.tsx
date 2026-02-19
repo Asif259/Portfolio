@@ -139,11 +139,11 @@ export default function Skills() {
         </FadeIn>
 
         {/* Skill Grid */}
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          ref={ref}
-        >
-          <StaggerContainer delayBetween={0.08}>
+        <div ref={ref}>
+          <StaggerContainer
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            delayBetween={0.08}
+          >
             {skills.map((skill, index) => (
               <StaggerItem key={skill.name}>
                 <SkillCard

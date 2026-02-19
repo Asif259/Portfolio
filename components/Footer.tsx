@@ -58,11 +58,11 @@ export default function Footer() {
                 label: "Facebook",
               },
               {
-                href: "https://www.linkedin.com/in/ashrafulasif",
+                href: "https://www.linkedin.com/in/ashraful-asif/",
                 icon: FaLinkedinIn,
                 label: "LinkedIn",
               },
-              { href: "#", icon: FaInstagram, label: "Instagram" },
+              { href: "", icon: FaInstagram, label: "Instagram" },
             ].map(({ href, icon: Icon, label }) => (
               <a
                 key={label}

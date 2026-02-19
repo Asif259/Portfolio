@@ -138,7 +138,7 @@ function TimelineItem({
 }) {
   return (
     <div className="relative">
-      {/* Orange dot */}
+      {/* Emerald dot */}
       <div
         className="absolute -left-[45px] top-2 w-5 h-5 rounded-full border-2"
         style={{

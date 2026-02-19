@@ -57,8 +57,8 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-          ? "backdrop-blur-xl border-b"
-          : "bg-transparent"
+        ? "backdrop-blur-xl border-b"
+        : "bg-transparent"
         }`}
       style={
         scrolled
@@ -83,7 +83,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
           </Link>
 
           <button
-            className="lg:hidden p-2 text-slate-300 hover:text-orange-400 transition-colors"
+            className="lg:hidden p-2 text-slate-300 hover:text-teal-400 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -121,8 +121,8 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                   href={`#${section}`}
                   onClick={(e) => handleSmoothScroll(e, section)}
                   className={`px-3 py-1.5 lg:py-2 text-sm font-semibold transition-all duration-300 relative group ${activeSection === section
-                      ? "text-teal-400"
-                      : "text-slate-400 hover:text-teal-400"
+                    ? "text-teal-400"
+                    : "text-slate-400 hover:text-teal-400"
                     }`}
                 >
                   {section === "qualification"
@@ -152,7 +152,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                 </a>
               ))}
               <a
-                href="https://www.linkedin.com/in/ashrafulasif"
+                href="www.linkedin.com/in/ashraful-asif"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden lg:block btn ml-2 text-sm"

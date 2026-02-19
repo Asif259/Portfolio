@@ -34,10 +34,8 @@ const categoryToSkills: Record<SkillCategory, Skill[]> = {
     { name: "Docker", percentage: 80 },
     { name: "CI/CD (GitHub Actions)", percentage: 78 },
   ],
-  Tools: [
-    { name: "Git & GitHub", percentage: 92 },
-  ],
-  All: []
+  Tools: [{ name: "Git & GitHub", percentage: 92 }],
+  All: [],
 };
 
 export default function Skills() {
@@ -60,16 +58,31 @@ export default function Skills() {
 
   return (
     <div
-      className="py-12 bg-gradient-to-br from-gray-50 to-purple-50/30"
+      className="py-12 relative overflow-hidden"
       id="skill"
+      style={{ backgroundColor: "#13131A" }}
     >
-      <div className="container mx-auto px-4 lg:px-20">
+      {/* Grid overlay */}
+      <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
+
+      {/* Glow accents */}
+      <div
+        className="absolute top-0 right-0 w-96 h-96 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%)",
+          filter: "blur(40px)",
+        }}
+      />
+
+      <div className="relative z-10 container mx-auto px-4 lg:px-20">
         <div className="section-header">
           <h1 className="section-header-bg">Skills</h1>
           <h1 className="section-header-text">My Skills</h1>
         </div>
+
         {/* Category Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
           {(
             [
               "All",
@@ -83,11 +96,36 @@ export default function Skills() {
             <button
               key={cat}
               type="button"
-              className={`px-4 py-2 rounded-full border text-sm font-semibold transition-all ${
+              className="px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 border"
+              style={
                 activeCategory === cat
-                  ? "bg-primary-500 text-white border-primary-500"
-                  : "bg-white text-gray-700 border-gray-200 hover:border-primary-300"
-              }`}
+                  ? {
+                      background:
+                        "linear-gradient(135deg, #f97316, #ea580c)",
+                      color: "#fff",
+                      borderColor: "transparent",
+                      boxShadow: "0 0 15px rgba(249,115,22,0.35)",
+                    }
+                  : {
+                      backgroundColor: "transparent",
+                      color: "#94a3b8",
+                      borderColor: "rgba(249,115,22,0.2)",
+                    }
+              }
+              onMouseEnter={(e) => {
+                if (activeCategory !== cat) {
+                  (e.currentTarget as HTMLButtonElement).style.borderColor =
+                    "rgba(249,115,22,0.5)";
+                  (e.currentTarget as HTMLButtonElement).style.color = "#f97316";
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (activeCategory !== cat) {
+                  (e.currentTarget as HTMLButtonElement).style.borderColor =
+                    "rgba(249,115,22,0.2)";
+                  (e.currentTarget as HTMLButtonElement).style.color = "#94a3b8";
+                }
+              }}
               onClick={() => setActiveCategory(cat)}
             >
               {cat}
@@ -139,21 +177,46 @@ function SkillCard({
   }, [inView, shown, skill.percentage, delay]);
 
   return (
-    <div className="card card-hover group">
-      <div className="flex items-start justify-between mb-3">
+    <div
+      className="card card-hover group cursor-default"
+    >
+      <div className="flex items-start justify-between mb-4">
         <div>
-          <h6 className="font-bold text-gray-900 text-lg">{skill.name}</h6>
-          <p className="text-xs text-gray-500">Proficiency</p>
+          <h6
+            className="font-bold text-lg mb-0.5"
+            style={{ color: "#f1f5f9" }}
+          >
+            {skill.name}
+          </h6>
+          <p className="text-xs font-mono" style={{ color: "#64748b" }}>
+            Proficiency
+          </p>
         </div>
-        <span className="px-3 py-1 bg-primary-500 text-white rounded-full text-sm font-bold">
+        <span
+          className="px-3 py-1 rounded-full text-sm font-bold tabular-nums"
+          style={{
+            background: "linear-gradient(135deg, #f97316, #ea580c)",
+            color: "#fff",
+            boxShadow: "0 0 10px rgba(249,115,22,0.3)",
+          }}
+        >
           {skill.percentage}%
         </span>
       </div>
-      <div className="h-3 bg-gray-200 rounded-full overflow-hidden shadow-inner">
+
+      {/* Track */}
+      <div
+        className="h-2 rounded-full overflow-hidden"
+        style={{ backgroundColor: "rgba(249,115,22,0.1)" }}
+      >
         <div
           ref={progressRef}
-          className="h-full rounded-full bg-primary-500 transition-all duration-1000 ease-out shadow-lg"
-          style={{ width: "0%" }}
+          className="h-full rounded-full transition-all duration-1000 ease-out"
+          style={{
+            width: "0%",
+            background: "linear-gradient(90deg, #f97316, #fb923c)",
+            boxShadow: "0 0 8px rgba(249,115,22,0.5)",
+          }}
         />
       </div>
     </div>

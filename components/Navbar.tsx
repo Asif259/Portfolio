@@ -13,7 +13,6 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 200);
 
-      // Update active section based on scroll position
       const sections = [
         "home",
         "about",
@@ -48,38 +47,38 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
       const offset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
     setIsMobileMenuOpen(false);
   };
 
+  const scrolled = solid || isScrolled;
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        solid || isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-xl border-b border-gray-100"
+        scrolled
+          ? "backdrop-blur-xl border-b"
           : "bg-transparent"
       }`}
+      style={
+        scrolled
+          ? {
+              backgroundColor: "rgba(11,11,15,0.92)",
+              borderBottomColor: "rgba(249,115,22,0.15)",
+            }
+          : {}
+      }
     >
       <div className="container mx-auto px-4 lg:px-20">
         <div className="flex items-center justify-between py-2 lg:py-3">
-          <Link href="/" className="text-xl font-extrabold">
+          <Link href="/" className="text-xl font-extrabold tracking-tight">
             <span className="gradient-text">Port</span>
-            <span
-              className={`${
-                solid || isScrolled ? "text-gray-700" : "text-white"
-              }`}
-            >
-              folio
-            </span>
+            <span className="text-slate-100">folio</span>
           </Link>
 
           <button
-            className="lg:hidden p-2"
+            className="lg:hidden p-2 text-slate-300 hover:text-primary-400 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -93,7 +92,15 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
           <div
             className={`${
               isMobileMenuOpen ? "block" : "hidden"
-            } lg:flex lg:items-center lg:space-x-1 absolute lg:static top-full left-0 right-0 bg-white lg:bg-transparent shadow-lg lg:shadow-none p-4 lg:p-0`}
+            } lg:flex lg:items-center lg:space-x-1 absolute lg:static top-full left-0 right-0 lg:bg-transparent shadow-lg lg:shadow-none p-4 lg:p-0 border-b lg:border-none`}
+            style={
+              isMobileMenuOpen
+                ? {
+                    backgroundColor: "rgba(11,11,15,0.97)",
+                    borderBottomColor: "rgba(249,115,22,0.15)",
+                  }
+                : {}
+            }
           >
             <nav className="flex flex-col lg:flex-row lg:items-center lg:space-x-1 space-y-2 lg:space-y-0">
               {[
@@ -109,17 +116,11 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                   key={section}
                   href={`#${section}`}
                   onClick={(e) => handleSmoothScroll(e, section)}
-                  className={`px-3 py-1.5 lg:py-2 text-sm font-semibold transition-all duration-300 relative ${
+                  className={`px-3 py-1.5 lg:py-2 text-sm font-semibold transition-all duration-300 relative group ${
                     activeSection === section
-                      ? "text-primary-600"
-                      : "text-gray-700 hover:text-primary-600"
-                  } ${
-                    activeSection === section
-                      ? "after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-gradient-primary"
-                      : ""
-                  }
-                    ${solid || isScrolled ? "text-grey-700" : "text-white"}
-                  `}
+                      ? "text-primary-400"
+                      : "text-slate-400 hover:text-primary-400"
+                  }`}
                 >
                   {section === "qualification"
                     ? "Quality"
@@ -128,13 +129,30 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                     : section === "testimonial"
                     ? "Review"
                     : section.charAt(0).toUpperCase() + section.slice(1)}
+                  {activeSection === section && (
+                    <span
+                      className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full"
+                      style={{
+                        background: "linear-gradient(90deg, #f97316, #ea580c)",
+                        boxShadow: "0 0 8px rgba(249,115,22,0.6)",
+                      }}
+                    />
+                  )}
+                  {activeSection !== section && (
+                    <span
+                      className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
+                      style={{
+                        background: "rgba(249,115,22,0.4)",
+                      }}
+                    />
+                  )}
                 </a>
               ))}
               <a
                 href="https://www.linkedin.com/in/ashrafulasif"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden lg:block btn btn-primary ml-2"
+                className="hidden lg:block btn btn-primary ml-2 text-sm"
               >
                 Hire Me
               </a>

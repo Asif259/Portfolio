@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,22 +25,8 @@ import {
 
 export default function ProjectDetailPage() {
   const params = useParams();
-  const router = useRouter();
   const id = parseInt(params.id as string);
   const project = getProjectById(id);
-
-  if (!project) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
-          <Link href="/#portfolio" className="btn btn-primary">
-            Back to Portfolio
-          </Link>
-        </div>
-      </div>
-    );
-  }
 
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -68,20 +54,59 @@ export default function ProjectDetailPage() {
     return () => window.removeEventListener("keydown", handler);
   }, [lightboxImage, activeIndex, project]);
 
+  if (!project) {
+    return (
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ backgroundColor: "#0B0B0F" }}
+      >
+        <div className="text-center">
+          <h1
+            className="text-4xl font-bold mb-4"
+            style={{ color: "#f1f5f9" }}
+          >
+            Project Not Found
+          </h1>
+          <Link href="/#portfolio" className="btn btn-primary">
+            Back to Portfolio
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const cardStyle = {
+    backgroundColor: "#13131A",
+    border: "1px solid rgba(249,115,22,0.12)",
+    boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
+  };
+
   return (
-    <main className="min-h-screen bg-white">
+    <main
+      className="min-h-screen relative"
+      style={{ backgroundColor: "#0B0B0F" }}
+    >
+      {/* Subtle grid background */}
+      <div className="fixed inset-0 bg-grid-sm opacity-30 pointer-events-none z-0" />
+
       <Navbar solid />
 
-      {/* Main Content Container */}
-      <div className="pt-20 pb-8">
+      <div className="relative z-10 pt-20 pb-8">
         {/* Back Button */}
         <div className="container mx-auto px-4 lg:px-6 mb-6">
           <Link
             href="/#portfolio"
-            className="flex items-center gap-2 text-gray-600 hover:text-primary-600 transition-colors group"
+            className="flex items-center gap-2 transition-colors group text-sm font-medium"
+            style={{ color: "#64748b" }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.color = "#f97316";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.color = "#64748b";
+            }}
           >
             <FaChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span className="font-medium text-sm">Go Back</span>
+            Go Back
           </Link>
         </div>
 
@@ -90,7 +115,10 @@ export default function ProjectDetailPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
             {/* Project Image */}
             <div className="order-2 lg:order-1">
-              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-3 sticky top-20">
+              <div
+                className="rounded-xl p-3 sticky top-20"
+                style={cardStyle}
+              >
                 <Image
                   src={project.coverImage}
                   alt={project.name}
@@ -106,83 +134,100 @@ export default function ProjectDetailPage() {
             {/* Project Info */}
             <div className="order-1 lg:order-2 space-y-4">
               {/* Breadcrumb */}
-              <nav className="text-xs text-gray-500 mb-2">
+              <nav className="text-xs mb-2" style={{ color: "#64748b" }}>
                 <ol className="flex items-center gap-1.5 flex-wrap">
                   <li>
                     <Link
                       href="/"
-                      className="hover:text-primary-600 transition-colors"
+                      className="hover:text-primary-400 transition-colors"
                     >
                       Home
                     </Link>
                   </li>
-                  <li>/</li>
+                  <li style={{ color: "rgba(249,115,22,0.4)" }}>/</li>
                   <li>
                     <Link
                       href="/#portfolio"
-                      className="hover:text-primary-600 transition-colors"
+                      className="hover:text-primary-400 transition-colors"
                     >
                       Portfolio
                     </Link>
                   </li>
-                  <li>/</li>
-                  <li className="text-gray-700 font-medium truncate">
-                    {project.name}
-                  </li>
+                  <li style={{ color: "rgba(249,115,22,0.4)" }}>/</li>
+                  <li style={{ color: "#94a3b8" }}>{project.name}</li>
                 </ol>
               </nav>
 
-              {/* Project Header */}
               <div className="space-y-3">
-                <span className="inline-block px-3 py-1 bg-gray-100 rounded-full text-xs font-semibold text-gray-700 border border-gray-200">
+                <span
+                  className="inline-block px-3 py-1 rounded-full text-xs font-semibold border"
+                  style={{
+                    backgroundColor: "rgba(249,115,22,0.08)",
+                    borderColor: "rgba(249,115,22,0.25)",
+                    color: "#fb923c",
+                  }}
+                >
                   {project.category}
                 </span>
-                <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
+                <h1
+                  className="text-2xl lg:text-3xl font-bold leading-tight"
+                  style={{ color: "#f1f5f9" }}
+                >
                   {project.name}
                 </h1>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="leading-relaxed" style={{ color: "#94a3b8" }}>
                   {project.description}
                 </p>
               </div>
 
               {/* Quick Info Cards */}
               <div className="grid grid-cols-3 gap-3 pt-2">
-                <div className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg border border-gray-100">
-                  <div className="w-8 h-8 rounded-lg bg-primary-500/10 text-primary-600 flex items-center justify-center flex-shrink-0">
-                    <FaClock className="w-3.5 h-3.5" />
+                {[
+                  {
+                    icon: FaClock,
+                    label: "Timeline",
+                    value: new Date(project.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                    }),
+                  },
+                  { icon: FaUsers, label: "Role", value: project.role },
+                  {
+                    icon: FaTools,
+                    label: "Stack",
+                    value: project.technologies[0],
+                  },
+                ].map(({ icon: Icon, label, value }) => (
+                  <div
+                    key={label}
+                    className="flex items-center gap-2 p-3 rounded-lg border"
+                    style={cardStyle}
+                  >
+                    <div
+                      className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={{
+                        backgroundColor: "rgba(249,115,22,0.1)",
+                        color: "#f97316",
+                      }}
+                    >
+                      <Icon className="w-3.5 h-3.5" />
+                    </div>
+                    <div className="min-w-0">
+                      <p
+                        className="text-xs truncate"
+                        style={{ color: "#64748b" }}
+                      >
+                        {label}
+                      </p>
+                      <p
+                        className="font-semibold text-sm truncate"
+                        style={{ color: "#f1f5f9" }}
+                      >
+                        {value}
+                      </p>
+                    </div>
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-xs text-gray-500 truncate">Timeline</p>
-                    <p className="font-semibold text-gray-900 text-sm truncate">
-                      {new Date(project.date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "short",
-                      })}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg border border-gray-100">
-                  <div className="w-8 h-8 rounded-lg bg-primary-500/10 text-primary-600 flex items-center justify-center flex-shrink-0">
-                    <FaUsers className="w-3.5 h-3.5" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-xs text-gray-500 truncate">Role</p>
-                    <p className="font-semibold text-gray-900 text-sm truncate">
-                      {project.role}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg border border-gray-100">
-                  <div className="w-8 h-8 rounded-lg bg-primary-500/10 text-primary-600 flex items-center justify-center flex-shrink-0">
-                    <FaTools className="w-3.5 h-3.5" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-xs text-gray-500 truncate">Stack</p>
-                    <p className="font-semibold text-gray-900 text-sm truncate">
-                      {project.technologies[0]}
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
 
               {/* Action Buttons */}
@@ -193,7 +238,7 @@ export default function ProjectDetailPage() {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 btn btn-primary btn-sm"
+                      className="btn btn-primary flex items-center gap-2 text-sm"
                     >
                       <FaExternalLinkAlt className="w-3.5 h-3.5" />
                       Live Demo
@@ -207,7 +252,7 @@ export default function ProjectDetailPage() {
                           href={url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 btn btn-outline-primary btn-sm"
+                          className="btn btn-outline-primary flex items-center gap-2 text-sm"
                         >
                           <FaGithub className="w-3.5 h-3.5" />
                           {project.githubUrl && project.githubUrl.length > 1
@@ -228,9 +273,10 @@ export default function ProjectDetailPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-6">
-              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+              {/* Tabs Panel */}
+              <div className="rounded-xl p-6" style={cardStyle}>
                 {/* Tab Navigation */}
-                <div className="flex flex-wrap gap-1 mb-6">
+                <div className="flex flex-wrap gap-2 mb-6">
                   {[
                     { id: "overview", label: "Overview" },
                     { id: "solution", label: "Solution" },
@@ -238,43 +284,72 @@ export default function ProjectDetailPage() {
                   ].map((t) => (
                     <button
                       key={t.id}
-                      className={`px-4 py-2 rounded-lg border text-sm font-medium transition-all ${
-                        activeTab === (t.id as any)
-                          ? "bg-primary-500 text-white border-primary-500 shadow-sm"
-                          : "bg-white text-gray-700 border-gray-200 hover:border-primary-300 hover:text-primary-600"
-                      }`}
-                      onClick={() => setActiveTab(t.id as any)}
+                      className="px-4 py-2 rounded-lg border text-sm font-medium transition-all duration-200"
+                      style={
+                        activeTab === (t.id as "overview" | "solution" | "challenges")
+                          ? {
+                              background:
+                                "linear-gradient(135deg, #f97316, #ea580c)",
+                              color: "#fff",
+                              borderColor: "transparent",
+                              boxShadow: "0 0 12px rgba(249,115,22,0.3)",
+                            }
+                          : {
+                              backgroundColor: "transparent",
+                              color: "#94a3b8",
+                              borderColor: "rgba(249,115,22,0.15)",
+                            }
+                      }
+                      onClick={() =>
+                        setActiveTab(
+                          t.id as "overview" | "solution" | "challenges"
+                        )
+                      }
                     >
                       {t.label}
                     </button>
                   ))}
                 </div>
 
-                {/* Tab Content */}
                 <div className="space-y-4">
                   {activeTab === "overview" && (
                     <>
-                      <h2 className="text-xl font-bold text-gray-900">
+                      <h2
+                        className="text-xl font-bold"
+                        style={{ color: "#f1f5f9" }}
+                      >
                         Project Overview
                       </h2>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p
+                        className="leading-relaxed"
+                        style={{ color: "#94a3b8" }}
+                      >
                         {project.longDescription}
                       </p>
                     </>
                   )}
                   {activeTab === "solution" && (
                     <>
-                      <h2 className="text-xl font-bold text-gray-900">
+                      <h2
+                        className="text-xl font-bold"
+                        style={{ color: "#f1f5f9" }}
+                      >
                         Solution & Approach
                       </h2>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p
+                        className="leading-relaxed"
+                        style={{ color: "#94a3b8" }}
+                      >
                         {project.solution}
                       </p>
                     </>
                   )}
                   {activeTab === "challenges" && (
                     <>
-                      <h2 className="text-xl font-bold text-gray-900">
+                      <h2
+                        className="text-xl font-bold"
+                        style={{ color: "#f1f5f9" }}
+                      >
                         Challenges Faced
                       </h2>
                       {Array.isArray(project.challenges) &&
@@ -288,12 +363,25 @@ export default function ProjectDetailPage() {
                                 key={index}
                                 className="flex items-start gap-3"
                               >
-                                <span className="mt-1.5 w-2 h-2 rounded-full bg-primary-500 flex-shrink-0"></span>
+                                <span
+                                  className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
+                                  style={{
+                                    backgroundColor: "#f97316",
+                                    boxShadow:
+                                      "0 0 6px rgba(249,115,22,0.5)",
+                                  }}
+                                />
                                 <div className="flex-1">
-                                  <span className="text-gray-900 font-semibold block mb-1 text-sm">
+                                  <span
+                                    className="font-semibold block mb-1 text-sm"
+                                    style={{ color: "#f1f5f9" }}
+                                  >
                                     {challenge.title}
                                   </span>
-                                  <span className="text-gray-600 text-sm">
+                                  <span
+                                    className="text-sm"
+                                    style={{ color: "#94a3b8" }}
+                                  >
                                     {challenge.description}
                                   </span>
                                 </div>
@@ -309,8 +397,16 @@ export default function ProjectDetailPage() {
                                 key={index}
                                 className="flex items-start gap-3"
                               >
-                                <span className="mt-1.5 w-2 h-2 rounded-full bg-primary-500 flex-shrink-0"></span>
-                                <span className="text-gray-600 text-sm">
+                                <span
+                                  className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
+                                  style={{
+                                    backgroundColor: "#f97316",
+                                  }}
+                                />
+                                <span
+                                  className="text-sm"
+                                  style={{ color: "#94a3b8" }}
+                                >
                                   {challenge}
                                 </span>
                               </li>
@@ -323,10 +419,13 @@ export default function ProjectDetailPage() {
                 </div>
               </div>
 
-              {/* Gallery Section */}
+              {/* Gallery */}
               {project.images && project.images.length > 0 && (
-                <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                  <h2 className="text-xl font-bold mb-4 text-gray-900">
+                <div className="rounded-xl p-6" style={cardStyle}>
+                  <h2
+                    className="text-xl font-bold mb-4"
+                    style={{ color: "#f1f5f9" }}
+                  >
                     Project Gallery
                   </h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -334,7 +433,22 @@ export default function ProjectDetailPage() {
                       <button
                         key={idx}
                         type="button"
-                        className="group relative bg-white border border-gray-100 rounded-lg p-2 shadow-sm hover:shadow-md transition-all cursor-zoom-in overflow-hidden"
+                        className="group relative rounded-lg overflow-hidden cursor-zoom-in transition-all duration-300 border"
+                        style={{
+                          backgroundColor: "#0B0B0F",
+                          borderColor: "rgba(249,115,22,0.1)",
+                          padding: "8px",
+                        }}
+                        onMouseEnter={(e) => {
+                          (
+                            e.currentTarget as HTMLButtonElement
+                          ).style.borderColor = "rgba(249,115,22,0.35)";
+                        }}
+                        onMouseLeave={(e) => {
+                          (
+                            e.currentTarget as HTMLButtonElement
+                          ).style.borderColor = "rgba(249,115,22,0.1)";
+                        }}
                         onClick={() => {
                           setActiveIndex(idx);
                           setLightboxImage(img);
@@ -346,7 +460,7 @@ export default function ProjectDetailPage() {
                           width={400}
                           height={300}
                           sizes="(max-width: 1024px) 100vw, 33vw"
-                          className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                          className="w-full h-auto object-contain rounded transition-transform duration-300 group-hover:scale-105"
                         />
                       </button>
                     ))}
@@ -354,9 +468,12 @@ export default function ProjectDetailPage() {
                 </div>
               )}
 
-              {/* Features Section */}
-              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                <h2 className="text-xl font-bold mb-4 text-gray-900">
+              {/* Features */}
+              <div className="rounded-xl p-6" style={cardStyle}>
+                <h2
+                  className="text-xl font-bold mb-4"
+                  style={{ color: "#f1f5f9" }}
+                >
                   Key Features
                 </h2>
                 {Array.isArray(project.features) &&
@@ -367,23 +484,45 @@ export default function ProjectDetailPage() {
                     {(project.features as FeatureSection[]).map(
                       (section, sectionIndex) => (
                         <div key={sectionIndex}>
-                          <h3 className="text-lg font-semibold mb-3 text-gray-800">
+                          <h3
+                            className="text-lg font-semibold mb-3"
+                            style={{ color: "#fb923c" }}
+                          >
                             {section.title}
                           </h3>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             {section.items.map((item, itemIndex) => (
                               <div
                                 key={itemIndex}
-                                className="flex items-start gap-3 p-3 bg-primary-500/5 rounded-lg border border-primary-100"
+                                className="flex items-start gap-3 p-3 rounded-lg border"
+                                style={{
+                                  backgroundColor: "rgba(249,115,22,0.04)",
+                                  borderColor: "rgba(249,115,22,0.12)",
+                                }}
                               >
-                                <div className="mt-0.5 w-5 h-5 rounded-full bg-primary-500 text-white flex items-center justify-center flex-shrink-0">
-                                  <FaCheck className="w-3 h-3" />
+                                <div
+                                  className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                                  style={{
+                                    background:
+                                      "linear-gradient(135deg, #f97316, #ea580c)",
+                                  }}
+                                >
+                                  <FaCheck
+                                    className="w-3 h-3"
+                                    style={{ color: "#fff" }}
+                                  />
                                 </div>
                                 <div className="flex-1">
-                                  <span className="text-gray-900 font-medium block mb-1 text-sm">
+                                  <span
+                                    className="font-medium block mb-1 text-sm"
+                                    style={{ color: "#f1f5f9" }}
+                                  >
                                     {item.name}
                                   </span>
-                                  <span className="text-gray-600 text-xs">
+                                  <span
+                                    className="text-xs"
+                                    style={{ color: "#64748b" }}
+                                  >
                                     {item.description}
                                   </span>
                                 </div>
@@ -399,12 +538,28 @@ export default function ProjectDetailPage() {
                     {(project.features as string[]).map((feature, index) => (
                       <div
                         key={index}
-                        className="flex items-start gap-3 p-3 bg-primary-500/5 rounded-lg border border-primary-100"
+                        className="flex items-start gap-3 p-3 rounded-lg border"
+                        style={{
+                          backgroundColor: "rgba(249,115,22,0.04)",
+                          borderColor: "rgba(249,115,22,0.12)",
+                        }}
                       >
-                        <div className="mt-0.5 w-5 h-5 rounded-full bg-primary-500 text-white flex items-center justify-center flex-shrink-0">
-                          <FaCheck className="w-3 h-3" />
+                        <div
+                          className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                          style={{
+                            background:
+                              "linear-gradient(135deg, #f97316, #ea580c)",
+                          }}
+                        >
+                          <FaCheck
+                            className="w-3 h-3"
+                            style={{ color: "#fff" }}
+                          />
                         </div>
-                        <span className="text-gray-700 font-medium text-sm">
+                        <span
+                          className="font-medium text-sm"
+                          style={{ color: "#f1f5f9" }}
+                        >
                           {feature}
                         </span>
                       </div>
@@ -417,14 +572,22 @@ export default function ProjectDetailPage() {
             {/* Sidebar */}
             <div className="lg:col-span-1 space-y-4 lg:sticky lg:top-20 h-max">
               {/* Project Info */}
-              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
-                <h3 className="text-lg font-bold mb-3 text-gray-900">
+              <div className="rounded-xl p-5" style={cardStyle}>
+                <h3
+                  className="text-lg font-bold mb-4"
+                  style={{ color: "#f1f5f9" }}
+                >
                   Project Information
                 </h3>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <div>
-                    <p className="text-xs text-gray-500 mb-1">Date</p>
-                    <p className="font-semibold text-gray-900 text-sm">
+                    <p className="text-xs mb-1" style={{ color: "#64748b" }}>
+                      Date
+                    </p>
+                    <p
+                      className="font-semibold text-sm"
+                      style={{ color: "#f1f5f9" }}
+                    >
                       {new Date(project.date).toLocaleDateString("en-US", {
                         year: "numeric",
                         month: "long",
@@ -433,15 +596,25 @@ export default function ProjectDetailPage() {
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500 mb-1">Role</p>
-                    <p className="font-semibold text-gray-900 text-sm">
+                    <p className="text-xs mb-1" style={{ color: "#64748b" }}>
+                      Role
+                    </p>
+                    <p
+                      className="font-semibold text-sm"
+                      style={{ color: "#f1f5f9" }}
+                    >
                       {project.role}
                     </p>
                   </div>
                   {project.client && (
                     <div>
-                      <p className="text-xs text-gray-500 mb-1">Client</p>
-                      <p className="font-semibold text-gray-900 text-sm">
+                      <p className="text-xs mb-1" style={{ color: "#64748b" }}>
+                        Client
+                      </p>
+                      <p
+                        className="font-semibold text-sm"
+                        style={{ color: "#f1f5f9" }}
+                      >
                         {project.client}
                       </p>
                     </div>
@@ -450,15 +623,23 @@ export default function ProjectDetailPage() {
               </div>
 
               {/* Technologies */}
-              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
-                <h3 className="text-lg font-bold mb-3 text-gray-900">
+              <div className="rounded-xl p-5" style={cardStyle}>
+                <h3
+                  className="text-lg font-bold mb-4"
+                  style={{ color: "#f1f5f9" }}
+                >
                   Technologies Used
                 </h3>
                 <div className="flex flex-wrap gap-1.5">
                   {project.technologies.map((tech, index) => (
                     <span
                       key={index}
-                      className="px-2.5 py-1 bg-primary-500/10 text-primary-700 rounded-lg text-xs font-medium border border-primary-200"
+                      className="px-2.5 py-1 rounded-lg text-xs font-medium border"
+                      style={{
+                        backgroundColor: "rgba(249,115,22,0.08)",
+                        borderColor: "rgba(249,115,22,0.2)",
+                        color: "#fb923c",
+                      }}
                     >
                       {tech}
                     </span>
@@ -470,7 +651,10 @@ export default function ProjectDetailPage() {
 
           {/* Related Projects */}
           <div className="mb-8">
-            <h2 className="text-xl font-bold mb-4 text-gray-900">
+            <h2
+              className="text-xl font-bold mb-4"
+              style={{ color: "#f1f5f9" }}
+            >
               Related Projects
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -483,7 +667,25 @@ export default function ProjectDetailPage() {
                   <Link
                     key={p.id}
                     href={`/projects/${p.id}`}
-                    className="group block border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all bg-white"
+                    className="group block rounded-xl overflow-hidden transition-all duration-300 border"
+                    style={{
+                      backgroundColor: "#13131A",
+                      borderColor: "rgba(249,115,22,0.12)",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                        "rgba(249,115,22,0.35)";
+                      (
+                        e.currentTarget as HTMLAnchorElement
+                      ).style.boxShadow = "0 0 20px rgba(249,115,22,0.1)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                        "rgba(249,115,22,0.12)";
+                      (
+                        e.currentTarget as HTMLAnchorElement
+                      ).style.boxShadow = "none";
+                    }}
                   >
                     <div className="p-2">
                       <Image
@@ -495,10 +697,16 @@ export default function ProjectDetailPage() {
                       />
                     </div>
                     <div className="px-3 pb-3">
-                      <h3 className="mt-1 font-semibold text-gray-900 group-hover:text-primary-600 transition-colors text-sm">
+                      <h3
+                        className="mt-1 font-semibold text-sm transition-colors duration-200"
+                        style={{ color: "#f1f5f9" }}
+                      >
                         {p.name}
                       </h3>
-                      <p className="text-xs text-gray-600 line-clamp-2 mt-1">
+                      <p
+                        className="text-xs line-clamp-2 mt-1"
+                        style={{ color: "#64748b" }}
+                      >
                         {p.description}
                       </p>
                     </div>
@@ -507,9 +715,9 @@ export default function ProjectDetailPage() {
             </div>
           </div>
 
-          {/* Navigation */}
+          {/* View All */}
           <div className="flex justify-center">
-            <Link href="/#portfolio" className="btn btn-primary btn-sm">
+            <Link href="/#portfolio" className="btn btn-primary">
               View All Projects
             </Link>
           </div>
@@ -519,7 +727,8 @@ export default function ProjectDetailPage() {
       {/* Lightbox */}
       {lightboxImage && (
         <div
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ backgroundColor: "rgba(11,11,15,0.95)" }}
           onClick={() => setLightboxImage(null)}
         >
           <div
@@ -532,39 +741,67 @@ export default function ProjectDetailPage() {
               width={1200}
               height={800}
               sizes="90vw"
-              className="w-full h-full object-contain rounded-lg"
+              className="w-full h-full object-contain rounded-xl"
+              style={{
+                border: "1px solid rgba(249,115,22,0.2)",
+              }}
             />
-            <div className="flex justify-between mt-3 gap-2">
-              <button
-                className="btn btn-outline-white btn-sm flex-1"
-                onClick={() => {
-                  if (!project?.images) return;
-                  const next =
-                    (activeIndex - 1 + project.images.length) %
-                    project.images.length;
-                  setActiveIndex(next);
-                  setLightboxImage(project.images[next]);
-                }}
-              >
-                Previous
-              </button>
-              <button
-                className="btn btn-outline-white btn-sm flex-1"
-                onClick={() => setLightboxImage(null)}
-              >
-                Close
-              </button>
-              <button
-                className="btn btn-outline-white btn-sm flex-1"
-                onClick={() => {
-                  if (!project?.images) return;
-                  const next = (activeIndex + 1) % project.images.length;
-                  setActiveIndex(next);
-                  setLightboxImage(project.images[next]);
-                }}
-              >
-                Next
-              </button>
+            <div className="flex justify-between mt-4 gap-2">
+              {[
+                {
+                  label: "← Previous",
+                  action: () => {
+                    if (!project?.images) return;
+                    const next =
+                      (activeIndex - 1 + project.images.length) %
+                      project.images.length;
+                    setActiveIndex(next);
+                    setLightboxImage(project.images[next]);
+                  },
+                },
+                {
+                  label: "✕ Close",
+                  action: () => setLightboxImage(null),
+                },
+                {
+                  label: "Next →",
+                  action: () => {
+                    if (!project?.images) return;
+                    const next = (activeIndex + 1) % project.images.length;
+                    setActiveIndex(next);
+                    setLightboxImage(project.images[next]);
+                  },
+                },
+              ].map(({ label, action }) => (
+                <button
+                  key={label}
+                  className="btn flex-1 border font-medium text-sm transition-all duration-200"
+                  style={{
+                    backgroundColor: "rgba(249,115,22,0.08)",
+                    borderColor: "rgba(249,115,22,0.2)",
+                    color: "#94a3b8",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLButtonElement).style.backgroundColor =
+                      "rgba(249,115,22,0.15)";
+                    (e.currentTarget as HTMLButtonElement).style.borderColor =
+                      "rgba(249,115,22,0.4)";
+                    (e.currentTarget as HTMLButtonElement).style.color =
+                      "#f97316";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLButtonElement).style.backgroundColor =
+                      "rgba(249,115,22,0.08)";
+                    (e.currentTarget as HTMLButtonElement).style.borderColor =
+                      "rgba(249,115,22,0.2)";
+                    (e.currentTarget as HTMLButtonElement).style.color =
+                      "#94a3b8";
+                  }}
+                  onClick={action}
+                >
+                  {label}
+                </button>
+              ))}
             </div>
           </div>
         </div>

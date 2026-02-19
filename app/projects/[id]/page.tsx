@@ -21,6 +21,8 @@ import {
   FaClock,
   FaUsers,
   FaTools,
+  FaArrowLeft,
+  FaArrowRight,
 } from "react-icons/fa";
 
 export default function ProjectDetailPage() {
@@ -58,7 +60,7 @@ export default function ProjectDetailPage() {
     return (
       <div
         className="min-h-screen flex items-center justify-center"
-        style={{ backgroundColor: "#0B0B0F" }}
+        style={{ backgroundColor: "#030014" }}
       >
         <div className="text-center">
           <h1
@@ -75,38 +77,44 @@ export default function ProjectDetailPage() {
     );
   }
 
-  const cardStyle = {
-    backgroundColor: "#13131A",
-    border: "1px solid rgba(16,185,129,0.12)",
-    boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
-  };
-
   return (
     <main
       className="min-h-screen relative"
-      style={{ backgroundColor: "#0B0B0F" }}
+      style={{ backgroundColor: "#030014" }}
     >
-      {/* Subtle grid background */}
+      {/* Background elements */}
       <div className="fixed inset-0 bg-grid-sm opacity-30 pointer-events-none z-0" />
+      <div
+        className="fixed top-0 left-0 right-0 h-64 pointer-events-none z-0"
+        style={{
+          background: "radial-gradient(ellipse 80% 100% at 50% 0%, rgba(139, 92, 246, 0.1) 0%, transparent 70%)",
+        }}
+      />
 
       <Navbar solid />
 
-      <div className="relative z-10 pt-20 pb-8">
+      <div className="relative z-10 pt-24 pb-8">
         {/* Back Button */}
         <div className="container mx-auto px-4 lg:px-6 mb-6">
           <Link
             href="/#portfolio"
-            className="flex items-center gap-2 transition-colors group text-sm font-medium"
-            style={{ color: "#64748b" }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border transition-all duration-300 group text-sm font-medium"
+            style={{
+              backgroundColor: "rgba(139, 92, 246, 0.05)",
+              borderColor: "rgba(139, 92, 246, 0.15)",
+              color: "#94a3b8",
+            }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.color = "#10b981";
+              (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(139, 92, 246, 0.4)";
+              (e.currentTarget as HTMLAnchorElement).style.color = "#a78bfa";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.color = "#64748b";
+              (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(139, 92, 246, 0.15)";
+              (e.currentTarget as HTMLAnchorElement).style.color = "#94a3b8";
             }}
           >
             <FaChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            Go Back
+            Back to Portfolio
           </Link>
         </div>
 
@@ -116,8 +124,11 @@ export default function ProjectDetailPage() {
             {/* Project Image */}
             <div className="order-2 lg:order-1">
               <div
-                className="rounded-xl p-3 sticky top-20"
-                style={cardStyle}
+                className="rounded-2xl p-4 sticky top-24 border backdrop-blur-sm"
+                style={{
+                  backgroundColor: "rgba(139, 92, 246, 0.02)",
+                  borderColor: "rgba(139, 92, 246, 0.1)",
+                }}
               >
                 <Image
                   src={project.coverImage}
@@ -125,49 +136,53 @@ export default function ProjectDetailPage() {
                   width={800}
                   height={600}
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="w-full h-auto object-contain rounded-lg"
+                  className="w-full h-auto object-contain rounded-xl"
                   priority
                 />
               </div>
             </div>
 
             {/* Project Info */}
-            <div className="order-1 lg:order-2 space-y-4">
+            <div className="order-1 lg:order-2 space-y-5">
               {/* Breadcrumb */}
               <nav className="text-xs mb-2" style={{ color: "#64748b" }}>
                 <ol className="flex items-center gap-1.5 flex-wrap">
                   <li>
                     <Link
                       href="/"
-                      className="hover:text-primary-400 transition-colors"
+                      className="hover:text-purple-400 transition-colors"
                     >
                       Home
                     </Link>
                   </li>
-                  <li style={{ color: "rgba(16,185,129,0.4)" }}>/</li>
+                  <li style={{ color: "rgba(139, 92, 246, 0.4)" }}>/</li>
                   <li>
                     <Link
                       href="/#portfolio"
-                      className="hover:text-primary-400 transition-colors"
+                      className="hover:text-purple-400 transition-colors"
                     >
                       Portfolio
                     </Link>
                   </li>
-                  <li style={{ color: "rgba(16,185,129,0.4)" }}>/</li>
+                  <li style={{ color: "rgba(139, 92, 246, 0.4)" }}>/</li>
                   <li style={{ color: "#94a3b8" }}>{project.name}</li>
                 </ol>
               </nav>
 
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <span
-                  className="inline-block px-3 py-1 rounded-full text-xs font-semibold border"
+                  className="inline-block px-3 py-1.5 rounded-lg text-xs font-semibold border"
                   style={{
-                    backgroundColor: "rgba(16,185,129,0.08)",
-                    borderColor: "rgba(16,185,129,0.25)",
-                    color: "#34d399",
+                    backgroundColor: "rgba(139, 92, 246, 0.1)",
+                    borderColor: "rgba(139, 92, 246, 0.25)",
+                    color: "#c4b5fd",
                   }}
                 >
-                  {project.category}
+                  {project.category === "Frontend Development"
+                    ? "Frontend"
+                    : project.category === "Backend Development"
+                    ? "Backend"
+                    : "Full Stack"}
                 </span>
                 <h1
                   className="text-2xl lg:text-3xl font-bold leading-tight"
@@ -181,7 +196,7 @@ export default function ProjectDetailPage() {
               </div>
 
               {/* Quick Info Cards */}
-              <div className="grid grid-cols-3 gap-3 pt-2">
+              <div className="grid grid-cols-3 gap-3">
                 {[
                   {
                     icon: FaClock,
@@ -200,17 +215,26 @@ export default function ProjectDetailPage() {
                 ].map(({ icon: Icon, label, value }) => (
                   <div
                     key={label}
-                    className="flex items-center gap-2 p-3 rounded-lg border"
-                    style={cardStyle}
+                    className="flex items-center gap-3 p-3 rounded-xl border transition-all duration-300"
+                    style={{
+                      backgroundColor: "rgba(139, 92, 246, 0.03)",
+                      borderColor: "rgba(139, 92, 246, 0.1)",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(139, 92, 246, 0.3)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(139, 92, 246, 0.1)";
+                    }}
                   >
                     <div
-                      className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                      className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
                       style={{
-                        backgroundColor: "rgba(16,185,129,0.1)",
-                        color: "#10b981",
+                        backgroundColor: "rgba(139, 92, 246, 0.1)",
+                        color: "#a78bfa",
                       }}
                     >
-                      <Icon className="w-3.5 h-3.5" />
+                      <Icon className="w-4 h-4" />
                     </div>
                     <div className="min-w-0">
                       <p
@@ -232,7 +256,7 @@ export default function ProjectDetailPage() {
 
               {/* Action Buttons */}
               {(project.liveUrl || project.githubUrl) && (
-                <div className="flex flex-wrap gap-2 pt-1">
+                <div className="flex flex-wrap gap-3">
                   {project.liveUrl && (
                     <a
                       href={project.liveUrl}
@@ -274,7 +298,13 @@ export default function ProjectDetailPage() {
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-6">
               {/* Tabs Panel */}
-              <div className="rounded-xl p-6" style={cardStyle}>
+              <div
+                className="rounded-2xl p-6 border backdrop-blur-sm"
+                style={{
+                  backgroundColor: "rgba(139, 92, 246, 0.02)",
+                  borderColor: "rgba(139, 92, 246, 0.1)",
+                }}
+              >
                 {/* Tab Navigation */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {[
@@ -284,21 +314,20 @@ export default function ProjectDetailPage() {
                   ].map((t) => (
                     <button
                       key={t.id}
-                      className="px-4 py-2 rounded-lg border text-sm font-medium transition-all duration-200"
+                      className="px-5 py-2.5 rounded-xl border text-sm font-medium transition-all duration-300"
                       style={
                         activeTab === (t.id as "overview" | "solution" | "challenges")
                           ? {
-                            background:
-                              "linear-gradient(135deg, #10b981, #059669)",
-                            color: "#fff",
-                            borderColor: "transparent",
-                            boxShadow: "0 0 12px rgba(16,185,129,0.3)",
-                          }
+                              background: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%)",
+                              color: "#fff",
+                              borderColor: "transparent",
+                              boxShadow: "0 0 15px rgba(139, 92, 246, 0.4)",
+                            }
                           : {
-                            backgroundColor: "transparent",
-                            color: "#94a3b8",
-                            borderColor: "rgba(16,185,129,0.15)",
-                          }
+                              backgroundColor: "rgba(139, 92, 246, 0.05)",
+                              color: "#94a3b8",
+                              borderColor: "rgba(139, 92, 246, 0.15)",
+                            }
                       }
                       onClick={() =>
                         setActiveTab(
@@ -366,9 +395,8 @@ export default function ProjectDetailPage() {
                                 <span
                                   className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
                                   style={{
-                                    backgroundColor: "#10b981",
-                                    boxShadow:
-                                      "0 0 6px rgba(16,185,129,0.5)",
+                                    backgroundColor: "#a78bfa",
+                                    boxShadow: "0 0 6px rgba(167, 139, 250, 0.5)",
                                   }}
                                 />
                                 <div className="flex-1">
@@ -400,7 +428,7 @@ export default function ProjectDetailPage() {
                                 <span
                                   className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
                                   style={{
-                                    backgroundColor: "#10b981",
+                                    backgroundColor: "#a78bfa",
                                   }}
                                 />
                                 <span
@@ -421,7 +449,13 @@ export default function ProjectDetailPage() {
 
               {/* Gallery */}
               {project.images && project.images.length > 0 && (
-                <div className="rounded-xl p-6" style={cardStyle}>
+                <div
+                  className="rounded-2xl p-6 border backdrop-blur-sm"
+                  style={{
+                    backgroundColor: "rgba(139, 92, 246, 0.02)",
+                    borderColor: "rgba(139, 92, 246, 0.1)",
+                  }}
+                >
                   <h2
                     className="text-xl font-bold mb-4"
                     style={{ color: "#f1f5f9" }}
@@ -433,21 +467,17 @@ export default function ProjectDetailPage() {
                       <button
                         key={idx}
                         type="button"
-                        className="group relative rounded-lg overflow-hidden cursor-zoom-in transition-all duration-300 border"
+                        className="group relative rounded-xl overflow-hidden cursor-zoom-in transition-all duration-300 border"
                         style={{
-                          backgroundColor: "#0B0B0F",
-                          borderColor: "rgba(16,185,129,0.1)",
+                          backgroundColor: "#030014",
+                          borderColor: "rgba(139, 92, 246, 0.1)",
                           padding: "8px",
                         }}
                         onMouseEnter={(e) => {
-                          (
-                            e.currentTarget as HTMLButtonElement
-                          ).style.borderColor = "rgba(16,185,129,0.35)";
+                          (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(139, 92, 246, 0.4)";
                         }}
                         onMouseLeave={(e) => {
-                          (
-                            e.currentTarget as HTMLButtonElement
-                          ).style.borderColor = "rgba(16,185,129,0.1)";
+                          (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(139, 92, 246, 0.1)";
                         }}
                         onClick={() => {
                           setActiveIndex(idx);
@@ -460,7 +490,7 @@ export default function ProjectDetailPage() {
                           width={400}
                           height={300}
                           sizes="(max-width: 1024px) 100vw, 33vw"
-                          className="w-full h-auto object-contain rounded transition-transform duration-300 group-hover:scale-105"
+                          className="w-full h-auto object-contain rounded-lg transition-transform duration-300 group-hover:scale-105"
                         />
                       </button>
                     ))}
@@ -469,7 +499,13 @@ export default function ProjectDetailPage() {
               )}
 
               {/* Features */}
-              <div className="rounded-xl p-6" style={cardStyle}>
+              <div
+                className="rounded-2xl p-6 border backdrop-blur-sm"
+                style={{
+                  backgroundColor: "rgba(139, 92, 246, 0.02)",
+                  borderColor: "rgba(139, 92, 246, 0.1)",
+                }}
+              >
                 <h2
                   className="text-xl font-bold mb-4"
                   style={{ color: "#f1f5f9" }}
@@ -480,99 +516,114 @@ export default function ProjectDetailPage() {
                   project.features.length > 0 &&
                   typeof project.features[0] === "object" &&
                   "title" in project.features[0] ? (
-                  <div className="space-y-6">
-                    {(project.features as FeatureSection[]).map(
-                      (section, sectionIndex) => (
-                        <div key={sectionIndex}>
-                          <h3
-                            className="text-lg font-semibold mb-3"
-                            style={{ color: "#34d399" }}
-                          >
-                            {section.title}
-                          </h3>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            {section.items.map((item, itemIndex) => (
-                              <div
-                                key={itemIndex}
-                                className="flex items-start gap-3 p-3 rounded-lg border"
-                                style={{
-                                  backgroundColor: "rgba(16,185,129,0.04)",
-                                  borderColor: "rgba(16,185,129,0.12)",
-                                }}
-                              >
+                    <div className="space-y-6">
+                      {(project.features as FeatureSection[]).map(
+                        (section, sectionIndex) => (
+                          <div key={sectionIndex}>
+                            <h3
+                              className="text-lg font-semibold mb-3 gradient-text"
+                            >
+                              {section.title}
+                            </h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                              {section.items.map((item, itemIndex) => (
                                 <div
-                                  className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                                  key={itemIndex}
+                                  className="flex items-start gap-3 p-4 rounded-xl border transition-all duration-300"
                                   style={{
-                                    background:
-                                      "linear-gradient(135deg, #10b981, #059669)",
+                                    backgroundColor: "rgba(139, 92, 246, 0.03)",
+                                    borderColor: "rgba(139, 92, 246, 0.1)",
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(139, 92, 246, 0.25)";
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(139, 92, 246, 0.1)";
                                   }}
                                 >
-                                  <FaCheck
-                                    className="w-3 h-3"
-                                    style={{ color: "#fff" }}
-                                  />
-                                </div>
-                                <div className="flex-1">
-                                  <span
-                                    className="font-medium block mb-1 text-sm"
-                                    style={{ color: "#f1f5f9" }}
+                                  <div
+                                    className="mt-0.5 w-5 h-5 rounded-lg flex items-center justify-center flex-shrink-0"
+                                    style={{
+                                      background: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
+                                    }}
                                   >
-                                    {item.name}
-                                  </span>
-                                  <span
-                                    className="text-xs"
-                                    style={{ color: "#64748b" }}
-                                  >
-                                    {item.description}
-                                  </span>
+                                    <FaCheck
+                                      className="w-3 h-3"
+                                      style={{ color: "#fff" }}
+                                    />
+                                  </div>
+                                  <div className="flex-1">
+                                    <span
+                                      className="font-medium block mb-1 text-sm"
+                                      style={{ color: "#f1f5f9" }}
+                                    >
+                                      {item.name}
+                                    </span>
+                                    <span
+                                      className="text-xs"
+                                      style={{ color: "#64748b" }}
+                                    >
+                                      {item.description}
+                                    </span>
+                                  </div>
                                 </div>
-                              </div>
-                            ))}
+                              ))}
+                            </div>
                           </div>
-                        </div>
-                      )
-                    )}
-                  </div>
-                ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {(project.features as string[]).map((feature, index) => (
-                      <div
-                        key={index}
-                        className="flex items-start gap-3 p-3 rounded-lg border"
-                        style={{
-                          backgroundColor: "rgba(16,185,129,0.04)",
-                          borderColor: "rgba(16,185,129,0.12)",
-                        }}
-                      >
+                        )
+                      )}
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {(project.features as string[]).map((feature, index) => (
                         <div
-                          className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                          key={index}
+                          className="flex items-start gap-3 p-4 rounded-xl border transition-all duration-300"
                           style={{
-                            background:
-                              "linear-gradient(135deg, #10b981, #059669)",
+                            backgroundColor: "rgba(139, 92, 246, 0.03)",
+                            borderColor: "rgba(139, 92, 246, 0.1)",
+                          }}
+                          onMouseEnter={(e) => {
+                            (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(139, 92, 246, 0.25)";
+                          }}
+                          onMouseLeave={(e) => {
+                            (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(139, 92, 246, 0.1)";
                           }}
                         >
-                          <FaCheck
-                            className="w-3 h-3"
-                            style={{ color: "#fff" }}
-                          />
+                          <div
+                            className="mt-0.5 w-5 h-5 rounded-lg flex items-center justify-center flex-shrink-0"
+                            style={{
+                              background: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
+                            }}
+                          >
+                            <FaCheck
+                              className="w-3 h-3"
+                              style={{ color: "#fff" }}
+                            />
+                          </div>
+                          <span
+                            className="font-medium text-sm"
+                            style={{ color: "#f1f5f9" }}
+                          >
+                            {feature}
+                          </span>
                         </div>
-                        <span
-                          className="font-medium text-sm"
-                          style={{ color: "#f1f5f9" }}
-                        >
-                          {feature}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                      ))}
+                    </div>
+                  )}
               </div>
             </div>
 
             {/* Sidebar */}
-            <div className="lg:col-span-1 space-y-4 lg:sticky lg:top-20 h-max">
+            <div className="lg:col-span-1 space-y-4 lg:sticky lg:top-24 h-max">
               {/* Project Info */}
-              <div className="rounded-xl p-5" style={cardStyle}>
+              <div
+                className="rounded-2xl p-5 border backdrop-blur-sm"
+                style={{
+                  backgroundColor: "rgba(139, 92, 246, 0.02)",
+                  borderColor: "rgba(139, 92, 246, 0.1)",
+                }}
+              >
                 <h3
                   className="text-lg font-bold mb-4"
                   style={{ color: "#f1f5f9" }}
@@ -623,22 +674,28 @@ export default function ProjectDetailPage() {
               </div>
 
               {/* Technologies */}
-              <div className="rounded-xl p-5" style={cardStyle}>
+              <div
+                className="rounded-2xl p-5 border backdrop-blur-sm"
+                style={{
+                  backgroundColor: "rgba(139, 92, 246, 0.02)",
+                  borderColor: "rgba(139, 92, 246, 0.1)",
+                }}
+              >
                 <h3
                   className="text-lg font-bold mb-4"
                   style={{ color: "#f1f5f9" }}
                 >
                   Technologies Used
                 </h3>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech, index) => (
                     <span
                       key={index}
-                      className="px-2.5 py-1 rounded-lg text-xs font-medium border"
+                      className="px-3 py-1.5 rounded-lg text-xs font-medium border"
                       style={{
-                        backgroundColor: "rgba(16,185,129,0.08)",
-                        borderColor: "rgba(16,185,129,0.2)",
-                        color: "#34d399",
+                        backgroundColor: "rgba(139, 92, 246, 0.08)",
+                        borderColor: "rgba(139, 92, 246, 0.2)",
+                        color: "#c4b5fd",
                       }}
                     >
                       {tech}
@@ -667,24 +724,18 @@ export default function ProjectDetailPage() {
                   <Link
                     key={p.id}
                     href={`/projects/${p.id}`}
-                    className="group block rounded-xl overflow-hidden transition-all duration-300 border"
+                    className="group block rounded-2xl overflow-hidden transition-all duration-300 border"
                     style={{
-                      backgroundColor: "#13131A",
-                      borderColor: "rgba(16,185,129,0.12)",
+                      backgroundColor: "rgba(139, 92, 246, 0.02)",
+                      borderColor: "rgba(139, 92, 246, 0.1)",
                     }}
                     onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                        "rgba(16,185,129,0.35)";
-                      (
-                        e.currentTarget as HTMLAnchorElement
-                      ).style.boxShadow = "0 0 20px rgba(16,185,129,0.1)";
+                      (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(139, 92, 246, 0.3)";
+                      (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-4px)";
                     }}
                     onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                        "rgba(16,185,129,0.12)";
-                      (
-                        e.currentTarget as HTMLAnchorElement
-                      ).style.boxShadow = "none";
+                      (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(139, 92, 246, 0.1)";
+                      (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
                     }}
                   >
                     <div className="p-2">
@@ -693,12 +744,12 @@ export default function ProjectDetailPage() {
                         alt={p.name}
                         width={400}
                         height={250}
-                        className="w-full h-auto object-cover rounded-lg"
+                        className="w-full h-auto object-cover rounded-xl"
                       />
                     </div>
-                    <div className="px-3 pb-3">
+                    <div className="px-4 pb-4">
                       <h3
-                        className="mt-1 font-semibold text-sm transition-colors duration-200"
+                        className="mt-1 font-semibold text-sm transition-colors duration-200 group-hover:text-purple-400"
                         style={{ color: "#f1f5f9" }}
                       >
                         {p.name}
@@ -716,7 +767,7 @@ export default function ProjectDetailPage() {
           </div>
 
           {/* View All */}
-          <div className="flex justify-center">
+          <div className="flex justify-center pb-8">
             <Link href="/#portfolio" className="btn btn-primary">
               View All Projects
             </Link>
@@ -727,8 +778,8 @@ export default function ProjectDetailPage() {
       {/* Lightbox */}
       {lightboxImage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          style={{ backgroundColor: "rgba(11,11,15,0.95)" }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-xl"
+          style={{ backgroundColor: "rgba(3, 0, 20, 0.95)" }}
           onClick={() => setLightboxImage(null)}
         >
           <div
@@ -741,15 +792,16 @@ export default function ProjectDetailPage() {
               width={1200}
               height={800}
               sizes="90vw"
-              className="w-full h-full object-contain rounded-xl"
+              className="w-full h-full object-contain rounded-2xl"
               style={{
-                border: "1px solid rgba(16,185,129,0.2)",
+                border: "1px solid rgba(139, 92, 246, 0.2)",
               }}
             />
             <div className="flex justify-between mt-4 gap-2">
               {[
                 {
-                  label: "← Previous",
+                  icon: FaArrowLeft,
+                  label: "Previous",
                   action: () => {
                     if (!project?.images) return;
                     const next =
@@ -760,11 +812,12 @@ export default function ProjectDetailPage() {
                   },
                 },
                 {
-                  label: "✕ Close",
+                  label: "Close",
                   action: () => setLightboxImage(null),
                 },
                 {
-                  label: "Next →",
+                  icon: FaArrowRight,
+                  label: "Next",
                   action: () => {
                     if (!project?.images) return;
                     const next = (activeIndex + 1) % project.images.length;
@@ -772,30 +825,28 @@ export default function ProjectDetailPage() {
                     setLightboxImage(project.images[next]);
                   },
                 },
-              ].map(({ label, action }) => (
+              ].map(({ label, action }, idx) => (
                 <button
                   key={label}
-                  className="btn flex-1 border font-medium text-sm transition-all duration-200"
+                  className="btn flex-1 border font-medium text-sm transition-all duration-300"
                   style={{
-                    backgroundColor: "rgba(16,185,129,0.08)",
-                    borderColor: "rgba(16,185,129,0.2)",
+                    backgroundColor: "rgba(139, 92, 246, 0.08)",
+                    borderColor: "rgba(139, 92, 246, 0.2)",
                     color: "#94a3b8",
                   }}
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                      "rgba(16,185,129,0.15)";
+                      "rgba(139, 92, 246, 0.15)";
                     (e.currentTarget as HTMLButtonElement).style.borderColor =
-                      "rgba(16,185,129,0.4)";
-                    (e.currentTarget as HTMLButtonElement).style.color =
-                      "#10b981";
+                      "rgba(139, 92, 246, 0.4)";
+                    (e.currentTarget as HTMLButtonElement).style.color = "#a78bfa";
                   }}
                   onMouseLeave={(e) => {
                     (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                      "rgba(16,185,129,0.08)";
+                      "rgba(139, 92, 246, 0.08)";
                     (e.currentTarget as HTMLButtonElement).style.borderColor =
-                      "rgba(16,185,129,0.2)";
-                    (e.currentTarget as HTMLButtonElement).style.color =
-                      "#94a3b8";
+                      "rgba(139, 92, 246, 0.2)";
+                    (e.currentTarget as HTMLButtonElement).style.color = "#94a3b8";
                   }}
                   onClick={action}
                 >

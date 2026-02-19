@@ -25,7 +25,7 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      '"Excellent, working with web designer express was great. Thanks to their knowledge and determination our website looks great and functions really good. I am recommend anyone that is looking for a custom website to give them a call and speak to Gus, he will guide you to the right direction."',
+      '"Excellent, working with web designer express was great. Thanks to their knowledge and determination our website looks great and functions really good. I am recommend anyone that is looking for a custom website to give them a call."',
     name: "Leonardo Arteaga",
     role: "Project manager",
     image: "/img/testimonial-2.jpg",
@@ -42,27 +42,28 @@ const testimonials: Testimonial[] = [
 export default function Testimonials() {
   return (
     <div
-      className="py-12 relative overflow-hidden"
+      className="py-20 lg:py-28 relative overflow-hidden"
       id="testimonial"
-      style={{ backgroundColor: "#0B0B0F" }}
+      style={{ backgroundColor: "#0a0518" }}
     >
-      {/* Grid */}
-      <div className="absolute inset-0 bg-grid-sm opacity-50 pointer-events-none" />
-
-      {/* Center glow */}
+      {/* Background elements */}
+      <div className="absolute inset-0 bg-grid-sm opacity-40 pointer-events-none" />
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-64 pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] pointer-events-none"
         style={{
-          background:
-            "radial-gradient(ellipse, rgba(249,115,22,0.06) 0%, transparent 70%)",
-          filter: "blur(30px)",
+          background: "radial-gradient(ellipse, rgba(139, 92, 246, 0.08) 0%, transparent 70%)",
+          filter: "blur(40px)",
         }}
       />
 
       <div className="relative z-10 container mx-auto px-4 lg:px-20">
-        <div className="section-header">
-          <h1 className="section-header-bg">Review</h1>
-          <h1 className="section-header-text">Clients Say</h1>
+        {/* Section Header */}
+        <div className="section-header mb-16">
+          <span className="section-label">Testimonials</span>
+          <h2 className="section-title">What Clients Say</h2>
+          <p className="section-subtitle">
+            Feedback from people I&apos;ve had the pleasure to work with
+          </p>
         </div>
 
         <div className="flex justify-center">
@@ -71,77 +72,87 @@ export default function Testimonials() {
               modules={[Autoplay, Pagination]}
               spaceBetween={30}
               slidesPerView={1}
-              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              autoplay={{ delay: 5000, disableOnInteraction: false }}
               pagination={{
                 clickable: true,
                 bulletClass: "swiper-pagination-bullet",
                 bulletActiveClass: "swiper-pagination-bullet-active",
               }}
-              className="testimonial-carousel pb-10"
+              className="testimonial-carousel pb-12"
             >
               {testimonials.map((testimonial, index) => (
                 <SwiperSlide key={index}>
                   <div
-                    className="text-center rounded-2xl p-8 md:p-12 my-5 border transition-all duration-300"
+                    className="relative p-8 md:p-12 rounded-3xl border backdrop-blur-sm transition-all duration-300"
                     style={{
-                      backgroundColor: "#13131A",
-                      borderColor: "rgba(249,115,22,0.12)",
-                      boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
+                      backgroundColor: "rgba(139, 92, 246, 0.03)",
+                      borderColor: "rgba(139, 92, 246, 0.1)",
                     }}
                   >
                     {/* Quote icon */}
                     <div
-                      className="inline-flex items-center justify-center w-14 h-14 rounded-full mb-6"
+                      className="absolute -top-5 left-8 w-12 h-12 rounded-xl flex items-center justify-center"
                       style={{
-                        background:
-                          "linear-gradient(135deg, #f97316, #ea580c)",
-                        boxShadow: "0 0 20px rgba(249,115,22,0.35)",
+                        background: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%)",
+                        boxShadow: "0 0 30px rgba(139, 92, 246, 0.4)",
                       }}
                     >
-                      <FaQuoteLeft className="text-white text-xl" />
+                      <FaQuoteLeft className="text-white text-lg" />
                     </div>
 
                     {/* Stars */}
-                    <div className="flex justify-center gap-1 mb-4">
+                    <div className="flex justify-center gap-1.5 mb-6 mt-4">
                       {[...Array(5)].map((_, i) => (
                         <FaStar
                           key={i}
-                          className="w-4 h-4"
-                          style={{ color: "#f97316" }}
+                          className="w-5 h-5"
+                          style={{ color: "#f472b6" }}
                         />
                       ))}
                     </div>
 
                     <h4
-                      className="font-light mb-8 text-base md:text-lg leading-relaxed"
+                      className="font-light mb-8 text-base md:text-lg leading-relaxed text-center"
                       style={{ color: "#94a3b8" }}
                     >
                       {testimonial.quote}
                     </h4>
 
-                    <Image
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      width={80}
-                      height={80}
-                      className="rounded-full mx-auto mb-4"
-                      style={{
-                        border: "2px solid rgba(249,115,22,0.4)",
-                        boxShadow: "0 0 15px rgba(249,115,22,0.2)",
-                      }}
-                    />
-                    <h5
-                      className="font-bold text-lg mb-1"
-                      style={{ color: "#f1f5f9" }}
-                    >
-                      {testimonial.name}
-                    </h5>
-                    <span
-                      className="text-sm"
-                      style={{ color: "#f97316" }}
-                    >
-                      {testimonial.role}
-                    </span>
+                    <div className="flex flex-col items-center">
+                      <div
+                        className="relative mb-4"
+                      >
+                        <div
+                          className="absolute -inset-1 rounded-full opacity-60"
+                          style={{
+                            background: "linear-gradient(135deg, #6366f1, #8b5cf6, #f472b6)",
+                            filter: "blur(8px)",
+                          }}
+                        />
+                        <Image
+                          src={testimonial.image}
+                          alt={testimonial.name}
+                          width={72}
+                          height={72}
+                          className="relative rounded-full object-cover"
+                          style={{
+                            border: "3px solid rgba(139, 92, 246, 0.3)",
+                          }}
+                        />
+                      </div>
+                      <h5
+                        className="font-bold text-lg mb-1"
+                        style={{ color: "#f1f5f9" }}
+                      >
+                        {testimonial.name}
+                      </h5>
+                      <span
+                        className="text-sm"
+                        style={{ color: "#a78bfa" }}
+                      >
+                        {testimonial.role}
+                      </span>
+                    </div>
                   </div>
                 </SwiperSlide>
               ))}

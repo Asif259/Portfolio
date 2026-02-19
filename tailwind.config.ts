@@ -10,30 +10,32 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          50: "#ecfdf5",
-          100: "#d1fae5",
-          200: "#a7f3d0",
-          300: "#6ee7b7",
-          400: "#34d399",
-          500: "#10b981",
-          600: "#059669",
-          700: "#047857",
-          800: "#065f46",
-          900: "#064e3b",
-          DEFAULT: "#10b981",
+          50: "#f5f3ff",
+          100: "#ede9fe",
+          200: "#ddd6fe",
+          300: "#c4b5fd",
+          400: "#a78bfa",
+          500: "#8b5cf6",
+          600: "#7c3aed",
+          700: "#6d28d9",
+          800: "#5b21b6",
+          900: "#4c1d95",
+          DEFAULT: "#8b5cf6",
         },
         accent: {
-          DEFAULT: "#10b981",
-          glow: "rgba(16,185,129,0.35)",
-          soft: "rgba(16,185,129,0.12)",
+          DEFAULT: "#8b5cf6",
+          glow: "rgba(139, 92, 246, 0.4)",
+          soft: "rgba(139, 92, 246, 0.12)",
+          pink: "#f472b6",
+          blue: "#818cf8",
         },
         dark: {
-          DEFAULT: "#0B0B0F",
-          100: "#13131A",
-          200: "#1A1A24",
-          300: "#22222F",
-          400: "#2A2A3A",
-          500: "#32324A",
+          DEFAULT: "#030014",
+          100: "#0f0728",
+          200: "#1a0a3a",
+          300: "#251052",
+          400: "#301a64",
+          500: "#3b2476",
         },
         secondary: "#9ca3af",
       },
@@ -47,34 +49,38 @@ const config: Config = {
         float: "float 6s ease-in-out infinite",
         "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "glow-pulse": "glowPulse 3s ease-in-out infinite",
-        "grid-shift": "gridShift 20s linear infinite",
-        "scan-line": "scanLine 4s linear infinite",
+        "gradient-shift": "gradientShift 8s ease infinite",
+        shimmer: "shimmer 2s infinite",
       },
       backgroundImage: {
         "gradient-primary":
-          "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+          "linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%)",
         "gradient-hero":
-          "linear-gradient(135deg, #0B0B0F 0%, #13131A 50%, #1A1A24 100%)",
+          "linear-gradient(180deg, #030014 0%, #0f0728 50%, #1a0a3a 100%)",
         "gradient-card":
-          "linear-gradient(135deg, rgba(16,185,129,0.06) 0%, rgba(16,185,129,0.02) 100%)",
+          "linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(99, 102, 241, 0.02) 100%)",
         "grid-pattern":
-          "linear-gradient(rgba(16,185,129,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.07) 1px, transparent 1px)",
-        "emerald-glow":
-          "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(16,185,129,0.18) 0%, transparent 70%)",
-        "emerald-radial":
-          "radial-gradient(circle at center, rgba(16,185,129,0.2) 0%, transparent 70%)",
+          "linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px)",
+        "glow-gradient":
+          "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(139, 92, 246, 0.2) 0%, transparent 70%)",
+        "glow-radial":
+          "radial-gradient(circle at center, rgba(139, 92, 246, 0.15) 0%, transparent 70%)",
+        "aurora":
+          "linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(168, 85, 247, 0.05) 50%, rgba(244, 114, 182, 0.1) 100%)",
       },
       backgroundSize: {
-        "grid-sm": "30px 30px",
-        "grid-md": "50px 50px",
+        "grid-sm": "40px 40px",
+        "grid-md": "60px 60px",
         "grid-lg": "80px 80px",
       },
       boxShadow: {
-        "neon-sm": "0 0 10px rgba(16,185,129,0.4)",
-        "neon-md": "0 0 20px rgba(16,185,129,0.35), 0 0 40px rgba(16,185,129,0.15)",
-        "neon-lg": "0 0 30px rgba(16,185,129,0.5), 0 0 60px rgba(16,185,129,0.25), 0 0 90px rgba(16,185,129,0.1)",
-        "card-dark": "0 4px 24px rgba(0,0,0,0.4), 0 1px 4px rgba(0,0,0,0.3)",
-        "card-hover": "0 8px 40px rgba(0,0,0,0.5), 0 0 20px rgba(16,185,129,0.15)",
+        "neon-sm": "0 0 10px rgba(139, 92, 246, 0.4)",
+        "neon-md": "0 0 20px rgba(139, 92, 246, 0.35), 0 0 40px rgba(139, 92, 246, 0.15)",
+        "neon-lg": "0 0 30px rgba(139, 92, 246, 0.5), 0 0 60px rgba(139, 92, 246, 0.25), 0 0 90px rgba(139, 92, 246, 0.1)",
+        "card-dark": "0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05)",
+        "card-hover": "0 16px 48px rgba(0,0,0,0.5), 0 0 30px rgba(139, 92, 246, 0.15)",
+        "glow": "0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.1)",
+        "glow-lg": "0 0 30px rgba(139, 92, 246, 0.4), 0 0 60px rgba(139, 92, 246, 0.2)",
       },
       keyframes: {
         gradient: {
@@ -88,24 +94,25 @@ const config: Config = {
           },
         },
         float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-20px)" },
+          "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
+          "50%": { transform: "translateY(-20px) rotate(2deg)" },
         },
         glowPulse: {
           "0%, 100%": {
-            boxShadow: "0 0 15px rgba(16,185,129,0.3), 0 0 30px rgba(16,185,129,0.1)",
+            boxShadow: "0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.1)",
           },
           "50%": {
-            boxShadow: "0 0 25px rgba(16,185,129,0.5), 0 0 50px rgba(16,185,129,0.2)",
+            boxShadow: "0 0 30px rgba(139, 92, 246, 0.5), 0 0 60px rgba(139, 92, 246, 0.2)",
           },
         },
-        gridShift: {
-          "0%": { backgroundPosition: "0 0" },
-          "100%": { backgroundPosition: "50px 50px" },
+        gradientShift: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
         },
-        scanLine: {
-          "0%": { transform: "translateY(-100%)" },
-          "100%": { transform: "translateY(100vh)" },
+        shimmer: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
         },
       },
     },

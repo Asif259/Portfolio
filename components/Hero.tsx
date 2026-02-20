@@ -275,7 +275,7 @@ export default function Hero() {
                   className="text-xl font-bold"
                   style={{ color: "#14b8a6" }}
                 >
-                  10+
+                  30+
                 </div>
                 <div className="text-xs" style={{ color: "#94a3b8" }}>
                   Projects

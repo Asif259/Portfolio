@@ -152,7 +152,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                 </a>
               ))}
               <a
-                href="www.linkedin.com/in/ashraful-asif"
+                href="https://www.linkedin.com/in/ashraful-asif"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden lg:block btn ml-2 text-sm"

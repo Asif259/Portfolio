@@ -58,7 +58,7 @@ export default function Footer() {
                 label: "Facebook",
               },
               {
-                href: "https://www.linkedin.com/in/ashraful-asif/",
+                href: "https://www.linkedin.com/in/ashraful-asif",
                 icon: FaLinkedinIn,
                 label: "LinkedIn",
               },

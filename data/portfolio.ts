@@ -41,6 +41,7 @@ import { project3 } from "./projects/project3";
 import { project4 } from "./projects/project4";
 import { project5 } from "./projects/project5";
 import { project6 } from "./projects/project6";
+import { project7 } from "./projects/project7";
 import { project8 } from "./projects/project8";
 
 export const portfolioProjects: PortfolioProject[] = [
@@ -50,6 +51,7 @@ export const portfolioProjects: PortfolioProject[] = [
   project4,
   project5,
   project6,
+  project7,
   project8,
 ];
 

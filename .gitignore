@@ -1,39 +1,52 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Dependencies
+node_modules/
+*/node_modules/
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# Next.js build
+.next/
+*/.next/
+out/
+*/out/
 
-# testing
-/coverage
+# Build outputs
+build/
+*/build/
+dist/
+*/dist/
 
-# next.js
-/.next/
-/out/
+# Local env files
+.env*.local
+.env
+*/.env*.local
+*/.env
 
-# production
-/build
-
-# misc
+# Misc & OS files
 .DS_Store
+*/.DS_Store
 *.pem
+.ag-kit-backups/
 
-# debug
+# Debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
-.env*.local
-
-# vercel
-.vercel
-
-# typescript
+# TypeScript cache
 *.tsbuildinfo
+*/tsconfig.tsbuildinfo
 next-env.d.ts
+*/next-env.d.ts
 
-# playwright-cli artifacts
+# Vercel
+.vercel/
+*/.vercel/
+
+# Testing
+coverage/
+*/coverage/
 .playwright-cli/
+*/.playwright-cli/
 
+#Agents
+.agents/
+.agent/

@@ -3,16 +3,22 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { portfolioProjects } from "@/data/portfolio";
+import { PortfolioProject, portfolioProjects as fallbackProjects } from "@/data/portfolio";
 import FadeIn, { StaggerContainer, StaggerItem } from "./FadeIn";
 
-export default function Portfolio() {
+interface PortfolioProps {
+  initialProjects?: PortfolioProject[];
+}
+
+export default function Portfolio({ initialProjects }: PortfolioProps) {
   const [activeFilter, setActiveFilter] = useState<string>("*");
+
+  const projects = initialProjects && initialProjects.length > 0 ? initialProjects : fallbackProjects;
 
   const filteredItems =
     activeFilter === "*"
-      ? portfolioProjects
-      : portfolioProjects.filter((item) => item.category === activeFilter);
+      ? projects
+      : projects.filter((item) => item.category === activeFilter);
 
   const getCategoryLabel = (filter: string) => {
     switch (filter) {
@@ -20,6 +26,8 @@ export default function Portfolio() {
         return "Frontend";
       case "Backend Development":
         return "Backend";
+      case "Full Stack Development":
+        return "Full Stack";
       default:
         return "All";
     }
@@ -54,48 +62,51 @@ export default function Portfolio() {
         {/* Filter buttons */}
         <FadeIn direction="up" delay={0.2}>
           <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {["*", "Frontend Development", "Backend Development"].map(
-              (filter) => (
-                <button
-                  key={filter}
-                  className="px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 border"
-                  style={
-                    activeFilter === filter
-                      ? {
-                          background:
-                            "linear-gradient(135deg, #14b8a6, #0d9488)",
-                          color: "#fff",
-                          borderColor: "transparent",
-                          boxShadow: "0 0 20px rgba(20,184,166,0.4)",
-                        }
-                      : {
-                          backgroundColor: "transparent",
-                          color: "#94a3b8",
-                          borderColor: "rgba(20,184,166,0.2)",
-                        }
+            {[
+              "*",
+              "Frontend Development",
+              "Backend Development",
+              "Full Stack Development",
+            ].map((filter) => (
+              <button
+                key={filter}
+                className="px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 border"
+                style={
+                  activeFilter === filter
+                    ? {
+                        background:
+                          "linear-gradient(135deg, #14b8a6, #0d9488)",
+                        color: "#fff",
+                        borderColor: "transparent",
+                        boxShadow: "0 0 20px rgba(20,184,166,0.4)",
+                      }
+                    : {
+                        backgroundColor: "transparent",
+                        color: "#94a3b8",
+                        borderColor: "rgba(20,184,166,0.2)",
+                      }
+                }
+                onMouseEnter={(e) => {
+                  if (activeFilter !== filter) {
+                    (e.currentTarget as HTMLButtonElement).style.borderColor =
+                      "rgba(20,184,166,0.5)";
+                    (e.currentTarget as HTMLButtonElement).style.color =
+                      "#14b8a6";
                   }
-                  onMouseEnter={(e) => {
-                    if (activeFilter !== filter) {
-                      (e.currentTarget as HTMLButtonElement).style.borderColor =
-                        "rgba(20,184,166,0.5)";
-                      (e.currentTarget as HTMLButtonElement).style.color =
-                        "#14b8a6";
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (activeFilter !== filter) {
-                      (e.currentTarget as HTMLButtonElement).style.borderColor =
-                        "rgba(20,184,166,0.2)";
-                      (e.currentTarget as HTMLButtonElement).style.color =
-                        "#94a3b8";
-                    }
-                  }}
-                  onClick={() => setActiveFilter(filter)}
-                >
-                  {getCategoryLabel(filter)}
-                </button>
-              )
-            )}
+                }}
+                onMouseLeave={(e) => {
+                  if (activeFilter !== filter) {
+                    (e.currentTarget as HTMLButtonElement).style.borderColor =
+                      "rgba(20,184,166,0.2)";
+                    (e.currentTarget as HTMLButtonElement).style.color =
+                      "#94a3b8";
+                  }
+                }}
+                onClick={() => setActiveFilter(filter)}
+              >
+                {getCategoryLabel(filter)}
+              </button>
+            ))}
           </div>
         </FadeIn>
 

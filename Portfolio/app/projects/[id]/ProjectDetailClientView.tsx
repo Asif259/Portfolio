@@ -1,18 +1,14 @@
 "use client";
 
-import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  getProjectById,
   PortfolioProject,
-  portfolioProjects,
   FeatureSection,
   Challenge,
 } from "@/data/portfolio";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import {
   FaChevronLeft,
   FaExternalLinkAlt,
@@ -23,11 +19,15 @@ import {
   FaTools,
 } from "react-icons/fa";
 
-export default function ProjectDetailPage() {
-  const params = useParams();
-  const id = parseInt(params.id as string);
-  const project = getProjectById(id);
+interface ProjectDetailClientViewProps {
+  project: PortfolioProject;
+  relatedProjects: PortfolioProject[];
+}
 
+export default function ProjectDetailClientView({
+  project,
+  relatedProjects,
+}: ProjectDetailClientViewProps) {
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [activeTab, setActiveTab] = useState<
@@ -53,27 +53,6 @@ export default function ProjectDetailPage() {
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [lightboxImage, activeIndex, project]);
-
-  if (!project) {
-    return (
-      <div
-        className="min-h-screen flex items-center justify-center"
-        style={{ backgroundColor: "#121212" }}
-      >
-        <div className="text-center">
-          <h1
-            className="text-4xl font-bold mb-4"
-            style={{ color: "#f1f5f9" }}
-          >
-            Project Not Found
-          </h1>
-          <Link href="/#portfolio" className="btn btn-primary">
-            Back to Portfolio
-          </Link>
-        </div>
-      </div>
-    );
-  }
 
   const cardStyle = {
     backgroundColor: "#1E1E1E",
@@ -186,16 +165,18 @@ export default function ProjectDetailPage() {
                   {
                     icon: FaClock,
                     label: "Timeline",
-                    value: new Date(project.date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                    }),
+                    value: isNaN(new Date(project.date).getTime())
+                      ? project.date
+                      : new Date(project.date).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                        }),
                   },
                   { icon: FaUsers, label: "Role", value: project.role },
                   {
                     icon: FaTools,
                     label: "Stack",
-                    value: project.technologies[0],
+                    value: project.technologies[0] || "Custom",
                   },
                 ].map(({ icon: Icon, label, value }) => (
                   <div
@@ -288,17 +269,17 @@ export default function ProjectDetailPage() {
                       style={
                         activeTab === (t.id as "overview" | "solution" | "challenges")
                           ? {
-                            background:
-                              "linear-gradient(135deg, #14b8a6, #0d9488)",
-                            color: "#fff",
-                            borderColor: "transparent",
-                            boxShadow: "0 0 12px rgba(20,184,166,0.3)",
-                          }
+                              background:
+                                "linear-gradient(135deg, #14b8a6, #0d9488)",
+                              color: "#fff",
+                              borderColor: "transparent",
+                              boxShadow: "0 0 12px rgba(20,184,166,0.3)",
+                            }
                           : {
-                            backgroundColor: "transparent",
-                            color: "#94a3b8",
-                            borderColor: "rgba(20,184,166,0.15)",
-                          }
+                              backgroundColor: "transparent",
+                              color: "#94a3b8",
+                              borderColor: "rgba(20,184,166,0.15)",
+                            }
                       }
                       onClick={() =>
                         setActiveTab(
@@ -321,7 +302,7 @@ export default function ProjectDetailPage() {
                         Project Overview
                       </h2>
                       <p
-                        className="leading-relaxed"
+                        className="leading-relaxed whitespace-pre-line"
                         style={{ color: "#94a3b8" }}
                       >
                         {project.longDescription}
@@ -337,7 +318,7 @@ export default function ProjectDetailPage() {
                         Solution & Approach
                       </h2>
                       <p
-                        className="leading-relaxed"
+                        className="leading-relaxed whitespace-pre-line"
                         style={{ color: "#94a3b8" }}
                       >
                         {project.solution}
@@ -353,9 +334,9 @@ export default function ProjectDetailPage() {
                         Challenges Faced
                       </h2>
                       {Array.isArray(project.challenges) &&
-                        project.challenges.length > 0 &&
-                        typeof project.challenges[0] === "object" &&
-                        "title" in project.challenges[0] ? (
+                      project.challenges.length > 0 &&
+                      typeof project.challenges[0] === "object" &&
+                      "title" in project.challenges[0] ? (
                         <ul className="space-y-3">
                           {(project.challenges as Challenge[]).map(
                             (challenge, index) => (
@@ -477,9 +458,9 @@ export default function ProjectDetailPage() {
                   Key Features
                 </h2>
                 {Array.isArray(project.features) &&
-                  project.features.length > 0 &&
-                  typeof project.features[0] === "object" &&
-                  "title" in project.features[0] ? (
+                project.features.length > 0 &&
+                typeof project.features[0] === "object" &&
+                "title" in project.features[0] ? (
                   <div className="space-y-6">
                     {(project.features as FeatureSection[]).map(
                       (section, sectionIndex) => (
@@ -588,11 +569,13 @@ export default function ProjectDetailPage() {
                       className="font-semibold text-sm"
                       style={{ color: "#f1f5f9" }}
                     >
-                      {new Date(project.date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
+                      {isNaN(new Date(project.date).getTime())
+                        ? project.date
+                        : new Date(project.date).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })}
                     </p>
                   </div>
                   <div>
@@ -650,20 +633,16 @@ export default function ProjectDetailPage() {
           </div>
 
           {/* Related Projects */}
-          <div className="mb-8">
-            <h2
-              className="text-xl font-bold mb-4"
-              style={{ color: "#f1f5f9" }}
-            >
-              Related Projects
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {portfolioProjects
-                .filter(
-                  (p) => p.id !== project.id && p.category === project.category
-                )
-                .slice(0, 3)
-                .map((p) => (
+          {relatedProjects && relatedProjects.length > 0 && (
+            <div className="mb-8">
+              <h2
+                className="text-xl font-bold mb-4"
+                style={{ color: "#f1f5f9" }}
+              >
+                Related Projects
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {relatedProjects.map((p) => (
                   <Link
                     key={p.id}
                     href={`/projects/${p.id}`}
@@ -712,8 +691,9 @@ export default function ProjectDetailPage() {
                     </div>
                   </Link>
                 ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* View All */}
           <div className="flex justify-center">
@@ -806,8 +786,6 @@ export default function ProjectDetailPage() {
           </div>
         </div>
       )}
-
-      <Footer />
     </main>
   );
 }

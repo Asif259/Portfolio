@@ -2,6 +2,12 @@
 const nextConfig = {
   images: {
     unoptimized: false,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+    ],
   },
   webpack: (config, { isServer }) => {
     // Fix for Swiper CSS imports

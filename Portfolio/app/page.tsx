@@ -7,8 +7,13 @@ import Portfolio from "@/components/Portfolio";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { getPublishedProjects } from "@/services/projectService";
 
-export default function Home() {
+export const revalidate = 60;
+
+export default async function Home() {
+  const projects = await getPublishedProjects();
+
   return (
     <main className="relative">
       <Navbar />
@@ -16,7 +21,7 @@ export default function Home() {
       <About />
       <Skills />
       <Qualification />
-      <Portfolio />
+      <Portfolio initialProjects={projects} />
       <Testimonials />
       <Contact />
       <Footer />

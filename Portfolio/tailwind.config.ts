@@ -66,11 +66,11 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["MonaSemi", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
-        body: ["Mona", "Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
-        utility: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
-        sans: ["var(--font-sans)", "Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
-        mono: ["JetBrains Mono", "Fira Code", "monospace"],
+        display: ["var(--font-display)", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        body: ["var(--font-body)", "Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        utility: ["var(--font-utility)", "Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        sans: ["var(--font-utility)", "Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        mono: ["var(--font-mono)", "JetBrains Mono", "Fira Code", "monospace"],
       },
       animation: {
         "bounce-slow": "bounce 2s infinite",

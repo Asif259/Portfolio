@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,7 +19,51 @@ export const metadata: Metadata = {
   ],
 };
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const monaSemi = localFont({
+  src: [
+    {
+      path: "../public/fonts/MonaSansSemiCondensed-ExtraLight.woff2",
+      weight: "250",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/MonaSansSemiCondensed-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/MonaSansSemiCondensed-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+  ],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const mona = localFont({
+  src: [
+    {
+      path: "../public/fonts/MonaSans-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-utility",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export default function RootLayout({
   children,
@@ -26,10 +71,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html
+      lang="en"
+      className={`${monaSemi.variable} ${mona.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+    >
       <head>
-        <link rel="short icon" type="x-icon" href="/img/asif.jpg" />
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <link rel="shortcut icon" type="image/x-icon" href="/img/asif.jpg" />
       </head>
       <body className="bg-black text-white antialiased selection:bg-[#FF630F] selection:text-black">
         {children}

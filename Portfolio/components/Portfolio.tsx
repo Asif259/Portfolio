@@ -36,6 +36,17 @@ export default function Portfolio({ initialProjects }: PortfolioProps) {
 
     if (!featuredSec || !card) return;
 
+    let tiltRafId: number | null = null;
+    let secRect: DOMRect | null = null;
+
+    const updateRect = () => {
+      secRect = featuredSec.getBoundingClientRect();
+    };
+
+    const onPointerEnter = () => {
+      updateRect();
+    };
+
     const onPointerMove = (e: PointerEvent) => {
       if (
         window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
@@ -44,16 +55,29 @@ export default function Portfolio({ initialProjects }: PortfolioProps) {
         return;
       }
 
-      const rect = featuredSec.getBoundingClientRect();
-      const normX = (e.clientX - rect.left) / rect.width;
-      const normY = (e.clientY - rect.top) / rect.height;
+      if (!secRect) updateRect();
+      if (!secRect || secRect.width === 0 || secRect.height === 0) return;
+
+      const normX = (e.clientX - secRect.left) / secRect.width;
+      const normY = (e.clientY - secRect.top) / secRect.height;
 
       const rotX = (normY - 0.5) * -18;
       const rotY = (normX - 0.5) * 22;
-      card.style.transform = `translateX(-50%) scale(1.02) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+
+      if (!tiltRafId) {
+        tiltRafId = requestAnimationFrame(() => {
+          tiltRafId = null;
+          card.style.transform = `translateX(-50%) scale(1.02) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+        });
+      }
     };
 
     const onPointerLeave = () => {
+      if (tiltRafId) {
+        cancelAnimationFrame(tiltRafId);
+        tiltRafId = null;
+      }
+      secRect = null;
       card.style.transform = "translateX(-50%) scale(1.02) rotateX(0deg) rotateY(0deg)";
       if (cursor) cursor.classList.remove("is-card-hover");
     };
@@ -66,12 +90,15 @@ export default function Portfolio({ initialProjects }: PortfolioProps) {
       if (cursor) cursor.classList.remove("is-card-hover");
     };
 
-    featuredSec.addEventListener("pointermove", onPointerMove);
-    featuredSec.addEventListener("pointerleave", onPointerLeave);
-    card.addEventListener("pointerenter", onCardEnter);
-    card.addEventListener("pointerleave", onCardLeave);
+    featuredSec.addEventListener("pointerenter", onPointerEnter, { passive: true });
+    featuredSec.addEventListener("pointermove", onPointerMove, { passive: true });
+    featuredSec.addEventListener("pointerleave", onPointerLeave, { passive: true });
+    card.addEventListener("pointerenter", onCardEnter, { passive: true });
+    card.addEventListener("pointerleave", onCardLeave, { passive: true });
 
     return () => {
+      if (tiltRafId) cancelAnimationFrame(tiltRafId);
+      featuredSec.removeEventListener("pointerenter", onPointerEnter);
       featuredSec.removeEventListener("pointermove", onPointerMove);
       featuredSec.removeEventListener("pointerleave", onPointerLeave);
       card.removeEventListener("pointerenter", onCardEnter);

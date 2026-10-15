@@ -32,12 +32,17 @@ export default function HeroWebGLCanvas({
       return;
     }
 
+    const glOptions: WebGLContextAttributes = {
+      alpha: true,
+      antialias: false,
+      powerPreference: "high-performance",
+      depth: false,
+      stencil: false,
+    };
+
     const gl =
-      canvas.getContext("webgl", { alpha: true, antialias: false }) ||
-      (canvas.getContext("experimental-webgl", {
-        alpha: true,
-        antialias: false,
-      }) as WebGLRenderingContext | null);
+      canvas.getContext("webgl", glOptions) ||
+      (canvas.getContext("experimental-webgl", glOptions) as WebGLRenderingContext | null);
 
     if (!gl) {
       console.warn("WebGL not supported, using CSS portrait fallback.");
@@ -199,11 +204,12 @@ export default function HeroWebGLCanvas({
     let faceScale = 1.0;
     let targetFaceScale = 1.0;
     let parallaxProgress = 0;
+    let isHeroVisible = true;
 
     function resize() {
       if (!hero || !canvasEl) return;
       const rect = hero.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2.0);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       canvasEl.width = Math.round(rect.width * dpr);
       canvasEl.height = Math.round(rect.height * dpr);
       ctx.viewport(0, 0, canvasEl.width, canvasEl.height);
@@ -246,7 +252,10 @@ export default function HeroWebGLCanvas({
     }
 
     function draw(now: number) {
-      if (!isTextureReady || destroyed) return;
+      if (!isTextureReady || destroyed || !isHeroVisible) {
+        isRunning = false;
+        return;
+      }
       const elapsed = (now - startTime) * 0.001;
 
       // Pointer smoothing factor: 0.075
@@ -291,7 +300,7 @@ export default function HeroWebGLCanvas({
 
       ctx.drawArrays(ctx.TRIANGLES, 0, 6);
 
-      if (strength > 0 || isInteracting) {
+      if ((strength > 0 || isInteracting) && isHeroVisible) {
         rafId = requestAnimationFrame(draw);
       } else {
         isRunning = false;
@@ -299,7 +308,7 @@ export default function HeroWebGLCanvas({
     }
 
     function kick() {
-      if (!isRunning && isTextureReady && !destroyed) {
+      if (!isRunning && isTextureReady && !destroyed && isHeroVisible) {
         isRunning = true;
         rafId = requestAnimationFrame(draw);
       }
@@ -358,20 +367,46 @@ export default function HeroWebGLCanvas({
       }
     };
 
+    let scrollRafId: number | null = null;
     const onScroll = () => {
-      if (prefersReducedMotion) return;
-      const rect = hero.getBoundingClientRect();
-      parallaxProgress = Math.min(Math.max(-rect.top / rect.height, 0), 1);
-      updateBackdropTransforms();
+      if (prefersReducedMotion || !isHeroVisible) return;
+      if (!scrollRafId) {
+        scrollRafId = requestAnimationFrame(() => {
+          scrollRafId = null;
+          const rect = hero.getBoundingClientRect();
+          parallaxProgress = Math.min(Math.max(-rect.top / rect.height, 0), 1);
+          updateBackdropTransforms();
+        });
+      }
     };
 
     const onVisibilityChange = () => {
       if (document.hidden) {
         isInteracting = false;
         isRunning = false;
-        if (rafId) cancelAnimationFrame(rafId);
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
       }
     };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isHeroVisible = entry.isIntersecting;
+        if (!isHeroVisible) {
+          if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+          }
+          isRunning = false;
+        } else if (isInteracting || strength > 0) {
+          kick();
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(hero);
 
     hero.addEventListener("pointerenter", onPointerEnter, { passive: true });
     hero.addEventListener("pointermove", onPointerMove, { passive: true });
@@ -381,7 +416,9 @@ export default function HeroWebGLCanvas({
 
     return () => {
       destroyed = true;
+      observer.disconnect();
       if (rafId) cancelAnimationFrame(rafId);
+      if (scrollRafId) cancelAnimationFrame(scrollRafId);
       window.removeEventListener("resize", resize);
       window.removeEventListener("scroll", onScroll);
       hero.removeEventListener("pointerenter", onPointerEnter);

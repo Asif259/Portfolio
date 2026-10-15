@@ -16,17 +16,35 @@ export default function CustomCursor() {
     const cursor = document.getElementById("custom-cursor");
     if (!cursor) return;
 
+    let mouseX = -100;
+    let mouseY = -100;
+    let rafId: number | null = null;
+    let isVisible = false;
+
+    const render = () => {
+      cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+      rafId = null;
+    };
+
     const onPointerMove = (e: PointerEvent) => {
-      cursor.style.left = `${e.clientX}px`;
-      cursor.style.top = `${e.clientY}px`;
-      cursor.style.opacity = "1";
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (!isVisible) {
+        isVisible = true;
+        cursor.style.opacity = "1";
+      }
+      if (!rafId) {
+        rafId = requestAnimationFrame(render);
+      }
     };
 
     const onPointerLeave = () => {
+      isVisible = false;
       cursor.style.opacity = "0";
     };
 
     const onPointerEnter = () => {
+      isVisible = true;
       cursor.style.opacity = "1";
     };
 
@@ -35,6 +53,7 @@ export default function CustomCursor() {
     document.addEventListener("pointerenter", onPointerEnter);
 
     return () => {
+      if (rafId) cancelAnimationFrame(rafId);
       window.removeEventListener("pointermove", onPointerMove);
       document.removeEventListener("pointerleave", onPointerLeave);
       document.removeEventListener("pointerenter", onPointerEnter);

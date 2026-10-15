@@ -1,145 +1,94 @@
 "use client";
 
-import {
-  FaTwitter,
-  FaFacebookF,
-  FaLinkedinIn,
-  FaInstagram,
-} from "react-icons/fa";
-import FadeIn from "./FadeIn";
+import Link from "next/link";
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <div
-      className="relative overflow-hidden border-t"
-      style={{
-        backgroundColor: "#121212",
-        borderTopColor: "rgba(20,184,166,0.12)",
-      }}
-    >
-      {/* Subtle top glow */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-32 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(20,184,166,0.07) 0%, transparent 100%)",
-        }}
-      />
+    <footer className="relative bg-black text-white border-t border-[#222222] py-12 px-[3%] overflow-hidden">
+      <div className="container mx-auto max-w-7xl">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-[#222222]">
 
-      <div className="relative z-10 container mx-auto text-center py-10 px-4 lg:px-20">
-        <FadeIn direction="up" delay={0.1}>
-          {/* Logo */}
-          <div className="mb-6">
-            <span className="text-xl font-extrabold tracking-tight">
-              <span style={{
-                background: "linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%)",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                color: "transparent",
-                WebkitTextFillColor: "transparent",
-              }}>Port</span>
-              <span style={{ color: "#f1f5f9" }}>folio</span>
-            </span>
+          {/* Identity & Wordmark */}
+          <div className="space-y-1">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 font-display text-lg font-medium tracking-tight text-white"
+            >
+              <span className="w-2 h-2 rounded-full bg-[#FF630F]" />
+              <span>Ashraful Asif</span>
+            </Link>
+            <p className="font-utility text-xs text-[#888888]">
+              Full-Stack Software Engineer &amp; Coding Instructor // AIUB CSE
+            </p>
           </div>
-        </FadeIn>
 
-        <FadeIn direction="up" delay={0.2}>
-          {/* Social links */}
-          <div className="flex justify-center mb-6 gap-4">
-            {[
-              {
-                href: "https://twitter.com/Ashrafu15345745",
-                icon: FaTwitter,
-                label: "Twitter",
-              },
-              {
-                href: "https://www.facebook.com/ashraful.asif260/",
-                icon: FaFacebookF,
-                label: "Facebook",
-              },
-              {
-                href: "https://www.linkedin.com/in/ashraful-asif",
-                icon: FaLinkedinIn,
-                label: "LinkedIn",
-              },
-              { href: "", icon: FaInstagram, label: "Instagram" },
-            ].map(({ href, icon: Icon, label }) => (
-              <a
-                key={label}
-                className="btn-social border transition-all duration-300"
-                target={href !== "#" ? "_blank" : undefined}
-                rel={href !== "#" ? "noopener noreferrer" : undefined}
-                href={href}
-                aria-label={label}
-                style={{
-                  backgroundColor: "rgba(20,184,166,0.08)",
-                  borderColor: "rgba(20,184,166,0.2)",
-                  color: "#94a3b8",
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLAnchorElement;
-                  el.style.backgroundColor = "rgba(20,184,166,0.15)";
-                  el.style.borderColor = "rgba(20,184,166,0.5)";
-                  el.style.color = "#14b8a6";
-                  el.style.boxShadow = "0 0 15px rgba(20,184,166,0.25)";
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLAnchorElement;
-                  el.style.backgroundColor = "rgba(20,184,166,0.08)";
-                  el.style.borderColor = "rgba(20,184,166,0.2)";
-                  el.style.color = "#94a3b8";
-                  el.style.boxShadow = "none";
-                }}
-              >
-                <Icon />
-              </a>
-            ))}
+          {/* Quick Navigation Anchors */}
+          <nav className="flex flex-wrap items-center gap-6 font-utility text-xs tracking-wider uppercase text-[#888888]">
+            <a href="#about" className="hover:text-white transition-colors">
+              Approach
+            </a>
+            <a href="#featured" className="hover:text-white transition-colors">
+              Featured
+            </a>
+            <a href="#work" className="hover:text-white transition-colors">
+              Selected Work
+            </a>
+            <a href="#skill" className="hover:text-white transition-colors">
+              Capabilities
+            </a>
+            <a href="#qualification" className="hover:text-white transition-colors">
+              Experience
+            </a>
+            <a href="#contact" className="hover:text-white transition-colors">
+              Contact
+            </a>
+          </nav>
+
+          {/* Back to Top */}
+          <button
+            onClick={scrollToTop}
+            className="font-utility text-xs font-semibold tracking-wider uppercase text-[#FF630F] hover:text-white transition-colors cursor-pointer"
+          >
+            Back to top ↑
+          </button>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between text-xs font-utility text-[#666666] gap-3">
+          <p>© {currentYear} Ashraful Asif. Crafted with precision &amp; Next.js.</p>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://github.com/Asif259"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#FF630F] transition-colors"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ashraful-asif"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#FF630F] transition-colors"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="mailto:asrafulmdasif@gmail.com"
+              className="hover:text-[#FF630F] transition-colors"
+            >
+              Email
+            </a>
           </div>
-        </FadeIn>
-
-        <FadeIn direction="up" delay={0.3}>
-          {/* Nav links */}
-          <div className="flex justify-center mb-6 flex-wrap gap-4 text-sm">
-            {["Privacy", "Terms", "FAQs", "Help"].map((link, i, arr) => (
-              <span key={link} className="flex items-center gap-4">
-                <a
-                  href="#"
-                  className="transition-colors duration-200"
-                  style={{ color: "rgba(148,163,184,0.7)" }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.color = "#14b8a6";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.color =
-                      "rgba(148,163,184,0.7)";
-                  }}
-                >
-                  {link}
-                </a>
-                {i < arr.length - 1 && (
-                  <span style={{ color: "rgba(20,184,166,0.2)" }}>|</span>
-                )}
-              </span>
-            ))}
-          </div>
-        </FadeIn>
-
-        <FadeIn direction="up" delay={0.4}>
-          {/* Divider */}
-          <div
-            className="w-full h-px mb-6"
-            style={{
-              background:
-                "linear-gradient(90deg, transparent, rgba(20,184,166,0.2), transparent)",
-            }}
-          />
-
-          <p className="text-sm" style={{ color: "rgba(148,163,184,0.5)" }}>
-            &copy; {new Date().getFullYear()} All Rights Reserved. Made with{" "}
-            <span style={{ color: "#14b8a6" }}>♥</span> by Moh. Asraful Hasan Asif
-          </p>
-        </FadeIn>
+        </div>
       </div>
-    </div>
+    </footer>
   );
 }

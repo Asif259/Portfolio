@@ -1,8 +1,3 @@
-# Portfolio Project Content Generator for Sanity Studio
-
-> **How to use this prompt:**
-> Copy everything below the horizontal divider (`---`) into your AI assistant (e.g., Gemini, ChatGPT, Claude) whenever you finish a software project.
-> Provide your raw project information (README, repository code, screenshots, notes, or links) along with the prompt. The AI will generate an accurate, complete, copy-paste-ready specification sheet matching your exact Sanity CMS schema.
 
 ---
 
@@ -302,19 +297,3 @@ Before publishing in Sanity Studio:
 ```
 
 ---
-
-## INSTRUCTIONS TO THE USER:
-Whenever you have a project ready to add to your portfolio, provide the assistant with your project materials:
-```markdown
-Here is my project information:
-- Project Name / Title: [Name]
-- Repository: [GitHub link or code summary]
-- README: [Paste README or upload file]
-- Screenshots available: [List screenshots or image files]
-- Live Demo: [URL if available]
-- Technologies: [List key tech]
-- Role & Date: [e.g. Full Stack Developer, March 2026]
-- Notes: [Any specific notes or highlights]
-
-Please generate the complete Sanity Studio content sheet for this project.
-```

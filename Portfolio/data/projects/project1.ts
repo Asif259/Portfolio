@@ -2,7 +2,7 @@ import { PortfolioProject } from "../portfolio";
 
 export const project1: PortfolioProject = {
   id: 1,
-  name: "Redesigned MyBBBGlobal Website",
+  name: "Cryzen: Mutual-Aid & Fintech Web Application",
   category: "Frontend Development",
   coverImage: "/img/cryzen/cryzen-1.png",
   images: [

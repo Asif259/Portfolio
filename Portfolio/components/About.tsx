@@ -1,321 +1,107 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import {
-  FaBriefcase,
-  FaBook,
-  FaUser,
-  FaCalendar,
-  FaGraduationCap,
-  FaAward,
-  FaPhone,
-  FaEnvelope,
-  FaMapMarkerAlt,
-} from "react-icons/fa";
-import FadeIn, { StaggerContainer, StaggerItem } from "./FadeIn";
+import { HiArrowNarrowRight } from "react-icons/hi";
 
 export default function About() {
-  const infoItems = [
-    { icon: FaUser, label: "Name", value: "Moh. Asraful Hasan Asif" },
-    { icon: FaCalendar, label: "Birthday", value: "14 November 2002" },
-    { icon: FaGraduationCap, label: "Degree", value: "Bachelors" },
-    { icon: FaAward, label: "Experience", value: "2 Years" },
-    { icon: FaPhone, label: "Phone", value: "+8801853376599" },
-    { icon: FaEnvelope, label: "Email", value: "ashrafulasif260@gmail.com" },
-    {
-      icon: FaMapMarkerAlt,
-      label: "Address",
-      value: "House #254, Road-9, Block-C, Bashundhara, Dhaka",
-    },
+  const [isRevealed, setIsRevealed] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsRevealed(true);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const disciplines = [
+    "Full-Stack Engineering",
+    "Frontend Architecture",
+    "Backend & APIs",
+    "Database Modeling",
+    "Technical Instruction",
   ];
 
   return (
-    <div
-      className="py-16 relative overflow-hidden"
-      id="about"
-      style={{ backgroundColor: "#121212" }}
-    >
-      {/* Subtle grid */}
-      <div className="absolute inset-0 bg-grid-sm opacity-60 pointer-events-none" />
-
-      <div className="relative z-10 container mx-auto px-4 lg:px-8">
-        {/* Section Header */}
-        <FadeIn direction="up" delay={0.1}>
-          <div className="text-center mb-12">
-            <span
-              className="inline-block text-xs font-mono font-semibold uppercase tracking-widest px-4 py-2 rounded-full border mb-4"
-              style={{
-                color: "#14b8a6",
-                borderColor: "rgba(20,184,166,0.3)",
-                backgroundColor: "rgba(20,184,166,0.06)",
-              }}
-            >
-              About Me
-            </span>
-            <h1
-              className="text-3xl lg:text-4xl font-bold mb-4"
-              style={{ color: "#f1f5f9" }}
-            >
-              Crafting Digital Experiences
-            </h1>
-            <div
-              className="w-20 h-0.5 mx-auto rounded-full"
-              style={{
-                background: "linear-gradient(90deg, #14b8a6, #0d9488)",
-                boxShadow: "0 0 10px rgba(20,184,166,0.5)",
-              }}
-            />
-          </div>
-        </FadeIn>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          {/* Intro Section */}
-          <FadeIn direction="left" delay={0.2} className="space-y-6">
-            <div className="space-y-4">
-              <span
-                className="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold border"
-                style={{
-                  backgroundColor: "rgba(20,184,166,0.08)",
-                  borderColor: "rgba(20,184,166,0.25)",
-                  color: "#2dd4bf",
-                }}
-              >
-                Full-Stack Developer
-              </span>
-              <p className="text-base leading-relaxed" style={{ color: "#94a3b8" }}>
-                I&apos;m a passionate full-stack developer with 2 years of experience
-                building scalable, user-centric applications. I specialize in
-                creating modern, responsive UIs, secure backend APIs, and
-                cloud-deployed solutions that deliver exceptional user experiences.
-              </p>
-            </div>
-
-            {/* Info Grid - First 4 items */}
-            <StaggerContainer delayBetween={0.05}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {infoItems.slice(0, 4).map((item, index) => {
-                  const IconComponent = item.icon;
-                  return (
-                    <StaggerItem key={index}>
-                      <div
-                        className="flex items-start gap-3 p-3 rounded-lg border transition-all duration-200 group"
-                        style={{
-                          backgroundColor: "#1E1E1E",
-                          borderColor: "rgba(20,184,166,0.1)",
-                        }}
-                        onMouseEnter={(e) => {
-                          (e.currentTarget as HTMLDivElement).style.borderColor =
-                            "rgba(20,184,166,0.3)";
-                        }}
-                        onMouseLeave={(e) => {
-                          (e.currentTarget as HTMLDivElement).style.borderColor =
-                            "rgba(20,184,166,0.1)";
-                        }}
-                      >
-                        <div
-                          className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-                          style={{
-                            backgroundColor: "rgba(20,184,166,0.1)",
-                            color: "#14b8a6",
-                          }}
-                        >
-                          <IconComponent className="w-4 h-4" />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <h6
-                            className="font-semibold text-sm mb-1"
-                            style={{ color: "#f1f5f9" }}
-                          >
-                            {item.label}
-                          </h6>
-                          <p
-                            className="text-sm break-words leading-tight"
-                            style={{ color: "#94a3b8" }}
-                          >
-                            {item.value}
-                          </p>
-                        </div>
-                      </div>
-                    </StaggerItem>
-                  );
-                })}
-              </div>
-            </StaggerContainer>
-          </FadeIn>
-
-          {/* Content Section */}
-          <FadeIn direction="right" delay={0.3} className="space-y-6">
-            {/* Info Grid - Last 3 items */}
-            <StaggerContainer delayBetween={0.05}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {infoItems.slice(4).map((item, index) => {
-                  const IconComponent = item.icon;
-                  return (
-                    <StaggerItem key={index}>
-                      <div
-                        className="flex items-start gap-3 p-3 rounded-lg border transition-all duration-200 group"
-                        style={{
-                          backgroundColor: "#1E1E1E",
-                          borderColor: "rgba(20,184,166,0.1)",
-                        }}
-                        onMouseEnter={(e) => {
-                          (e.currentTarget as HTMLDivElement).style.borderColor =
-                            "rgba(20,184,166,0.3)";
-                        }}
-                        onMouseLeave={(e) => {
-                          (e.currentTarget as HTMLDivElement).style.borderColor =
-                            "rgba(20,184,166,0.1)";
-                        }}
-                      >
-                        <div
-                          className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-                          style={{
-                            backgroundColor: "rgba(20,184,166,0.1)",
-                            color: "#14b8a6",
-                          }}
-                        >
-                          <IconComponent className="w-4 h-4" />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <h6
-                            className="font-semibold text-sm mb-1"
-                            style={{ color: "#f1f5f9" }}
-                          >
-                            {item.label}
-                          </h6>
-                          <p
-                            className="text-sm break-words leading-tight"
-                            style={{ color: "#94a3b8" }}
-                          >
-                            {item.value}
-                          </p>
-                        </div>
-                      </div>
-                    </StaggerItem>
-                  );
-                })}
-              </div>
-            </StaggerContainer>
-
-            {/* Stats */}
-            <FadeIn direction="up" delay={0.4}>
-              <div className="grid grid-cols-3 gap-4 pt-2">
-                {[
-                  { value: "10+", label: "Projects" },
-                  { value: "2+", label: "Years" },
-                  { value: "5+", label: "Technologies" },
-                ].map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="text-center p-3 rounded-lg border"
-                    style={{
-                      backgroundColor: "rgba(20,184,166,0.05)",
-                      borderColor: "rgba(20,184,166,0.15)",
-                    }}
-                  >
-                    <div
-                      className="text-2xl font-bold"
-                      style={{
-                        color: "#14b8a6",
-                        textShadow: "0 0 15px rgba(20,184,166,0.4)",
-                      }}
-                    >
-                      {stat.value}
-                    </div>
-                    <div className="text-xs mt-1" style={{ color: "#94a3b8" }}>
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-
-            {/* Action Buttons */}
-            <FadeIn direction="up" delay={0.5}>
-              <div className="flex flex-wrap gap-3 pt-4">
-                <Link
-                  href="https://www.linkedin.com/in/ashraful-asif"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn flex items-center gap-2"
-                  style={{
-                    background: "linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)",
-                    color: "#fff",
-                    boxShadow: "0 0 15px rgba(20,184,166,0.35)",
-                  }}
-                >
-                  <FaBriefcase className="w-4 h-4" />
-                  Hire Me
-                </Link>
-                <a
-                  href="#portfolio"
-                  className="btn flex items-center gap-2 border font-semibold text-sm"
-                  style={{
-                    backgroundColor: "transparent",
-                    borderColor: "rgba(20,184,166,0.25)",
-                    color: "#94a3b8",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                      "rgba(20,184,166,0.5)";
-                    (e.currentTarget as HTMLAnchorElement).style.color = "#14b8a6";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                      "rgba(20,184,166,0.25)";
-                    (e.currentTarget as HTMLAnchorElement).style.color = "#94a3b8";
-                  }}
-                >
-                  <FaBook className="w-4 h-4" />
-                  View Portfolio
-                </a>
-              </div>
-            </FadeIn>
-          </FadeIn>
+    <section className="cq-container relative bg-black text-white border-t border-[#222222] py-20 lg:py-28" id="about">
+      <div ref={containerRef} className="container mx-auto px-[3%] max-w-7xl flex flex-col justify-between min-h-[720px]">
+        
+        {/* Section Kicker */}
+        <div className="font-utility text-sm md:text-base font-medium tracking-[0.08em] text-[#949494] uppercase mb-12">
+          // Engineering Approach
         </div>
 
-        {/* Skills Preview */}
-        <FadeIn direction="up" delay={0.4}>
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+        {/* Massive Editorial Typographic Statement */}
+        <div className="relative cursor-default select-none my-auto">
+          <div className="font-display font-medium text-[clamp(28px,6.2cqw,88px)] leading-[1.02] tracking-[-0.04em] text-white flex flex-col gap-1 md:gap-2">
             {[
-              { name: "Frontend", value: "React, Next.js, TypeScript" },
-              { name: "Backend", value: "Node.js, Express, MongoDB" },
-              { name: "Mobile", value: "React Native, Expo" },
-              { name: "Tools", value: "Git, Docker, AWS" },
-            ].map((skill, index) => (
-              <div
-                key={index}
-                className="text-center p-4 rounded-lg border transition-all duration-200"
-                style={{
-                  backgroundColor: "#1E1E1E",
-                  borderColor: "rgba(20,184,166,0.1)",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.borderColor =
-                    "rgba(20,184,166,0.3)";
-                  (e.currentTarget as HTMLDivElement).style.boxShadow =
-                    "0 0 15px rgba(20,184,166,0.08)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.borderColor =
-                    "rgba(20,184,166,0.1)";
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
-                }}
-              >
-                <h4
-                  className="font-semibold mb-2 text-sm"
-                  style={{ color: "#f1f5f9" }}
+              "Rooted in systems, driven by performance,",
+              "Ashraful Asif crafts web applications and",
+              "digital products that bring structure to",
+              "complex workflows through modern architecture",
+              "and clean, resilient code.",
+            ].map((line, idx) => (
+              <div key={idx} className="overflow-hidden block">
+                <span
+                  className={`block transition-all duration-700 ease-out ${
+                    isRevealed
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-[110%] opacity-0"
+                  }`}
+                  style={{ transitionDelay: `${idx * 120}ms` }}
                 >
-                  {skill.name}
-                </h4>
-                <p className="text-xs" style={{ color: "#94a3b8" }}>
-                  {skill.value}
-                </p>
+                  {line}
+                </span>
               </div>
             ))}
           </div>
-        </FadeIn>
+        </div>
+
+        {/* Metadata Bottom Row */}
+        <div className="mt-16 md:mt-24 pt-10 border-t border-[#222222] flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
+          <div className="max-w-[540px] space-y-3">
+            <p className="font-body text-base md:text-lg leading-[1.55] text-[#AAAAAA]">
+              I bridge intuitive user experiences with solid backend architectures. Working across Next.js, React, TypeScript, NestJS, and PostgreSQL, I prioritize clean interfaces, strict typing, and reliable software delivery.
+            </p>
+            <div className="pt-2">
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 text-sm font-utility font-semibold text-[#FF630F] hover:text-white transition-colors"
+              >
+                Start a conversation ↗
+              </a>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-3 items-start md:items-end">
+            <span className="font-utility text-xs font-semibold tracking-[0.14em] uppercase text-[#949494]">
+              CORE DISCIPLINES
+            </span>
+            <div className="flex flex-wrap gap-2 md:justify-end">
+              {disciplines.map((item) => (
+                <span
+                  key={item}
+                  className="inline-block border border-[#444444] rounded-full px-3.5 py-1.5 font-utility text-xs text-[#B8B8B8] hover:border-[#FF630F] hover:text-white transition-colors"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
       </div>
-    </div>
+    </section>
   );
 }

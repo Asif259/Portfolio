@@ -1,254 +1,124 @@
 "use client";
 
-import { useState, FormEvent } from "react";
-import FadeIn from "./FadeIn";
+import { useState } from "react";
+import { FaFileDownload, FaGithub, FaLinkedin, FaCheck } from "react-icons/fa";
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [success, setSuccess] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const email = "asrafulmdasif@gmail.com";
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
-    }
-    if (success) setSuccess(false);
-  };
-
-  const validate = () => {
-    const newErrors: Record<string, string> = {};
-    if (!formData.name.trim()) newErrors.name = "Please enter your name";
-    if (!formData.email.trim()) {
-      newErrors.email = "Please enter your email";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email";
-    }
-    if (!formData.subject.trim()) newErrors.subject = "Please enter a subject";
-    if (!formData.message.trim()) newErrors.message = "Please enter your message";
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    if (!validate()) return;
-    setIsSubmitting(true);
+  const handleCopyEmail = async () => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setSuccess(true);
-      setFormData({ name: "", email: "", subject: "", message: "" });
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(email);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2500);
+      }
     } catch {
-      setErrors({
-        submit:
-          "Sorry, it seems our mail server is not responding. Please try again later!",
-      });
-    } finally {
-      setIsSubmitting(false);
+      // Fallback
     }
-  };
-
-  const inputStyle = {
-    backgroundColor: "#252525",
-    borderColor: "rgba(20,184,166,0.15)",
-    color: "#f1f5f9",
-    outline: "none",
-  };
-
-  const inputFocusStyle = {
-    borderColor: "rgba(20,184,166,0.5)",
-    boxShadow: "0 0 0 3px rgba(20,184,166,0.08)",
   };
 
   return (
-    <div
-      className="py-12 relative overflow-hidden"
-      id="contact"
-      style={{ backgroundColor: "#1E1E1E" }}
-    >
-      {/* Grid */}
-      <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
+    <section className="cq-container relative bg-black text-white border-t border-[#222222] pt-24 pb-16 px-[3%]" id="contact">
+      <div className="container mx-auto max-w-7xl">
 
-      {/* Bottom glow */}
-      <div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-64 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 100% at 50% 100%, rgba(20,184,166,0.08) 0%, transparent 100%)",
-        }}
-      />
+        {/* Kicker */}
+        <div className="font-utility text-sm md:text-base font-medium tracking-[0.08em] text-[#949494] uppercase font-mono mb-10">
+          // Contact.
+        </div>
 
-      <div className="relative z-10 container mx-auto px-4 lg:px-20">
-        <FadeIn direction="up" delay={0.1}>
-          <div className="section-header">
-            <h1 className="section-header-bg">Contact</h1>
-            <h1 className="section-header-text">Contact Me</h1>
-          </div>
-        </FadeIn>
+        {/* Oversized Editorial Display Heading */}
+        <h2 className="font-display font-medium text-[clamp(42px,9cqw,120px)] leading-[0.88] tracking-[-0.045em] mb-16 md:mb-20 m-0">
+          <span className="block text-white">LET’S MAKE</span>
+          <span className="block text-[#FF630F]">SOMETHING MATTER.</span>
+        </h2>
 
-        {/* Big CTA headline */}
-        <FadeIn direction="up" delay={0.2}>
-          <div className="text-center mb-10">
-            <p
-              className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight"
-              style={{ color: "rgba(20,184,166,0.12)", letterSpacing: "0.02em" }}
-            >
-              GET IN TOUCH
+        {/* Two-Column Editorial Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 pb-20 border-b border-[#222222]">
+
+          {/* Left Column: Mission & Tags */}
+          <div className="space-y-6 max-w-xl">
+            <p className="font-body text-lg md:text-xl text-[#B8B8B8] leading-[1.5]">
+              Have a full-stack platform, web application, or complex digital product in mind? Tell me what you’re building and where you want to take it.
             </p>
-          </div>
-        </FadeIn>
-
-        <FadeIn direction="up" delay={0.3}>
-          <div className="flex justify-center">
-            <div className="w-full max-w-2xl">
-              <div
-                className="text-center rounded-2xl p-8 md:p-12 border"
-                style={{
-                  backgroundColor: "#121212",
-                  borderColor: "rgba(20,184,166,0.15)",
-                  boxShadow:
-                    "0 4px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(20,184,166,0.05)",
-                }}
+            <div className="font-utility text-xs md:text-sm text-[#777777] font-mono tracking-wider pt-2">
+              Next.js Architectures / Distributed Backends / Relational Schemas / Mentorship
+            </div>
+            <div className="pt-4 flex flex-wrap gap-3">
+              <a
+                href="/my_cv.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pill-btn text-sm"
               >
-                {success && (
-                  <div
-                    className="mb-6 p-4 rounded-lg border text-sm"
-                    style={{
-                      backgroundColor: "rgba(20,184,166,0.08)",
-                      borderColor: "rgba(20,184,166,0.3)",
-                      color: "#14b8a6",
-                    }}
-                  >
-                    <strong>Your message has been sent.</strong> I&apos;ll get back to you soon!
-                  </div>
-                )}
-                {errors.submit && (
-                  <div
-                    className="mb-6 p-4 rounded-lg border text-sm"
-                    style={{
-                      backgroundColor: "rgba(239,68,68,0.08)",
-                      borderColor: "rgba(239,68,68,0.3)",
-                      color: "#f87171",
-                    }}
-                  >
-                    {errors.submit}
-                  </div>
-                )}
-                <form onSubmit={handleSubmit} className="space-y-4 text-left">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Your Name"
-                        className="w-full px-4 py-3 rounded-full border transition-all duration-200"
-                        style={inputStyle}
-                        onFocus={(e) =>
-                          Object.assign(e.currentTarget.style, inputFocusStyle)
-                        }
-                        onBlur={(e) => {
-                          e.currentTarget.style.borderColor =
-                            "rgba(20,184,166,0.15)";
-                          e.currentTarget.style.boxShadow = "none";
-                        }}
-                      />
-                      {errors.name && (
-                        <p className="text-red-400 text-xs mt-1">{errors.name}</p>
-                      )}
-                    </div>
-                    <div>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="Your Email"
-                        className="w-full px-4 py-3 rounded-full border transition-all duration-200"
-                        style={inputStyle}
-                        onFocus={(e) =>
-                          Object.assign(e.currentTarget.style, inputFocusStyle)
-                        }
-                        onBlur={(e) => {
-                          e.currentTarget.style.borderColor =
-                            "rgba(20,184,166,0.15)";
-                          e.currentTarget.style.boxShadow = "none";
-                        }}
-                      />
-                      {errors.email && (
-                        <p className="text-red-400 text-xs mt-1">{errors.email}</p>
-                      )}
-                    </div>
-                  </div>
-                  <div>
-                    <input
-                      type="text"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      placeholder="Subject"
-                      className="w-full px-4 py-3 rounded-full border transition-all duration-200"
-                      style={inputStyle}
-                      onFocus={(e) =>
-                        Object.assign(e.currentTarget.style, inputFocusStyle)
-                      }
-                      onBlur={(e) => {
-                        e.currentTarget.style.borderColor =
-                          "rgba(20,184,166,0.15)";
-                        e.currentTarget.style.boxShadow = "none";
-                      }}
-                    />
-                    {errors.subject && (
-                      <p className="text-red-400 text-xs mt-1">{errors.subject}</p>
-                    )}
-                  </div>
-                  <div>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      rows={5}
-                      placeholder="Message"
-                      className="w-full px-4 py-3 rounded-3xl border transition-all duration-200 resize-none"
-                      style={inputStyle}
-                      onFocus={(e) =>
-                        Object.assign(e.currentTarget.style, inputFocusStyle)
-                      }
-                      onBlur={(e) => {
-                        e.currentTarget.style.borderColor =
-                          "rgba(20,184,166,0.15)";
-                        e.currentTarget.style.boxShadow = "none";
-                      }}
-                    />
-                    {errors.message && (
-                      <p className="text-red-400 text-xs mt-1">{errors.message}</p>
-                    )}
-                  </div>
-                  <div className="text-center pt-2">
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="btn btn-primary disabled:opacity-50 disabled:cursor-not-allowed min-w-[180px]"
-                    >
-                      {isSubmitting ? "Sending..." : "Send Message"}
-                    </button>
-                  </div>
-                </form>
-              </div>
+                <FaFileDownload className="w-3.5 h-3.5 text-black" />
+                Download CV / Resume ↗
+              </a>
             </div>
           </div>
-        </FadeIn>
+
+          {/* Right Column: Interactive Email Box & Socials */}
+          <div className="flex flex-col gap-8 justify-start">
+            <div className="p-6 md:p-8 rounded-lg border border-[#282828] bg-[#0E0E12] space-y-4">
+              <span className="font-utility text-xs uppercase tracking-widest text-[#949494] block font-mono">
+                Direct Communication
+              </span>
+              <div>
+                <a
+                  href={`mailto:${email}`}
+                  className="font-display text-2xl md:text-3xl text-white hover:text-[#FF630F] transition-colors break-all"
+                >
+                  {email}
+                </a>
+              </div>
+
+              <div className="flex items-center gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#444444] bg-[#181818] font-utility text-xs text-[#E0E0E0] hover:border-[#FF630F] hover:text-[#FF630F] transition-all cursor-pointer"
+                >
+                  {copied ? (
+                    <>
+                      <FaCheck className="w-3 h-3 text-[#22C55E]" />
+                      <span className="text-[#22C55E]">Email copied to clipboard!</span>
+                    </>
+                  ) : (
+                    <span>Copy email address</span>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Verified Social Channels */}
+            <div className="flex items-center gap-6 font-utility text-sm">
+              <span className="text-xs font-mono uppercase tracking-wider text-[#666666]">
+                Channels:
+              </span>
+              <a
+                href="https://github.com/Asif259"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#AAAAAA] hover:text-white transition-colors flex items-center gap-1.5"
+              >
+                <FaGithub className="w-4 h-4 text-[#FF630F]" />
+                GitHub ↗
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ashraful-asif"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#AAAAAA] hover:text-white transition-colors flex items-center gap-1.5"
+              >
+                <FaLinkedin className="w-4 h-4 text-[#FF630F]" />
+                LinkedIn ↗
+              </a>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </div>
+    </section>
   );
 }

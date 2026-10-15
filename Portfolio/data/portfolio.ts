@@ -45,14 +45,14 @@ import { project7 } from "./projects/project7";
 import { project8 } from "./projects/project8";
 
 export const portfolioProjects: PortfolioProject[] = [
-  project1,
-  project2,
-  project3,
-  project4,
-  project5,
-  project6,
-  project7,
-  project8,
+  project8, // BariVara (Lead Full-Stack Product)
+  project7, // Nexus (Full-Stack Real-time Event Platform)
+  project4, // Doctein (Full-Stack Healthcare Practice Platform)
+  project2, // Culinary Odyssey (Full-Stack Catering Platform)
+  project3, // Home Decor And More (Full-Stack E-commerce)
+  project1, // Cryzen (Frontend / Client MYBBBGlobal)
+  project5, // Elegant Tech (Frontend Agency Platform)
+  project6, // Careem Website (Frontend Multi-page Platform)
 ];
 
 export function getProjectById(id: number): PortfolioProject | undefined {

@@ -3,317 +3,285 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaFileDownload, FaLinkedin } from "react-icons/fa";
-import FadeIn, { StaggerContainer, StaggerItem } from "./FadeIn";
+import { FaFileDownload, FaGithub, FaLinkedin } from "react-icons/fa";
+import HeroWebGLCanvas from "./HeroWebGLCanvas";
 
 export default function Hero() {
-  const [currentText, setCurrentText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [textIndex, setTextIndex] = useState(0);
-
-  const texts = [
-    "Full Stack Web Developer",
-    "Front End Developer",
-    "Coding Instructor",
-    "Freelancer",
-  ];
+  const [timeStr, setTimeStr] = useState("00:00:00");
+  const [offsetStr, setOffsetStr] = useState("GMT+06:00 // LOCAL");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const typeSpeed = 100;
-    const deleteSpeed = 50;
-    const pauseTime = 2000;
+    setMounted(true);
+    const updateClock = () => {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, "0");
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+      const seconds = String(now.getSeconds()).padStart(2, "0");
+      setTimeStr(`${hours}:${minutes}:${seconds}`);
 
-    const timer = setTimeout(
-      () => {
-        const current = texts[textIndex];
+      const offsetMinutes = -now.getTimezoneOffset();
+      const sign = offsetMinutes >= 0 ? "+" : "-";
+      const offH = String(Math.floor(Math.abs(offsetMinutes) / 60)).padStart(2, "0");
+      const offM = String(Math.abs(offsetMinutes) % 60).padStart(2, "0");
+      setOffsetStr(`GMT${sign}${offH}:${offM} // LOCAL`);
+    };
 
-        if (!isDeleting) {
-          if (currentText.length < current.length) {
-            setCurrentText(current.substring(0, currentText.length + 1));
-          } else {
-            setTimeout(() => setIsDeleting(true), pauseTime);
-          }
-        } else {
-          if (currentText.length > 0) {
-            setCurrentText(current.substring(0, currentText.length - 1));
-          } else {
-            setIsDeleting(false);
-            setTextIndex((prev) => (prev + 1) % texts.length);
-          }
-        }
-      },
-      isDeleting ? deleteSpeed : typeSpeed
-    );
+    updateClock();
+    const timer = setInterval(updateClock, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
-    return () => clearTimeout(timer);
-  }, [currentText, isDeleting, textIndex, texts]);
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
-    <div
-      className="relative w-full min-h-screen flex items-center pt-20 pb-12 overflow-hidden"
-      id="home"
+    <header
+      id="hero-section"
+      className="cq-container relative w-full h-[920px] min-h-[850px] lg:h-[980px] overflow-hidden bg-black text-white contain-paint"
     >
-      {/* Deep dark base */}
-      <div className="absolute inset-0" style={{ backgroundColor: "#121212" }} />
+      {/* Background Hero WebGL Cursor Canvas & Portrait Layer */}
+      <HeroWebGLCanvas imageSrc="/hero.webp" containerId="hero-section" />
 
-      {/* Technical grid background */}
-      <div
-        className="absolute inset-0 bg-grid"
-        style={{ opacity: 1 }}
-      />
-
-      {/* Orange radial glow from top */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(20,184,166,0.12) 0%, transparent 65%)",
-        }}
-      />
-
-      {/* Side accent glow left */}
-      <div
-        className="absolute left-0 top-1/2 -translate-y-1/2 w-80 h-80 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(20,184,166,0.1) 0%, transparent 70%)",
-          filter: "blur(40px)",
-        }}
-      />
-
-      {/* Floating blobs — orange tinted */}
-      <div
-        className="absolute top-24 left-10 w-64 h-64 rounded-full animate-float pointer-events-none"
-        style={{
-          background: "rgba(20,184,166,0.06)",
-          filter: "blur(60px)",
-        }}
-      />
-      <div
-        className="absolute top-40 right-10 w-56 h-56 rounded-full animate-float pointer-events-none"
-        style={{
-          background: "rgba(20,184,166,0.04)",
-          filter: "blur(50px)",
-          animationDelay: "2s",
-        }}
-      />
-      <div
-        className="absolute -bottom-8 left-1/2 w-72 h-72 rounded-full animate-float pointer-events-none"
-        style={{
-          background: "rgba(20,184,166,0.03)",
-          filter: "blur(70px)",
-          animationDelay: "4s",
-        }}
-      />
-
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 lg:px-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Text side */}
-          <div className="text-center lg:text-left">
-            <FadeIn direction="up" delay={0.1}>
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono font-semibold mb-6 border"
-                style={{
-                  backgroundColor: "rgba(20,184,166,0.08)",
-                  borderColor: "rgba(20,184,166,0.25)",
-                  color: "#2dd4bf",
-                }}
-              >
-                <span
-                  className="w-2 h-2 rounded-full animate-pulse"
-                  style={{ backgroundColor: "#14b8a6", boxShadow: "0 0 6px #14b8a6" }}
-                />
-                Available for work
-              </div>
-            </FadeIn>
-
-            <FadeIn direction="up" delay={0.2}>
-              <h1
-                className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-4 leading-tight"
-                style={{ color: "#f1f5f9" }}
-              >
-                Moh. Asraful
-                <br />
-                <span style={{
-                  background: "linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%)",
-                  backgroundClip: "text",
-                  WebkitBackgroundClip: "text",
-                  color: "transparent",
-                  WebkitTextFillColor: "transparent",
-                }}>Hasan Asif</span>
-              </h1>
-            </FadeIn>
-
-            <FadeIn direction="up" delay={0.3}>
-              <div className="flex items-center justify-center lg:justify-start mb-8 min-h-[60px]">
-                <h2
-                  className="inline font-semibold text-xl sm:text-2xl lg:text-3xl"
-                  style={{ color: "#94a3b8" }}
-                >
-                  I&apos;m a{" "}
-                  <span
-                    className="font-bold"
-                    style={{
-                      color: "#14b8a6",
-                      textShadow: "0 0 20px rgba(20,184,166,0.5)",
-                    }}
-                  >
-                    {currentText}
-                  </span>
-                  <span className="typed-cursor animate-pulse">|</span>
-                </h2>
-              </div>
-            </FadeIn>
-
-            <FadeIn direction="up" delay={0.4}>
-              <p
-                className="text-base lg:text-lg mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed"
-                style={{ color: "#94a3b8" }}
-              >
-                Passionate full-stack developer creating beautiful, responsive, and
-                user-friendly web experiences with modern technologies.
-              </p>
-            </FadeIn>
-
-            <FadeIn direction="up" delay={0.5}>
-              {/* Tech stack chips */}
-              <div className="flex flex-wrap gap-2 justify-center lg:justify-start mb-10">
-                {["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL"].map(
-                  (tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 rounded-full text-xs font-mono font-medium border"
-                      style={{
-                        backgroundColor: "rgba(20,184,166,0.06)",
-                        borderColor: "rgba(20,184,166,0.18)",
-                        color: "#94a3b8",
-                      }}
-                    >
-                      {tech}
-                    </span>
-                  )
-                )}
-              </div>
-            </FadeIn>
-
-            <FadeIn direction="up" delay={0.6}>
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                <a
-                  href="/my_cv.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn flex items-center gap-2"
-                  style={{
-                    background: "linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)",
-                    color: "#fff",
-                    boxShadow: "0 0 15px rgba(20,184,166,0.35)",
-                  }}
-                >
-                  <FaFileDownload className="w-4 h-4" />
-                  View CV
-                </a>
-                <Link
-                  href="https://www.linkedin.com/in/ashraful-asif"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn flex items-center gap-2"
-                  style={{
-                    background: "rgba(20,184,166,0.1)",
-                    border: "1px solid rgba(20,184,166,0.3)",
-                    color: "#fff",
-                  }}
-                >
-                  <FaLinkedin className="w-4 h-4" />
-                  LinkedIn
-                </Link>
-              </div>
-            </FadeIn>
-          </div>
-
-          {/* Image side - Circular Profile */}
-          <FadeIn direction="right" delay={0.3} className="order-first lg:order-last flex justify-center">
-            <div className="relative">
-              {/* Outer glow ring */}
-              <div
-                className="absolute -inset-4 rounded-full opacity-40 animate-pulse-slow"
-                style={{
-                  background:
-                    "conic-gradient(from 0deg, transparent 0%, rgba(20,184,166,0.5) 25%, transparent 50%, rgba(20,184,166,0.3) 75%, transparent 100%)",
-                  filter: "blur(20px)",
-                }}
-              />
-              
-              {/* Main circular image container */}
-              <div
-                className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden"
-                style={{
-                  border: "3px solid rgba(20,184,166,0.3)",
-                  boxShadow: "0 0 40px rgba(20,184,166,0.2), 0 0 80px rgba(20,184,166,0.1), inset 0 0 40px rgba(0,0,0,0.3)",
-                }}
-              >
-                <Image
-                  src="/img/asif4.jpg"
-                  alt="Photo of Moh. Asraful Hasan Asif, Full Stack Developer"
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="(max-width: 640px) 256px, (max-width: 1024px) 320px, 384px"
-                />
-              </div>
-
-              {/* Floating stat badge - Projects */}
-              <div
-                className="absolute -bottom-2 -left-4 sm:-left-8 px-4 py-3 rounded-xl backdrop-blur-md border"
-                style={{
-                  backgroundColor: "rgba(30,30,30,0.95)",
-                  borderColor: "rgba(20,184,166,0.25)",
-                  boxShadow: "0 0 20px rgba(20,184,166,0.15)",
-                }}
-              >
-                <div
-                  className="text-xl font-bold"
-                  style={{ color: "#14b8a6" }}
-                >
-                  30+
-                </div>
-                <div className="text-xs" style={{ color: "#94a3b8" }}>
-                  Projects
-                </div>
-              </div>
-
-              {/* Floating stat badge - Experience */}
-              <div
-                className="absolute -top-2 -right-4 sm:-right-8 px-4 py-3 rounded-xl backdrop-blur-md border"
-                style={{
-                  backgroundColor: "rgba(30,30,30,0.95)",
-                  borderColor: "rgba(20,184,166,0.25)",
-                  boxShadow: "0 0 20px rgba(20,184,166,0.15)",
-                }}
-              >
-                <div
-                  className="text-xl font-bold"
-                  style={{ color: "#14b8a6" }}
-                >
-                  2+
-                </div>
-                <div className="text-xs" style={{ color: "#94a3b8" }}>
-                  Yrs Exp
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
+      {/* Subtle Ambient cybernetic grid and orange atmospheric glow */}
+      <div className="absolute inset-0 z-[2] pointer-events-none select-none overflow-hidden">
+        <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
+        <div
+          className="absolute -top-32 right-1/4 w-[600px] h-[500px] opacity-25 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 30%, rgba(255, 99, 15, 0.45) 0%, transparent 70%)",
+            filter: "blur(80px)",
+          }}
+        />
       </div>
 
-      {/* Bottom fade */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(to bottom, transparent, #121212)",
-        }}
-      />
-    </div>
+      {/* Hero Top Bar Navigation (Z-index 20) */}
+      <nav
+        className="absolute top-7 left-[3%] right-[3%] z-20 flex items-center justify-between pointer-events-auto"
+        aria-label="Hero navigation"
+      >
+        {/* Live Visitor Local Clock (Left) */}
+        <div className="flex flex-col gap-0.5 font-mono" aria-label="Visitor local time">
+          <span className="text-[10px] tracking-[0.14em] uppercase text-[#949494]">
+            {offsetStr}
+          </span>
+          <span className="text-sm md:text-base font-medium text-white tracking-[0.04em] tabular-nums">
+            {timeStr}
+          </span>
+        </div>
+
+        {/* Center Soundwave / Frequency Menu Trigger */}
+        <button
+          onClick={() => scrollToSection("about")}
+          className="group flex flex-col items-center justify-center gap-1.5 py-2 px-3 text-white transition-colors hover:text-[#FF630F]"
+          aria-label="Explore sections"
+        >
+          <div className="flex items-end gap-[3px] h-3.5" aria-hidden="true">
+            <span className="w-[3px] h-1 bg-white rounded-[1px] group-hover:bg-[#FF630F] transition-all group-hover:h-3" />
+            <span className="w-[3px] h-2 bg-white rounded-[1px] group-hover:bg-[#FF630F] transition-all group-hover:h-3.5" />
+            <span className="w-[3px] h-3.5 bg-white rounded-[1px] group-hover:bg-[#FF630F] transition-all group-hover:h-2" />
+            <span className="w-[3px] h-1.5 bg-white rounded-[1px] group-hover:bg-[#FF630F] transition-all group-hover:h-2.5" />
+            <span className="w-[3px] h-2.5 bg-white rounded-[1px] group-hover:bg-[#FF630F] transition-all group-hover:h-3.5" />
+            <span className="w-[3px] h-2 bg-white rounded-[1px] group-hover:bg-[#FF630F] transition-all group-hover:h-1.5" />
+            <span className="w-[3px] h-1 bg-white rounded-[1px] group-hover:bg-[#FF630F] transition-all group-hover:h-3" />
+          </div>
+          <span className="font-utility text-[11px] font-semibold tracking-[0.12em] uppercase text-[#AAAAAA] group-hover:text-[#FF630F] transition-colors">
+            ENGINEER // ASIF
+          </span>
+        </button>
+
+        {/* Let's Talk CTA (Right) */}
+        <div className="flex items-center gap-3">
+          <a
+            href="#contact"
+            className="pill-btn text-sm md:text-base shadow-lg shadow-black/40"
+          >
+            Let’s talk ↗
+          </a>
+        </div>
+      </nav>
+
+      {/* Main Foreground Typography & Layout (Z-index 10) */}
+      <div className="absolute inset-0 z-10 pointer-events-none">
+        {/* Monogram Display Title Row (clamp scaling) */}
+        <div className="absolute top-[135px] md:top-[150px] left-[3%] right-[3%] flex items-baseline justify-between gap-[3%] whitespace-nowrap select-none overflow-visible">
+          {/* Display Name Left: Asraful */}
+          <div
+            className="font-display font-medium text-[clamp(36px,11cqw,180px)] leading-[0.727] tracking-[-0.06em] text-white flex shrink-0"
+            aria-hidden="true"
+          >
+            <span
+              className={`letter-span ${mounted ? "letter-animating" : ""}`}
+              style={{ animationDelay: "80ms" }}
+            >
+              A
+            </span>
+            <span
+              className={`letter-span ${mounted ? "letter-animating" : ""}`}
+              style={{ animationDelay: "140ms" }}
+            >
+              s
+            </span>
+            <span
+              className={`letter-span ${mounted ? "letter-animating" : ""}`}
+              style={{ animationDelay: "200ms" }}
+            >
+              r
+            </span>
+            <span
+              className={`letter-span ${mounted ? "letter-animating" : ""}`}
+              style={{ animationDelay: "260ms" }}
+            >
+              a
+            </span>
+            <span
+              className={`letter-span ${mounted ? "letter-animating" : ""}`}
+              style={{ animationDelay: "320ms" }}
+            >
+              f
+            </span>
+            <span
+              className={`letter-span ${mounted ? "letter-animating" : ""}`}
+              style={{ animationDelay: "380ms" }}
+            >
+              u
+            </span>
+            <span
+              className={`letter-span ${mounted ? "letter-animating" : ""}`}
+              style={{ animationDelay: "440ms" }}
+            >
+              l
+            </span>
+          </div>
+
+          {/* Accessible H1 Heading Right: Asif */}
+          <h1 className="m-0 p-0 font-display text-[clamp(36px,11cqw,180px)] leading-[0.727] tracking-[-0.06em] text-white inline-flex items-baseline overflow-visible">
+            <span className="sr-only">Asraful Asif — Full-Stack Developer</span>
+            <span className="inline-flex items-baseline relative overflow-visible" aria-hidden="true">
+              <span className="font-medium inline-flex">
+                <span
+                  className={`letter-span ${mounted ? "letter-animating" : ""}`}
+                  style={{ animationDelay: "500ms" }}
+                >
+                  A
+                </span>
+                <span
+                  className={`letter-span ${mounted ? "letter-animating" : ""}`}
+                  style={{ animationDelay: "560ms" }}
+                >
+                  s
+                </span>
+                <span
+                  className={`letter-span ${mounted ? "letter-animating" : ""}`}
+                  style={{ animationDelay: "620ms" }}
+                >
+                  i
+                </span>
+                <span
+                  className={`letter-span ${mounted ? "letter-animating" : ""}`}
+                  style={{ animationDelay: "680ms" }}
+                >
+                  f
+                </span>
+              </span>
+            </span>
+          </h1>
+        </div>
+
+        {/* Subtitle Tier */}
+        <div className="absolute top-[calc(135px+clamp(36px,11cqw,180px)*0.727+36px)] md:top-[calc(150px+clamp(36px,11cqw,180px)*0.727+36px)] left-[3%] right-[3%] flex items-center justify-between gap-4 font-utility text-[11px] md:text-[13px] font-semibold tracking-[0.1em] uppercase text-[#AAAAAA]">
+          <div className="truncate">
+            FULL-STACK DEVELOPER &amp; SOFTWARE ENGINEER
+          </div>
+          <div className="hidden sm:block text-[#949494] shrink-0 font-mono">
+            [ PORTFOLIO // SELECTED WORK ]
+          </div>
+        </div>
+
+        {/* Bouncing Down-Arrow Link: Positioned ~70% across title container */}
+        <div className="absolute top-[calc(135px+clamp(36px,11cqw,180px)*0.727+100px)] md:top-[calc(150px+clamp(36px,11cqw,180px)*0.727+110px)] left-[calc(3%+0.70*(100%-6%))] -translate-x-1/2 pointer-events-auto z-20">
+          <button
+            onClick={() => scrollToSection("about")}
+            className="hero-scroll-btn bounce-active flex items-center justify-center w-[50px] h-[50px] md:w-[54px] md:h-[54px] rounded-full border border-white/60 bg-black/40 hover:bg-[#FF630F] hover:border-[#FF630F] transition-all cursor-pointer group shadow-xl"
+            aria-label="Scroll down to engineering approach"
+          >
+            <svg
+              className="w-6 h-6 stroke-white group-hover:stroke-black transition-colors"
+              viewBox="0 0 24 24"
+              fill="none"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        {/* Lower Hero Left Block */}
+        <div className="absolute bottom-9 md:bottom-12 left-[3%] max-w-[460px] flex flex-col gap-2 font-utility text-sm md:text-base leading-[1.4] pointer-events-auto">
+          <p className="text-white font-medium">
+            • Web applications, distributed systems, full-stack architectures.
+          </p>
+          <p className="text-[#949494]">
+            • Next.js, React, TypeScript, NestJS, PostgreSQL &amp; Cloud.
+          </p>
+          {/* Quick interactive links */}
+          <div className="flex items-center gap-3 pt-2">
+            <a
+              href="/my_cv.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#333333] bg-[#14161D]/80 text-xs font-mono text-white hover:border-[#FF630F] hover:text-[#FF630F] transition-all"
+            >
+              <FaFileDownload className="w-3 h-3 text-[#FF630F]" />
+              CV / Resume
+            </a>
+            <a
+              href="https://github.com/Asif259"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#333333] bg-[#14161D]/80 text-xs font-mono text-white hover:border-[#FF630F] hover:text-[#FF630F] transition-all"
+            >
+              <FaGithub className="w-3.5 h-3.5" />
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ashraful-asif"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#333333] bg-[#14161D]/80 text-xs font-mono text-white hover:border-[#FF630F] hover:text-[#FF630F] transition-all"
+            >
+              <FaLinkedin className="w-3.5 h-3.5 text-[#FF630F]" />
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        {/* Lower Hero Right CTA */}
+        <div className="absolute bottom-9 md:bottom-12 right-[3%] pointer-events-auto">
+          <a
+            href="#portfolio"
+            className="pill-btn shadow-xl shadow-black/60"
+          >
+            Explore work ↘
+          </a>
+        </div>
+
+        {/* Vertical Edge Label (Desktop only) */}
+        <div
+          className="hidden xl:block absolute top-1/2 right-[1.5%] -translate-y-1/2 rotate-90 origin-center font-utility text-[10px] tracking-[0.26em] uppercase text-[#777777] whitespace-nowrap pointer-events-none select-none"
+          aria-hidden="true"
+        >
+          FULL-STACK SYSTEMS / CRAFT &amp; RELIABILITY — 001
+        </div>
+      </div>
+    </header>
   );
 }

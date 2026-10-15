@@ -18,6 +18,7 @@ import {
   FaUsers,
   FaTools,
 } from "react-icons/fa";
+import { HiArrowNarrowRight } from "react-icons/hi";
 
 interface ProjectDetailClientViewProps {
   project: PortfolioProject;
@@ -54,237 +55,187 @@ export default function ProjectDetailClientView({
     return () => window.removeEventListener("keydown", handler);
   }, [lightboxImage, activeIndex, project]);
 
-  const cardStyle = {
-    backgroundColor: "#1E1E1E",
-    border: "1px solid rgba(20,184,166,0.12)",
-    boxShadow: "0 4px 24px rgba(0,0,0,0.4)",
-  };
-
   return (
-    <main
-      className="min-h-screen relative"
-      style={{ backgroundColor: "#121212" }}
-    >
+    <main className="min-h-screen relative bg-[#0B0C0F] text-[#F3F1EB]">
       {/* Subtle grid background */}
-      <div className="fixed inset-0 bg-grid-sm opacity-30 pointer-events-none z-0" />
+      <div className="fixed inset-0 bg-grid opacity-25 pointer-events-none z-0" />
 
       <Navbar solid />
 
-      <div className="relative z-10 pt-20 pb-8">
-        {/* Back Button */}
-        <div className="container mx-auto px-4 lg:px-6 mb-6">
-          <Link
-            href="/#portfolio"
-            className="flex items-center gap-2 transition-colors group text-sm font-medium"
-            style={{ color: "#94a3b8" }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.color = "#14b8a6";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.color = "#94a3b8";
-            }}
-          >
-            <FaChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            Go Back
-          </Link>
+      <div className="relative z-10 pt-24 pb-16">
+        {/* Back navigation & breadcrumbs */}
+        <div className="container mx-auto px-4 lg:px-12 max-w-7xl mb-6">
+          <div className="flex items-center justify-between flex-wrap gap-4">
+            <Link
+              href="/#portfolio"
+              className="inline-flex items-center gap-2 text-xs font-mono text-[#A0A1A6] hover:text-[#FF630F] transition-colors py-1.5 px-3 rounded-lg border border-[#1E2028] bg-[#14161D]"
+            >
+              <FaChevronLeft className="w-3 h-3" />
+              <span>Back to all projects</span>
+            </Link>
+
+            <nav className="text-xs font-mono text-[#666872]">
+              <ol className="flex items-center gap-1.5">
+                <li>
+                  <Link href="/" className="hover:text-[#F3F1EB] transition-colors">
+                    Home
+                  </Link>
+                </li>
+                <li>/</li>
+                <li>
+                  <Link href="/#portfolio" className="hover:text-[#F3F1EB] transition-colors">
+                    Work
+                  </Link>
+                </li>
+                <li>/</li>
+                <li className="text-[#A0A1A6] truncate max-w-[200px]">{project.name}</li>
+              </ol>
+            </nav>
+          </div>
         </div>
 
-        {/* Hero Section */}
-        <div className="container mx-auto px-4 lg:px-6 mb-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
-            {/* Project Image */}
-            <div className="order-2 lg:order-1">
-              <div
-                className="rounded-xl p-3 sticky top-20"
-                style={cardStyle}
-              >
-                <Image
-                  src={project.coverImage}
-                  alt={project.name}
-                  width={800}
-                  height={600}
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="w-full h-auto object-contain rounded-lg"
-                  priority
-                />
+        {/* Project Hero Header */}
+        <div className="container mx-auto px-4 lg:px-12 max-w-7xl mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            {/* Project Image Preview (7 cols) */}
+            <div className="lg:col-span-7">
+              <div className="rounded-2xl border border-[#1E2028] bg-[#14161D] p-3 overflow-hidden shadow-2xl">
+                <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-[#0B0C0F]">
+                  <Image
+                    src={project.coverImage}
+                    alt={project.name}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 55vw"
+                    className="object-cover object-top"
+                    priority
+                  />
+                </div>
               </div>
             </div>
 
-            {/* Project Info */}
-            <div className="order-1 lg:order-2 space-y-4">
-              {/* Breadcrumb */}
-              <nav className="text-xs mb-2" style={{ color: "#94a3b8" }}>
-                <ol className="flex items-center gap-1.5 flex-wrap">
-                  <li>
-                    <Link
-                      href="/"
-                      className="hover:text-orange-400 transition-colors"
-                    >
-                      Home
-                    </Link>
-                  </li>
-                  <li style={{ color: "rgba(20,184,166,0.4)" }}>/</li>
-                  <li>
-                    <Link
-                      href="/#portfolio"
-                      className="hover:text-orange-400 transition-colors"
-                    >
-                      Portfolio
-                    </Link>
-                  </li>
-                  <li style={{ color: "rgba(20,184,166,0.4)" }}>/</li>
-                  <li style={{ color: "#f1f5f9" }}>{project.name}</li>
-                </ol>
-              </nav>
+            {/* Project Info & CTAs (5 cols) */}
+            <div className="lg:col-span-5 space-y-5">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#FF630F]/10 border border-[#FF630F]/20 text-[#FF630F]">
+                    {project.category}
+                  </span>
+                  <span className="text-xs font-mono text-[#666872]">•</span>
+                  <span className="text-xs font-mono text-[#A0A1A6]">{project.date}</span>
+                </div>
 
-              <div className="space-y-3">
-                <span
-                  className="inline-block px-3 py-1 rounded-full text-xs font-semibold border"
-                  style={{
-                    backgroundColor: "rgba(20,184,166,0.08)",
-                    borderColor: "rgba(20,184,166,0.25)",
-                    color: "#2dd4bf",
-                  }}
-                >
-                  {project.category}
-                </span>
-                <h1
-                  className="text-2xl lg:text-3xl font-bold leading-tight"
-                  style={{ color: "#f1f5f9" }}
-                >
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#F3F1EB] tracking-tight leading-tight">
                   {project.name}
                 </h1>
-                <p className="leading-relaxed" style={{ color: "#94a3b8" }}>
+
+                <p className="text-sm text-[#A0A1A6] leading-relaxed pt-1">
                   {project.description}
                 </p>
               </div>
 
-              {/* Quick Info Cards */}
-              <div className="grid grid-cols-3 gap-3 pt-2">
-                {[
-                  {
-                    icon: FaClock,
-                    label: "Timeline",
-                    value: isNaN(new Date(project.date).getTime())
+              {/* Quick Info Grid */}
+              <div className="grid grid-cols-3 gap-2.5 pt-1">
+                <div className="p-3 rounded-lg border border-[#1E2028] bg-[#14161D]">
+                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-[#666872] mb-1">
+                    <FaClock className="w-3 h-3 text-[#FF630F]" />
+                    <span>Timeline</span>
+                  </div>
+                  <p className="text-xs font-semibold text-[#F3F1EB] truncate">
+                    {isNaN(new Date(project.date).getTime())
                       ? project.date
                       : new Date(project.date).toLocaleDateString("en-US", {
                           year: "numeric",
                           month: "short",
-                        }),
-                  },
-                  { icon: FaUsers, label: "Role", value: project.role },
-                  {
-                    icon: FaTools,
-                    label: "Stack",
-                    value: project.technologies[0] || "Custom",
-                  },
-                ].map(({ icon: Icon, label, value }) => (
-                  <div
-                    key={label}
-                    className="flex items-center gap-2 p-3 rounded-lg border"
-                    style={cardStyle}
-                  >
-                    <div
-                      className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{
-                        backgroundColor: "rgba(20,184,166,0.1)",
-                        color: "#14b8a6",
-                      }}
-                    >
-                      <Icon className="w-3.5 h-3.5" />
-                    </div>
-                    <div className="min-w-0">
-                      <p
-                        className="text-xs truncate"
-                        style={{ color: "#94a3b8" }}
-                      >
-                        {label}
-                      </p>
-                      <p
-                        className="font-semibold text-sm truncate"
-                        style={{ color: "#f1f5f9" }}
-                      >
-                        {value}
-                      </p>
-                    </div>
+                        })}
+                  </p>
+                </div>
+
+                <div className="p-3 rounded-lg border border-[#1E2028] bg-[#14161D]">
+                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-[#666872] mb-1">
+                    <FaUsers className="w-3 h-3 text-[#FF630F]" />
+                    <span>Role</span>
                   </div>
-                ))}
+                  <p className="text-xs font-semibold text-[#F3F1EB] truncate">
+                    {project.role}
+                  </p>
+                </div>
+
+                <div className="p-3 rounded-lg border border-[#1E2028] bg-[#14161D]">
+                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-[#666872] mb-1">
+                    <FaTools className="w-3 h-3 text-[#FF630F]" />
+                    <span>Primary</span>
+                  </div>
+                  <p className="text-xs font-semibold text-[#F3F1EB] truncate">
+                    {project.technologies[0] || "Custom Stack"}
+                  </p>
+                </div>
               </div>
 
-              {/* Action Buttons */}
-              {(project.liveUrl || project.githubUrl) && (
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-primary flex items-center gap-2 text-sm"
-                    >
-                      <FaExternalLinkAlt className="w-3.5 h-3.5" />
-                      Live Demo
-                    </a>
-                  )}
-                  {project.githubUrl && project.githubUrl.length > 0 && (
-                    <>
-                      {project.githubUrl.map((url, index) => (
-                        <a
-                          key={index}
-                          href={url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn btn-outline-primary flex items-center gap-2 text-sm"
-                        >
-                          <FaGithub className="w-3.5 h-3.5" />
-                          {project.githubUrl && project.githubUrl.length > 1
-                            ? `Code ${index + 1}`
-                            : "View Code"}
-                        </a>
-                      ))}
-                    </>
-                  )}
-                </div>
-              )}
+              {/* Live and Code Action Buttons */}
+              <div className="flex flex-wrap items-center gap-2.5 pt-2">
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary"
+                  >
+                    <FaExternalLinkAlt className="w-3.5 h-3.5" />
+                    Visit Live Demo
+                  </a>
+                )}
+
+                {project.githubUrl && project.githubUrl.length > 0 && (
+                  <>
+                    {project.githubUrl.map((url, index) => (
+                      <a
+                        key={index}
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-outline-primary"
+                      >
+                        <FaGithub className="w-3.5 h-3.5" />
+                        {project.githubUrl && project.githubUrl.length > 1
+                          ? `Source (${index === 0 ? "Frontend" : "Backend"})`
+                          : "View Source"}
+                      </a>
+                    ))}
+                  </>
+                )}
+              </div>
             </div>
+
           </div>
         </div>
 
-        {/* Project Details */}
-        <div className="container mx-auto px-4 lg:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-            {/* Main Content */}
-            <div className="lg:col-span-2 space-y-6">
-              {/* Tabs Panel */}
-              <div className="rounded-xl p-6" style={cardStyle}>
+        {/* Detailed Case Study Sections */}
+        <div className="container mx-auto px-4 lg:px-12 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+            
+            {/* Main Narrative & Deep Breakdown (8 cols) */}
+            <div className="lg:col-span-8 space-y-8">
+              
+              {/* Tabbed Narrative Panel */}
+              <div className="rounded-2xl border border-[#1E2028] bg-[#14161D] p-6 sm:p-8">
                 {/* Tab Navigation */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex items-center gap-2 border-b border-[#1E2028] pb-4 mb-6">
                   {[
                     { id: "overview", label: "Overview" },
-                    { id: "solution", label: "Solution" },
-                    { id: "challenges", label: "Challenges" },
+                    { id: "solution", label: "Technical Solution" },
+                    { id: "challenges", label: "Engineering Challenges" },
                   ].map((t) => (
                     <button
                       key={t.id}
-                      className="px-4 py-2 rounded-lg border text-sm font-medium transition-all duration-200"
-                      style={
-                        activeTab === (t.id as "overview" | "solution" | "challenges")
-                          ? {
-                              background:
-                                "linear-gradient(135deg, #14b8a6, #0d9488)",
-                              color: "#fff",
-                              borderColor: "transparent",
-                              boxShadow: "0 0 12px rgba(20,184,166,0.3)",
-                            }
-                          : {
-                              backgroundColor: "transparent",
-                              color: "#94a3b8",
-                              borderColor: "rgba(20,184,166,0.15)",
-                            }
-                      }
+                      type="button"
+                      className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 border ${
+                        activeTab === t.id
+                          ? "bg-[#FF630F] text-[#0B0C0F] border-[#FF630F] font-semibold"
+                          : "bg-[#0B0C0F] text-[#A0A1A6] border-[#1E2028] hover:text-[#F3F1EB] hover:border-[#2E3342]"
+                      }`}
                       onClick={() =>
-                        setActiveTab(
-                          t.id as "overview" | "solution" | "challenges"
-                        )
+                        setActiveTab(t.id as "overview" | "solution" | "challenges")
                       }
                     >
                       {t.label}
@@ -294,218 +245,151 @@ export default function ProjectDetailClientView({
 
                 <div className="space-y-4">
                   {activeTab === "overview" && (
-                    <>
-                      <h2
-                        className="text-xl font-bold"
-                        style={{ color: "#f1f5f9" }}
-                      >
-                        Project Overview
+                    <div className="space-y-3">
+                      <h2 className="text-xl font-bold text-[#F3F1EB]">
+                        Problem Domain &amp; Architecture
                       </h2>
-                      <p
-                        className="leading-relaxed whitespace-pre-line"
-                        style={{ color: "#94a3b8" }}
-                      >
+                      <p className="text-sm text-[#A0A1A6] leading-relaxed whitespace-pre-line">
                         {project.longDescription}
                       </p>
-                    </>
+                    </div>
                   )}
+
                   {activeTab === "solution" && (
-                    <>
-                      <h2
-                        className="text-xl font-bold"
-                        style={{ color: "#f1f5f9" }}
-                      >
-                        Solution & Approach
+                    <div className="space-y-3">
+                      <h2 className="text-xl font-bold text-[#F3F1EB]">
+                        Architectural Strategy &amp; Implementation
                       </h2>
-                      <p
-                        className="leading-relaxed whitespace-pre-line"
-                        style={{ color: "#94a3b8" }}
-                      >
+                      <p className="text-sm text-[#A0A1A6] leading-relaxed whitespace-pre-line">
                         {project.solution}
                       </p>
-                    </>
+                    </div>
                   )}
+
                   {activeTab === "challenges" && (
-                    <>
-                      <h2
-                        className="text-xl font-bold"
-                        style={{ color: "#f1f5f9" }}
-                      >
-                        Challenges Faced
+                    <div className="space-y-4">
+                      <h2 className="text-xl font-bold text-[#F3F1EB]">
+                        Key Technical Hurdles
                       </h2>
                       {Array.isArray(project.challenges) &&
                       project.challenges.length > 0 &&
                       typeof project.challenges[0] === "object" &&
                       "title" in project.challenges[0] ? (
-                        <ul className="space-y-3">
+                        <div className="space-y-3">
                           {(project.challenges as Challenge[]).map(
                             (challenge, index) => (
-                              <li
+                              <div
                                 key={index}
-                                className="flex items-start gap-3"
+                                className="p-4 rounded-xl border border-[#1E2028] bg-[#0B0C0F] space-y-1"
                               >
-                                <span
-                                  className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
-                                  style={{
-                                    backgroundColor: "#14b8a6",
-                                    boxShadow:
-                                      "0 0 6px rgba(20,184,166,0.5)",
-                                  }}
-                                />
-                                <div className="flex-1">
-                                  <span
-                                    className="font-semibold block mb-1 text-sm"
-                                    style={{ color: "#f1f5f9" }}
-                                  >
+                                <div className="flex items-center gap-2">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF630F]" />
+                                  <h3 className="font-semibold text-sm text-[#F3F1EB]">
                                     {challenge.title}
-                                  </span>
-                                  <span
-                                    className="text-sm"
-                                    style={{ color: "#94a3b8" }}
-                                  >
-                                    {challenge.description}
-                                  </span>
+                                  </h3>
                                 </div>
-                              </li>
+                                <p className="text-xs text-[#A0A1A6] pl-3.5 leading-relaxed">
+                                  {challenge.description}
+                                </p>
+                              </div>
                             )
                           )}
-                        </ul>
+                        </div>
                       ) : (
                         <ul className="space-y-2">
-                          {(project.challenges as string[]).map(
-                            (challenge, index) => (
-                              <li
-                                key={index}
-                                className="flex items-start gap-3"
-                              >
-                                <span
-                                  className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
-                                  style={{
-                                    backgroundColor: "#14b8a6",
-                                  }}
-                                />
-                                <span
-                                  className="text-sm"
-                                  style={{ color: "#94a3b8" }}
-                                >
-                                  {challenge}
-                                </span>
-                              </li>
-                            )
-                          )}
+                          {(project.challenges as string[]).map((c, i) => (
+                            <li
+                              key={i}
+                              className="text-xs text-[#A0A1A6] flex items-start gap-2"
+                            >
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#FF630F] mt-1.5 flex-shrink-0" />
+                              <span>{c}</span>
+                            </li>
+                          ))}
                         </ul>
                       )}
-                    </>
+                    </div>
                   )}
                 </div>
               </div>
 
-              {/* Gallery */}
+              {/* Gallery Screenshots */}
               {project.images && project.images.length > 0 && (
-                <div className="rounded-xl p-6" style={cardStyle}>
-                  <h2
-                    className="text-xl font-bold mb-4"
-                    style={{ color: "#f1f5f9" }}
-                  >
-                    Project Gallery
-                  </h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="rounded-2xl border border-[#1E2028] bg-[#14161D] p-6 sm:p-8">
+                  <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-xl font-bold text-[#F3F1EB]">
+                      Application Screenshots
+                    </h2>
+                    <span className="text-xs font-mono text-[#666872]">
+                      Click to expand
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {project.images.map((img, idx) => (
                       <button
                         key={idx}
                         type="button"
-                        className="group relative rounded-lg overflow-hidden cursor-zoom-in transition-all duration-300 border"
-                        style={{
-                          backgroundColor: "#121212",
-                          borderColor: "rgba(20,184,166,0.1)",
-                          padding: "8px",
-                        }}
-                        onMouseEnter={(e) => {
-                          (
-                            e.currentTarget as HTMLButtonElement
-                          ).style.borderColor = "rgba(20,184,166,0.35)";
-                        }}
-                        onMouseLeave={(e) => {
-                          (
-                            e.currentTarget as HTMLButtonElement
-                          ).style.borderColor = "rgba(20,184,166,0.1)";
-                        }}
                         onClick={() => {
                           setActiveIndex(idx);
                           setLightboxImage(img);
                         }}
+                        className="group relative rounded-xl overflow-hidden border border-[#1E2028] bg-[#0B0C0F] text-left hover:border-[#2E3342] transition-colors"
                       >
-                        <Image
-                          src={img}
-                          alt={`${project.name} image ${idx + 1}`}
-                          width={400}
-                          height={300}
-                          sizes="(max-width: 1024px) 100vw, 33vw"
-                          className="w-full h-auto object-contain rounded transition-transform duration-300 group-hover:scale-105"
-                        />
+                        <div className="relative aspect-video w-full overflow-hidden">
+                          <Image
+                            src={img}
+                            alt={`${project.name} view ${idx + 1}`}
+                            fill
+                            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                            sizes="(max-width: 768px) 100vw, 40vw"
+                          />
+                        </div>
+                        <div className="p-2.5 bg-[#14161D] border-t border-[#1E2028] flex items-center justify-between text-[11px] font-mono text-[#A0A1A6]">
+                          <span>View {idx + 1}</span>
+                          <span className="text-[#FF630F]">Inspect ↗</span>
+                        </div>
                       </button>
                     ))}
                   </div>
                 </div>
               )}
 
-              {/* Features */}
-              <div className="rounded-xl p-6" style={cardStyle}>
-                <h2
-                  className="text-xl font-bold mb-4"
-                  style={{ color: "#f1f5f9" }}
-                >
-                  Key Features
+              {/* Key Features */}
+              <div className="rounded-2xl border border-[#1E2028] bg-[#14161D] p-6 sm:p-8">
+                <h2 className="text-xl font-bold text-[#F3F1EB] mb-6">
+                  Key Capabilities &amp; Features
                 </h2>
+
                 {Array.isArray(project.features) &&
                 project.features.length > 0 &&
                 typeof project.features[0] === "object" &&
                 "title" in project.features[0] ? (
                   <div className="space-y-6">
                     {(project.features as FeatureSection[]).map(
-                      (section, sectionIndex) => (
-                        <div key={sectionIndex}>
-                          <h3
-                            className="text-lg font-semibold mb-3"
-                            style={{ color: "#2dd4bf" }}
-                          >
+                      (section, sIdx) => (
+                        <div key={sIdx} className="space-y-3">
+                          <h3 className="text-sm font-mono uppercase tracking-wider text-[#FF630F]">
                             {section.title}
                           </h3>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            {section.items.map((item, itemIndex) => (
+                            {section.items.map((it, itIdx) => (
                               <div
-                                key={itemIndex}
-                                className="flex items-start gap-3 p-3 rounded-lg border"
-                                style={{
-                                  backgroundColor: "rgba(20,184,166,0.04)",
-                                  borderColor: "rgba(20,184,166,0.12)",
-                                }}
+                                key={itIdx}
+                                className="p-3.5 rounded-lg border border-[#1E2028] bg-[#0B0C0F] flex items-start gap-2.5"
                               >
-                                <div
-                                  className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-                                  style={{
-                                    background:
-                                      "linear-gradient(135deg, #14b8a6, #0d9488)",
-                                  }}
-                                >
-                                  <FaCheck
-                                    className="w-3 h-3"
-                                    style={{ color: "#fff" }}
-                                  />
+                                <div className="w-4 h-4 rounded-full bg-[#FF630F]/10 border border-[#FF630F]/30 flex items-center justify-center text-[#FF630F] flex-shrink-0 mt-0.5">
+                                  <FaCheck className="w-2.5 h-2.5" />
                                 </div>
-                                <div className="flex-1">
-                                  <span
-                                    className="font-medium block mb-1 text-sm"
-                                    style={{ color: "#f1f5f9" }}
-                                  >
-                                    {item.name}
-                                  </span>
-                                  <span
-                                    className="text-xs"
-                                    style={{ color: "#94a3b8" }}
-                                  >
-                                    {item.description}
-                                  </span>
+                                <div>
+                                  <p className="text-xs font-semibold text-[#F3F1EB]">
+                                    {it.name}
+                                  </p>
+                                  {it.description && (
+                                    <p className="text-[11px] text-[#A0A1A6] mt-0.5 leading-relaxed">
+                                      {it.description}
+                                    </p>
+                                  )}
                                 </div>
                               </div>
                             ))}
@@ -515,34 +399,14 @@ export default function ProjectDetailClientView({
                     )}
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {(project.features as string[]).map((feature, index) => (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                    {(project.features as string[]).map((f, i) => (
                       <div
-                        key={index}
-                        className="flex items-start gap-3 p-3 rounded-lg border"
-                        style={{
-                          backgroundColor: "rgba(20,184,166,0.04)",
-                          borderColor: "rgba(20,184,166,0.12)",
-                        }}
+                        key={i}
+                        className="p-3 rounded-lg border border-[#1E2028] bg-[#0B0C0F] flex items-center gap-2.5 text-xs text-[#A0A1A6]"
                       >
-                        <div
-                          className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-                          style={{
-                            background:
-                              "linear-gradient(135deg, #14b8a6, #0d9488)",
-                          }}
-                        >
-                          <FaCheck
-                            className="w-3 h-3"
-                            style={{ color: "#fff" }}
-                          />
-                        </div>
-                        <span
-                          className="font-medium text-sm"
-                          style={{ color: "#f1f5f9" }}
-                        >
-                          {feature}
-                        </span>
+                        <FaCheck className="w-3 h-3 text-[#FF630F] flex-shrink-0" />
+                        <span>{f}</span>
                       </div>
                     ))}
                   </div>
@@ -550,242 +414,142 @@ export default function ProjectDetailClientView({
               </div>
             </div>
 
-            {/* Sidebar */}
-            <div className="lg:col-span-1 space-y-4 lg:sticky lg:top-20 h-max">
-              {/* Project Info */}
-              <div className="rounded-xl p-5" style={cardStyle}>
-                <h3
-                  className="text-lg font-bold mb-4"
-                  style={{ color: "#f1f5f9" }}
-                >
-                  Project Information
+            {/* Sidebar Metadata (4 cols) */}
+            <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-24 h-max">
+              <div className="p-6 rounded-2xl border border-[#1E2028] bg-[#14161D] space-y-5">
+                <h3 className="text-base font-bold text-[#F3F1EB] tracking-tight pb-3 border-b border-[#1E2028]">
+                  Project Specifications
                 </h3>
-                <div className="space-y-4">
+
+                <div className="space-y-3.5 text-xs">
                   <div>
-                    <p className="text-xs mb-1" style={{ color: "#94a3b8" }}>
-                      Date
-                    </p>
-                    <p
-                      className="font-semibold text-sm"
-                      style={{ color: "#f1f5f9" }}
-                    >
-                      {isNaN(new Date(project.date).getTime())
-                        ? project.date
-                        : new Date(project.date).toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                          })}
-                    </p>
+                    <span className="text-mono text-[#666872] block mb-0.5">Category</span>
+                    <span className="font-semibold text-[#F3F1EB]">{project.category}</span>
                   </div>
+
                   <div>
-                    <p className="text-xs mb-1" style={{ color: "#94a3b8" }}>
-                      Role
-                    </p>
-                    <p
-                      className="font-semibold text-sm"
-                      style={{ color: "#f1f5f9" }}
-                    >
-                      {project.role}
-                    </p>
+                    <span className="text-mono text-[#666872] block mb-0.5">Role</span>
+                    <span className="font-semibold text-[#F3F1EB]">{project.role}</span>
                   </div>
+
                   {project.client && (
                     <div>
-                      <p className="text-xs mb-1" style={{ color: "#94a3b8" }}>
-                        Client
-                      </p>
-                      <p
-                        className="font-semibold text-sm"
-                        style={{ color: "#f1f5f9" }}
-                      >
-                        {project.client}
-                      </p>
+                      <span className="text-mono text-[#666872] block mb-0.5">Client / Context</span>
+                      <span className="font-semibold text-[#F3F1EB]">{project.client}</span>
                     </div>
                   )}
+
+                  <div>
+                    <span className="text-mono text-[#666872] block mb-0.5">Completed Date</span>
+                    <span className="font-semibold text-[#F3F1EB]">{project.date}</span>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-[#1E2028]">
+                  <p className="text-xs font-mono text-[#666872] mb-2.5">Technologies Used</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.technologies.map((t) => (
+                      <span
+                        key={t}
+                        className="px-2 py-0.5 rounded text-[11px] font-mono border border-[#1E2028] bg-[#0B0C0F] text-[#A0A1A6]"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              {/* Technologies */}
-              <div className="rounded-xl p-5" style={cardStyle}>
-                <h3
-                  className="text-lg font-bold mb-4"
-                  style={{ color: "#f1f5f9" }}
-                >
-                  Technologies Used
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  {project.technologies.map((tech, index) => (
-                    <span
-                      key={index}
-                      className="px-2.5 py-1 rounded-lg text-xs font-medium border"
-                      style={{
-                        backgroundColor: "rgba(20,184,166,0.08)",
-                        borderColor: "rgba(20,184,166,0.2)",
-                        color: "#2dd4bf",
-                      }}
-                    >
-                      {tech}
-                    </span>
-                  ))}
+              {/* Related Projects */}
+              {relatedProjects && relatedProjects.length > 0 && (
+                <div className="p-6 rounded-2xl border border-[#1E2028] bg-[#14161D] space-y-4">
+                  <h3 className="text-sm font-bold text-[#F3F1EB]">
+                    Related Projects
+                  </h3>
+                  <div className="space-y-3">
+                    {relatedProjects.map((rel) => (
+                      <Link
+                        key={rel.id}
+                        href={`/projects/${rel.id}`}
+                        className="block p-2.5 rounded-xl border border-[#1E2028] bg-[#0B0C0F] hover:border-[#2E3342] transition-colors group"
+                      >
+                        <p className="text-xs font-bold text-[#F3F1EB] group-hover:text-[#FF630F] transition-colors truncate">
+                          {rel.name}
+                        </p>
+                        <p className="text-[11px] text-[#A0A1A6] truncate mt-0.5">
+                          {rel.description}
+                        </p>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
-          </div>
 
-          {/* Related Projects */}
-          {relatedProjects && relatedProjects.length > 0 && (
-            <div className="mb-8">
-              <h2
-                className="text-xl font-bold mb-4"
-                style={{ color: "#f1f5f9" }}
-              >
-                Related Projects
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {relatedProjects.map((p) => (
-                  <Link
-                    key={p.id}
-                    href={`/projects/${p.id}`}
-                    className="group block rounded-xl overflow-hidden transition-all duration-300 border"
-                    style={{
-                      backgroundColor: "#1E1E1E",
-                      borderColor: "rgba(20,184,166,0.12)",
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                        "rgba(20,184,166,0.35)";
-                      (
-                        e.currentTarget as HTMLAnchorElement
-                      ).style.boxShadow = "0 0 20px rgba(20,184,166,0.1)";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                        "rgba(20,184,166,0.12)";
-                      (
-                        e.currentTarget as HTMLAnchorElement
-                      ).style.boxShadow = "none";
-                    }}
-                  >
-                    <div className="p-2">
-                      <Image
-                        src={p.coverImage}
-                        alt={p.name}
-                        width={400}
-                        height={250}
-                        className="w-full h-auto object-cover rounded-lg"
-                      />
-                    </div>
-                    <div className="px-3 pb-3">
-                      <h3
-                        className="mt-1 font-semibold text-sm transition-colors duration-200"
-                        style={{ color: "#f1f5f9" }}
-                      >
-                        {p.name}
-                      </h3>
-                      <p
-                        className="text-xs line-clamp-2 mt-1"
-                        style={{ color: "#94a3b8" }}
-                      >
-                        {p.description}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* View All */}
-          <div className="flex justify-center">
-            <Link href="/#portfolio" className="btn btn-primary">
-              View All Projects
-            </Link>
           </div>
         </div>
-      </div>
 
-      {/* Lightbox */}
-      {lightboxImage && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          style={{ backgroundColor: "rgba(18,18,18,0.95)" }}
-          onClick={() => setLightboxImage(null)}
-        >
+        {/* Lightbox Modal */}
+        {lightboxImage && (
           <div
-            className="max-w-4xl w-full max-h-[90vh]"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0B0C0F]/90 backdrop-blur-md"
+            onClick={() => setLightboxImage(null)}
           >
-            <Image
-              src={lightboxImage}
-              alt="Preview"
-              width={1200}
-              height={800}
-              sizes="90vw"
-              className="w-full h-full object-contain rounded-xl"
-              style={{
-                border: "1px solid rgba(20,184,166,0.2)",
-              }}
-            />
-            <div className="flex justify-between mt-4 gap-2">
-              {[
-                {
-                  label: "← Previous",
-                  action: () => {
+            <div
+              className="max-w-5xl w-full max-h-[90vh] bg-[#14161D] p-3 rounded-2xl border border-[#1E2028]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative aspect-[16/10] w-full max-h-[75vh] rounded-xl overflow-hidden bg-[#0B0C0F]">
+                <Image
+                  src={lightboxImage}
+                  alt="Expanded screenshot preview"
+                  fill
+                  sizes="90vw"
+                  className="object-contain"
+                />
+              </div>
+
+              <div className="flex items-center justify-between mt-3 gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
                     if (!project?.images) return;
                     const next =
                       (activeIndex - 1 + project.images.length) %
                       project.images.length;
                     setActiveIndex(next);
                     setLightboxImage(project.images[next]);
-                  },
-                },
-                {
-                  label: "✕ Close",
-                  action: () => setLightboxImage(null),
-                },
-                {
-                  label: "Next →",
-                  action: () => {
+                  }}
+                  className="px-4 py-2 rounded-lg border border-[#1E2028] bg-[#0B0C0F] text-xs font-mono text-[#A0A1A6] hover:text-[#F3F1EB]"
+                >
+                  ← Prev
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setLightboxImage(null)}
+                  className="px-4 py-2 rounded-lg bg-[#FF630F] text-[#0B0C0F] text-xs font-bold"
+                >
+                  Close (Esc)
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
                     if (!project?.images) return;
                     const next = (activeIndex + 1) % project.images.length;
                     setActiveIndex(next);
                     setLightboxImage(project.images[next]);
-                  },
-                },
-              ].map(({ label, action }) => (
-                <button
-                  key={label}
-                  className="btn flex-1 border font-medium text-sm transition-all duration-200"
-                  style={{
-                    backgroundColor: "rgba(20,184,166,0.08)",
-                    borderColor: "rgba(20,184,166,0.2)",
-                    color: "#94a3b8",
                   }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                      "rgba(20,184,166,0.15)";
-                    (e.currentTarget as HTMLButtonElement).style.borderColor =
-                      "rgba(20,184,166,0.4)";
-                    (e.currentTarget as HTMLButtonElement).style.color =
-                      "#14b8a6";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                      "rgba(20,184,166,0.08)";
-                    (e.currentTarget as HTMLButtonElement).style.borderColor =
-                      "rgba(20,184,166,0.2)";
-                    (e.currentTarget as HTMLButtonElement).style.color =
-                      "#94a3b8";
-                  }}
-                  onClick={action}
+                  className="px-4 py-2 rounded-lg border border-[#1E2028] bg-[#0B0C0F] text-xs font-mono text-[#A0A1A6] hover:text-[#F3F1EB]"
                 >
-                  {label}
+                  Next →
                 </button>
-              ))}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </main>
   );
 }

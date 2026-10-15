@@ -9,49 +9,67 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        background: "#0B0C0F",
+        surface: {
+          DEFAULT: "#14161D",
+          hover: "#1A1D26",
+          elevated: "#1E222D",
+        },
+        border: {
+          DEFAULT: "#1E2028",
+          highlight: "#2E3342",
+        },
         primary: {
-          50: "#f0fdfa",
-          100: "#ccfbf1",
-          200: "#99f6e4",
-          300: "#5eead4",
-          400: "#2dd4bf",
-          500: "#14b8a6",
-          600: "#0d9488",
-          700: "#0f766e",
-          800: "#115e59",
-          900: "#134e4a",
-          DEFAULT: "#14b8a6",
-        },
-        accent: {
-          DEFAULT: "#14b8a6",
-          glow: "rgba(20,184,166,0.35)",
-          soft: "rgba(20,184,166,0.12)",
-        },
-        orange: {
-          DEFAULT: "#FF6A00",
           50: "#fff7ed",
           100: "#ffedd5",
           200: "#fed7aa",
           300: "#fdba74",
           400: "#fb923c",
-          500: "#FF6A00",
+          500: "#FF630F",
+          600: "#ea580c",
+          700: "#c2410c",
+          800: "#9a3412",
+          900: "#7c2d12",
+          DEFAULT: "#FF630F",
+        },
+        accent: {
+          DEFAULT: "#FF630F",
+          hover: "#FF7728",
+          glow: "rgba(255, 99, 15, 0.25)",
+          soft: "rgba(255, 99, 15, 0.12)",
+        },
+        orange: {
+          DEFAULT: "#FF630F",
+          50: "#fff7ed",
+          100: "#ffedd5",
+          200: "#fed7aa",
+          300: "#fdba74",
+          400: "#fb923c",
+          500: "#FF630F",
           600: "#ea580c",
           700: "#c2410c",
           800: "#9a3412",
           900: "#7c2d12",
         },
         dark: {
-          DEFAULT: "#121212",
-          100: "#1E1E1E",
-          200: "#252525",
-          300: "#2D2D2D",
-          400: "#333333",
-          500: "#3A3A3A",
+          DEFAULT: "#0B0C0F",
+          100: "#14161D",
+          200: "#1A1D26",
+          300: "#1E2028",
+          400: "#252834",
+          500: "#2E3342",
         },
-        secondary: "#9ca3af",
+        secondary: "#A0A1A6",
+        divider: {
+          22: "#222222",
+          33: "#333333",
+        },
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "Inter", "Roboto", "sans-serif"],
+        display: ["MonaSemi", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        body: ["Mona", "Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        utility: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        sans: ["var(--font-sans)", "Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
         mono: ["JetBrains Mono", "Fira Code", "monospace"],
       },
       animation: {
@@ -65,17 +83,17 @@ const config: Config = {
       },
       backgroundImage: {
         "gradient-primary":
-          "linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)",
+          "linear-gradient(135deg, #FF630F 0%, #EA580C 100%)",
         "gradient-hero":
-          "linear-gradient(135deg, #0B0B0F 0%, #13131A 50%, #1A1A24 100%)",
+          "linear-gradient(135deg, #0B0C0F 0%, #14161D 50%, #1A1D26 100%)",
         "gradient-card":
-          "linear-gradient(135deg, rgba(20,184,166,0.06) 0%, rgba(20,184,166,0.02) 100%)",
+          "linear-gradient(135deg, rgba(255, 99, 15, 0.05) 0%, rgba(20, 22, 29, 0.8) 100%)",
         "grid-pattern":
-          "linear-gradient(rgba(20,184,166,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(20,184,166,0.07) 1px, transparent 1px)",
-        "emerald-glow":
-          "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(20,184,166,0.18) 0%, transparent 70%)",
-        "emerald-radial":
-          "radial-gradient(circle at center, rgba(20,184,166,0.2) 0%, transparent 70%)",
+          "linear-gradient(rgba(255, 99, 15, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 99, 15, 0.04) 1px, transparent 1px)",
+        "accent-glow":
+          "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 99, 15, 0.15) 0%, transparent 70%)",
+        "accent-radial":
+          "radial-gradient(circle at center, rgba(255, 99, 15, 0.15) 0%, transparent 70%)",
       },
       backgroundSize: {
         "grid-sm": "30px 30px",
@@ -83,11 +101,11 @@ const config: Config = {
         "grid-lg": "80px 80px",
       },
       boxShadow: {
-        "neon-sm": "0 0 10px rgba(20,184,166,0.4)",
-        "neon-md": "0 0 20px rgba(20,184,166,0.35), 0 0 40px rgba(20,184,166,0.15)",
-        "neon-lg": "0 0 30px rgba(20,184,166,0.5), 0 0 60px rgba(20,184,166,0.25), 0 0 90px rgba(20,184,166,0.1)",
-        "card-dark": "0 4px 24px rgba(0,0,0,0.4), 0 1px 4px rgba(0,0,0,0.3)",
-        "card-hover": "0 8px 40px rgba(0,0,0,0.5), 0 0 20px rgba(20,184,166,0.15)",
+        "accent-sm": "0 0 10px rgba(255, 99, 15, 0.3)",
+        "accent-md": "0 0 20px rgba(255, 99, 15, 0.25), 0 0 40px rgba(255, 99, 15, 0.1)",
+        "accent-lg": "0 0 30px rgba(255, 99, 15, 0.35), 0 0 60px rgba(255, 99, 15, 0.15)",
+        "card-dark": "0 4px 24px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.3)",
+        "card-hover": "0 8px 40px rgba(0,0,0,0.6), 0 0 20px rgba(255, 99, 15, 0.12)",
       },
       keyframes: {
         gradient: {

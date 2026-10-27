@@ -79,7 +79,6 @@ export default function Hero() {
         <button
           onClick={() => scrollToSection("about")}
           className="group flex flex-col items-center justify-center gap-1.5 py-2 px-3 text-white transition-colors hover:text-[#FF630F]"
-          aria-label="Explore sections"
         >
           <div className="flex items-end gap-[3px] h-3.5" aria-hidden="true">
             <span className="w-[3px] h-1 bg-white rounded-[1px] group-hover:bg-[#FF630F] transition-all group-hover:h-3" />
@@ -276,7 +275,7 @@ export default function Hero() {
 
         {/* Vertical Edge Label (Desktop only) */}
         <div
-          className="hidden xl:block absolute top-1/2 right-[1.5%] -translate-y-1/2 rotate-90 origin-center font-utility text-[10px] tracking-[0.26em] uppercase text-[#777777] whitespace-nowrap pointer-events-none select-none"
+          className="hidden xl:block absolute top-1/2 right-[1.5%] -translate-y-1/2 rotate-90 origin-center font-utility text-[10px] tracking-[0.26em] uppercase text-[#949494] whitespace-nowrap pointer-events-none select-none"
           aria-hidden="true"
         >
           FULL-STACK SYSTEMS / CRAFT &amp; RELIABILITY — 001

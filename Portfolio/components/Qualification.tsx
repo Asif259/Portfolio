@@ -143,7 +143,7 @@ export default function Qualification() {
                     <p className="font-utility text-xs text-[#FF630F]">
                       {edu.institution}
                     </p>
-                    <span className="font-utility text-[11px] text-[#777777] font-mono">
+                    <span className="font-utility text-[11px] text-[#949494] font-mono">
                       {edu.period}
                     </span>
                   </div>

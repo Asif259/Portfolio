@@ -42,7 +42,7 @@ export default function Contact() {
             <p className="font-body text-lg md:text-xl text-[#B8B8B8] leading-[1.5]">
               Have a full-stack platform, web application, or complex digital product in mind? Tell me what you’re building and where you want to take it.
             </p>
-            <div className="font-utility text-xs md:text-sm text-[#777777] font-mono tracking-wider pt-2">
+            <div className="font-utility text-xs md:text-sm text-[#949494] font-mono tracking-wider pt-2">
               Next.js Architectures / Distributed Backends / Relational Schemas / Mentorship
             </div>
             <div className="pt-4 flex flex-wrap gap-3">

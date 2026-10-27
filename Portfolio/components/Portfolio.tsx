@@ -170,7 +170,7 @@ export default function Portfolio({ initialProjects }: PortfolioProps) {
           }}
           aria-hidden="true"
         >
-          <span className="font-utility text-[11px] tracking-[0.18em] text-[#777777] uppercase font-mono">
+          <span className="font-utility text-[11px] tracking-[0.18em] text-[#949494] uppercase font-mono">
             01 / ARCHITECTURE FOR RENTAL COMMERCE &amp; MULTI-TENANT HOUSING
           </span>
         </div>
@@ -287,16 +287,21 @@ export default function Portfolio({ initialProjects }: PortfolioProps) {
               <div
                 key={proj.id}
                 onClick={() => setActiveModalProject(proj)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setActiveModalProject(proj);
+                  }
+                }}
                 className="work-row group relative grid grid-cols-[36px_minmax(0,1fr)_40px] md:grid-cols-[48px_minmax(0,1.4fr)_minmax(0,1fr)_90px_48px] items-center gap-3 md:gap-4 py-5 md:py-6 px-3 md:px-4 min-h-[76px] bg-black/60 border-b border-white/10 hover:border-white/25 cursor-pointer transition-colors"
                 role="button"
                 tabIndex={0}
-                aria-label={`View ${proj.name} case study`}
               >
                 {/* Difference wipe backdrop on hover */}
                 <div className="work-row-wipe" />
 
                 {/* Index */}
-                <span className="font-utility text-xs md:text-sm text-[#777777] z-[2] font-mono">
+                <span className="font-utility text-xs md:text-sm text-[#949494] z-[2] font-mono">
                   {indexStr}
                 </span>
 
@@ -305,7 +310,7 @@ export default function Portfolio({ initialProjects }: PortfolioProps) {
                   <span className="font-display text-lg md:text-2xl font-medium text-white tracking-[-0.02em] group-hover:text-[#FF630F] md:group-hover:text-white transition-colors">
                     {proj.name}
                   </span>
-                  <span className="md:hidden font-utility text-xs text-[#888888] mt-0.5">
+                  <span className="md:hidden font-utility text-xs text-[#AAAAAA] mt-0.5">
                     {proj.category}
                   </span>
                 </div>
@@ -316,7 +321,7 @@ export default function Portfolio({ initialProjects }: PortfolioProps) {
                 </span>
 
                 {/* Year (Desktop) */}
-                <span className="hidden md:block font-utility text-xs md:text-sm text-[#777777] font-mono z-[2]">
+                <span className="hidden md:block font-utility text-xs md:text-sm text-[#949494] font-mono z-[2]">
                   {proj.date || "2025"}
                 </span>
 

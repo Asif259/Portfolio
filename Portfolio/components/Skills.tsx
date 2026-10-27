@@ -84,10 +84,9 @@ export default function Skills() {
                   className="w-full grid grid-cols-[36px_minmax(0,1.2fr)_auto] md:grid-cols-[48px_minmax(0,1.2fr)_minmax(0,1.6fr)_140px] items-center gap-4 py-6 md:py-8 text-left cursor-pointer group"
                   aria-expanded={isExpanded}
                   aria-controls={`capability-panel-${cap.id}`}
-                  aria-label={`Explore ${cap.title} details`}
                 >
                   {/* Number Index */}
-                  <span className="font-utility text-sm md:text-base text-[#777777] font-mono group-hover:text-[#FF630F] transition-colors">
+                  <span className="font-utility text-sm md:text-base text-[#949494] font-mono group-hover:text-[#FF630F] transition-colors">
                     {cap.id}
                   </span>
 
@@ -144,7 +143,7 @@ export default function Skills() {
         </div>
 
         {/* Footer Footnotes */}
-        <div className="mt-14 pt-6 border-t border-[#222222] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-utility text-xs md:text-sm text-[#777777]">
+        <div className="mt-14 pt-6 border-t border-[#222222] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-utility text-xs md:text-sm text-[#949494]">
           <span>From focused components to full-stack platform architectures.</span>
           <span className="font-mono text-[#949494]">Independent engineer / Systems approach</span>
         </div>

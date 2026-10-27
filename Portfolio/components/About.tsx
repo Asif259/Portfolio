@@ -134,7 +134,7 @@ export default function About() {
                 // Engineering Approach
               </span>
               <span className="h-1.5 w-1.5 rounded-full bg-[#FF630F] animate-pulse" aria-hidden="true" />
-              <span className="font-mono text-xs text-[#777777] uppercase tracking-[0.08em] hidden sm:inline">
+              <span className="font-mono text-xs text-[#949494] uppercase tracking-[0.08em] hidden sm:inline">
                 4 Architectural Pillars
               </span>
             </div>
@@ -189,7 +189,7 @@ export default function About() {
                       <span className={`font-mono text-xs font-semibold px-2 py-0.5 rounded border transition-colors ${
                         isSelected 
                           ? "bg-[#FF630F]/15 text-[#FF630F] border-[#FF630F]/40" 
-                          : "bg-white/5 text-[#777777] border-white/10 group-hover:text-white"
+                          : "bg-white/5 text-[#A0A1A6] border-white/10 group-hover:text-white"
                       }`}>
                         {pillar.index}
                       </span>
@@ -226,7 +226,7 @@ export default function About() {
                 <div className="w-2.5 h-2.5 rounded-full bg-[#333333]" />
                 <div className="w-2.5 h-2.5 rounded-full bg-[#333333]" />
                 <div className="w-2.5 h-2.5 rounded-full bg-[#333333]" />
-                <span className="ml-2 font-mono text-xs text-[#777777] uppercase tracking-wider">
+                <span className="ml-2 font-mono text-xs text-[#949494] uppercase tracking-wider">
                   SPEC: {currentPillar.id.toUpperCase()}_BLUEPRINT.MD
                 </span>
               </div>
@@ -272,7 +272,7 @@ export default function About() {
             {/* Bottom Bar: Tech Stack Badges & Metric Scoreboard */}
             <div className="mt-8 pt-6 border-t border-[#222222] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <span className="block font-mono text-[10px] text-[#777777] uppercase tracking-[0.1em] mb-2">
+                <span className="block font-mono text-[10px] text-[#949494] uppercase tracking-[0.1em] mb-2">
                   CORE TOOLS &amp; PROTOCOLS
                 </span>
                 <div className="flex flex-wrap gap-1.5">
@@ -288,7 +288,7 @@ export default function About() {
               </div>
 
               <div className="sm:text-right border-t sm:border-t-0 sm:border-l border-[#222222] pt-3 sm:pt-0 sm:pl-6 shrink-0">
-                <span className="block font-mono text-[10px] text-[#777777] uppercase tracking-[0.1em]">
+                <span className="block font-mono text-[10px] text-[#949494] uppercase tracking-[0.1em]">
                   {currentPillar.metricLabel}
                 </span>
                 <span className="font-display text-lg md:text-xl font-medium text-[#FF630F]">

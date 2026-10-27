@@ -1,4 +1,4 @@
-import { groq } from 'next-sanity'
+import groq from 'groq'
 
 export const PROJECTS_QUERY = groq`
   *[_type == "project" && isPublished == true] | order(displayOrder asc, legacyId asc, _createdAt desc) {

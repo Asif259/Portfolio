@@ -2,6 +2,10 @@
 const nextConfig = {
   compress: true,
   poweredByHeader: false,
+  swcMinify: true,
+  experimental: {
+    optimizePackageImports: ['react-icons', '@sanity/client'],
+  },
   images: {
     unoptimized: false,
     formats: ['image/avif', 'image/webp'],

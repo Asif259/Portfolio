@@ -77,6 +77,10 @@ export default function RootLayout({
     >
       <head>
         <link rel="shortcut icon" type="image/x-icon" href="/img/asif.jpg" />
+        <link rel="preload" as="image" href="/hero.webp" type="image/webp" fetchPriority="high" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdn.sanity.io" />
       </head>
       <body className="bg-black text-white antialiased selection:bg-[#FF630F] selection:text-black">
         {children}

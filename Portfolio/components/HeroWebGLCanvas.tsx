@@ -15,22 +15,25 @@ export default function HeroWebGLCanvas({
   const staticRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const staticBg = staticRef.current;
-    if (!canvas) return;
+    let cleanupFn: (() => void) | null = null;
+    let cancelled = false;
 
-    const hero = document.getElementById(containerId);
-    if (!hero) return;
+    function initWebGL() {
+      if (cancelled) return;
+      const canvas = canvasRef.current;
+      const hero = document.getElementById(containerId);
+      const staticBg = staticRef.current;
+      if (!canvas || !hero) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    const isCoarse = window.matchMedia("(pointer: coarse)").matches;
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+      const isCoarse = window.matchMedia("(pointer: coarse)").matches;
 
-    // Fallback if reduced motion or coarse pointer on small screens
-    if (prefersReducedMotion || (window.innerWidth < 768 && isCoarse)) {
-      return;
-    }
+      // Fallback if reduced motion or coarse pointer on small screens
+      if (prefersReducedMotion || (window.innerWidth < 768 && isCoarse)) {
+        return;
+      }
 
     const glOptions: WebGLContextAttributes = {
       alpha: true,
@@ -414,23 +417,39 @@ export default function HeroWebGLCanvas({
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("visibilitychange", onVisibilityChange);
 
-    return () => {
-      destroyed = true;
-      observer.disconnect();
-      if (rafId) cancelAnimationFrame(rafId);
-      if (scrollRafId) cancelAnimationFrame(scrollRafId);
-      window.removeEventListener("resize", resize);
-      window.removeEventListener("scroll", onScroll);
-      hero.removeEventListener("pointerenter", onPointerEnter);
-      hero.removeEventListener("pointermove", onPointerMove);
-      hero.removeEventListener("pointerleave", onPointerLeave);
-      document.removeEventListener("visibilitychange", onVisibilityChange);
+      cleanupFn = () => {
+        destroyed = true;
+        observer.disconnect();
+        if (rafId) cancelAnimationFrame(rafId);
+        if (scrollRafId) cancelAnimationFrame(scrollRafId);
+        window.removeEventListener("resize", resize);
+        window.removeEventListener("scroll", onScroll);
+        hero.removeEventListener("pointerenter", onPointerEnter);
+        hero.removeEventListener("pointermove", onPointerMove);
+        hero.removeEventListener("pointerleave", onPointerLeave);
+        document.removeEventListener("visibilitychange", onVisibilityChange);
 
-      ctx.deleteProgram(program);
-      ctx.deleteShader(vs);
-      ctx.deleteShader(fs);
-      ctx.deleteTexture(texture);
-      ctx.deleteBuffer(vbo);
+        ctx.deleteProgram(program);
+        ctx.deleteShader(vs);
+        ctx.deleteShader(fs);
+        ctx.deleteTexture(texture);
+        ctx.deleteBuffer(vbo);
+      };
+    }
+
+    const idleHandle =
+      typeof window !== "undefined" && "requestIdleCallback" in window
+        ? (window as any).requestIdleCallback(initWebGL, { timeout: 600 })
+        : setTimeout(initWebGL, 100);
+
+    return () => {
+      cancelled = true;
+      if (typeof window !== "undefined" && "cancelIdleCallback" in window && typeof idleHandle === "number") {
+        (window as any).cancelIdleCallback(idleHandle);
+      } else {
+        clearTimeout(idleHandle);
+      }
+      if (cleanupFn) cleanupFn();
     };
   }, [imageSrc, containerId]);
 
